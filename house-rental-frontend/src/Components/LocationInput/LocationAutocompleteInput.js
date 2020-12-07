@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Autocomplete from 'react-autocomplete';
 import http from '../../Services/http';
 import axios from 'axios';
 import _ from 'lodash';
-import lunr from 'lunr';
+import { AutoComplete } from 'antd';
 
 function LocationAutocompleteInput() {
 	const [ value, setValue ] = useState('');
@@ -15,7 +14,6 @@ function LocationAutocompleteInput() {
 	useEffect(() => {
 		axios.get('http://localhost:3001/location/').then((result) => {
 			const { cities, districts, subDistricts } = result.data.locations;
-			const t1 = performance.now();
 			const districtMap = _.keyBy(districts, 'districtId');
 			const cityMap = _.keyBy(cities, 'cityId');
 
@@ -24,55 +22,65 @@ function LocationAutocompleteInput() {
 				const city = cityMap[district.cityId];
 				return {
 					id: 'subDistrict-' + subDistrict.subDistrictId,
-					label: subDistrict.subDistrict + ', ' + district.district + ', ' + city.city
+					value: subDistrict.subDistrict + ', ' + district.district + ', ' + city.city
 				};
 			});
 
 			const districtAddresses = districts.map((district) => {
 				const city = cityMap[district.cityId];
-				return { id: 'district-' + district.districtId, label: district.district + ', ' + city.city };
+				return { id: 'district-' + district.districtId, value: district.district + ', ' + city.city };
 			});
 
 			const cityAddress = cities.map((city) => {
-				return { id: 'city-' + city.cityId, label: city.city };
+				return { id: 'city-' + city.cityId, value: city.city };
 			});
 			setTextList([ ...subDistrictAddresses, ...districtAddresses, ...cityAddress ]);
-			console.log(performance.now() - t1);
 		});
 	}, []);
 
 	useEffect(
 		() => {
-			const t1 = performance.now();
 			if (value === '') {
 				setRecommandation([]);
 			} else {
 				const listRecommand = textList.filter((text) => {
 					return (
-						text.label
+						text.value
 							.toLowerCase()
 							.split(',')
 							.join('')
 							.indexOf(value.toLowerCase().split(',').join('')) !== -1
 					);
 				});
-				console.log(listRecommand);
-				setRecommandation(listRecommand.sort((a, b) => a.label.length - b.label.length));
+				setRecommandation(listRecommand.sort((a, b) => a.value.length - b.value.length));
 			}
-			console.log(performance.now() - t1);
 		},
 		[ value ]
 	);
 
+	const onSelect = (data) => {
+		setValue(data);
+		console.log(data);
+	};
+
+	const onChange = (data) => {
+		console.log(value);
+		setValue(data);
+	};
+
 	return (
-		<div>
-			<input onChange={(event) => setValue(event.target.value)} />
-			<div>
-				{recommandations
-					.slice(0, 10)
-					.map((recommandation) => <p key={recommandation.id}>{recommandation.label}</p>)}
-			</div>
-		</div>
+		<React.Fragment>
+			<AutoComplete
+				options={recommandations.slice(0, 5)}
+				style={{
+					width: 200
+				}}
+				onSelect={onSelect}
+				onChange={onChange}
+				placeholder="input here"
+				value={value}
+			/>
+		</React.Fragment>
 	);
 }
 
