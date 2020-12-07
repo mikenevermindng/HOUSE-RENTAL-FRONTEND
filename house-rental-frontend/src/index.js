@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import 'antd/dist/antd.css'
 
 import reducer from './Store/Reducer/indexReducer';
 
