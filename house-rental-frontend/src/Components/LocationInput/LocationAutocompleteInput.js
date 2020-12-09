@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import http from '../../Services/http';
-import axios from 'axios';
-import _ from 'lodash';
 import { AutoComplete } from 'antd';
+import { apiGetAllLocationData } from '../../Services/location_services';
+import _ from 'lodash';
 
 function LocationAutocompleteInput() {
 	const [ value, setValue ] = useState('');
@@ -10,33 +9,33 @@ function LocationAutocompleteInput() {
 	const [ recommandations, setRecommandation ] = useState([]);
 
 	const [ textList, setTextList ] = useState([]);
-
 	useEffect(() => {
-		axios.get('http://localhost:3001/location/').then((result) => {
-			const { cities, districts, subDistricts } = result.data.locations;
-			const districtMap = _.keyBy(districts, 'districtId');
-			const cityMap = _.keyBy(cities, 'cityId');
-
-			const subDistrictAddresses = subDistricts.map((subDistrict) => {
-				const district = districtMap[subDistrict.districtId];
-				const city = cityMap[district.cityId];
-				return {
-					id: 'subDistrict-' + subDistrict.subDistrictId,
-					value: subDistrict.subDistrict + ', ' + district.district + ', ' + city.city
-				};
-			});
-
-			const districtAddresses = districts.map((district) => {
-				const city = cityMap[district.cityId];
-				return { id: 'district-' + district.districtId, value: district.district + ', ' + city.city };
-			});
-
-			const cityAddress = cities.map((city) => {
-				return { id: 'city-' + city.cityId, value: city.city };
-			});
-			setTextList([ ...subDistrictAddresses, ...districtAddresses, ...cityAddress ]);
-		});
+		const loadLocationData = async () => {
+			const locations = await apiGetAllLocationData();
+			setTextList(locations);
+		};
+		loadLocationData();
 	}, []);
+
+	useEffect(
+		() => {
+			if (value === '') {
+				setRecommandation([]);
+			} else {
+				const listRecommand = textList.filter((text) => {
+					return (
+						text.value
+							.toLowerCase()
+							.split(',')
+							.join('')
+							.indexOf(value.toLowerCase().split(',').join('')) !== -1
+					);
+				});
+				setRecommandation(listRecommand.sort((a, b) => a.value.length - b.value.length));
+			}
+		},
+		[ value ]
+	);
 
 	useEffect(
 		() => {
@@ -60,11 +59,9 @@ function LocationAutocompleteInput() {
 
 	const onSelect = (data) => {
 		setValue(data);
-		console.log(data);
 	};
 
 	const onChange = (data) => {
-		console.log(value);
 		setValue(data);
 	};
 
