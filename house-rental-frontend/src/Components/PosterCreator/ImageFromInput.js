@@ -56,12 +56,12 @@ function ImageFromInput(props) {
 		},
 		[ fileList ]
 	);
-
 	return (
 		<div>
 			<Upload
 				action="http://localhost:3001/accommodationPost/upload"
 				listType="picture-card"
+				accept=".png .jpg .svg"
 				fileList={fileList}
 				onPreview={handlePreview}
 				onChange={handleChange}

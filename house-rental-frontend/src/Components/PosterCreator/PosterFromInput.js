@@ -3,7 +3,7 @@ import { Row, Col, Input, Select } from 'antd';
 
 const { Option } = Select;
 
-function PoterFromInput(props) {
+function PosterFromInput(props) {
 	const typeOfAccommodation = [ 'Phòng trọ', 'Chung cư mini', 'Nhà nguyên căn', 'Chung cư nguyên căn' ];
 
 	const { onChangeHandler, setPosterInfo, posterInfo, posterInfoFormOnSelectHandler } = props;
@@ -177,4 +177,4 @@ function PoterFromInput(props) {
 	);
 }
 
-export default PoterFromInput;
+export default PosterFromInput;
