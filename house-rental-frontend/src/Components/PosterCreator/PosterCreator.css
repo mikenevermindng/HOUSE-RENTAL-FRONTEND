@@ -1,0 +1,16 @@
+.poster-creator {
+	padding: 10px;
+	max-width: 600px;
+}
+
+.steps-content {
+	margin-top: 30px;
+	align-items: center;
+	padding: 20px;
+	height: 350px;
+}
+
+.steps-action {
+	padding: 0 30px;
+	margin-top: auto;
+}

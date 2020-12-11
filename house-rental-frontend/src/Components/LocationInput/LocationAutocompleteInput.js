@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { AutoComplete } from 'antd';
 import { apiGetAllLocationData } from '../../Services/location_services';
 import _ from 'lodash';
+import './LocationInput.css';
 
-function LocationAutocompleteInput() {
+function LocationAutocompleteInput(props) {
 	const [ value, setValue ] = useState('');
 
 	const [ recommandations, setRecommandation ] = useState([]);
@@ -51,7 +52,7 @@ function LocationAutocompleteInput() {
 							.indexOf(value.toLowerCase().split(',').join('')) !== -1
 					);
 				});
-				setRecommandation(listRecommand.sort((a, b) => a.value.length - b.value.length));
+				setRecommandation([ ...listRecommand.sort((a, b) => a.value.length - b.value.length) ]);
 			}
 		},
 		[ value ]
@@ -74,7 +75,6 @@ function LocationAutocompleteInput() {
 				}}
 				onSelect={onSelect}
 				onChange={onChange}
-				placeholder="input here"
 				value={value}
 			/>
 		</React.Fragment>

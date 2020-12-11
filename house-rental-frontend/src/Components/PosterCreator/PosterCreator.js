@@ -4,6 +4,7 @@ import PosterFromInput from './PosterFromInput';
 import FacilityFromInput from './FacilityFromInput';
 import ImageFromInput from './ImageFromInput';
 import { apiImageUploader } from '../../Services/accommodation_services';
+import './PosterCreator.css';
 
 const { Step } = Steps;
 
@@ -37,9 +38,6 @@ function PosterCreator() {
 		console.log(facilities);
 		if (label) {
 			setPosterInfo({ ...facility, [label.name]: label.value });
-		} else {
-			delete facility[label.name];
-			setPosterInfo({ ...facility });
 		}
 	};
 
@@ -54,9 +52,6 @@ function PosterCreator() {
 		console.log(posterInformation);
 		if (label) {
 			setPosterInfo({ ...posterInformation, [label.name]: label.value });
-		} else {
-			delete posterInformation[label.name];
-			setPosterInfo({ ...posterInformation });
 		}
 	};
 
@@ -104,23 +99,27 @@ function PosterCreator() {
 	];
 
 	return (
-		<div style={{ maxWidth: '600px' }}>
+		<div className="poster-creator">
 			<Steps current={current}>{steps.map((item) => <Step key={item.title} title={item.title} />)}</Steps>
 			<div className="steps-content">{steps[current].component}</div>
 			<div className="steps-action">
-				{current > 0 && (
-					<Button style={{ margin: '0 8px' }} onClick={() => prev()}>
-						Previous
-					</Button>
-				)}
 				{current < steps.length - 1 && (
-					<Button type="primary" onClick={() => next()}>
-						Next
+					<Button type="primary" onClick={() => next()} style={{ float: 'right', marginLeft: '10px' }}>
+						Tiếp theo
 					</Button>
 				)}
 				{current === steps.length - 1 && (
-					<Button type="primary" onClick={submitFromHandler}>
-						Done
+					<Button type="primary" onClick={submitFromHandler} style={{ float: 'right', marginLeft: '10px' }}>
+						Hoàn thành
+					</Button>
+				)}
+				{current > 0 && (
+					<Button
+						style={{ margin: '0 8px' }}
+						onClick={() => prev()}
+						style={{ float: 'right', marginLeft: '10px' }}
+					>
+						Trở lại
 					</Button>
 				)}
 			</div>

@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import './App.css';
-import Slider from './Components/Slider/Slider';
+import PosterCreator from './Components/PosterCreator/PosterCreator';
+import Navbar from './Components/Navbar/Navbar';
+import SearchPanel from './Components/SearchPanel/SearchPanel';
 
 function App() {
 	let slides = [
@@ -19,9 +21,7 @@ function App() {
 	];
 	return (
 		<div className="App">
-			<div style={{ maxHeight: '500px', maxWidth: '500px' }}>
-				<Slider slides={slides} />
-			</div>
+			<SearchPanel />
 		</div>
 	);
 }

@@ -33,7 +33,7 @@ function PosterFromInput(props) {
 	);
 
 	return (
-		<div style={{ maxWidth: '600px' }}>
+		<div>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 				<Col span={6}>Chủ đề</Col>
 				<Col span={18}>

@@ -1,0 +1,29 @@
+.search-panel {
+	background-color: antiquewhite;
+	max-width: 768px;
+	border-radius: 5px;
+}
+
+.search-top {
+	padding: 15px 0px 15px 20px;
+}
+
+.search-top .input-place {
+	align-items: center;
+	display: flex;
+}
+
+.search-input {
+	display: inline-block;
+	margin-left: 5px;
+}
+
+.search-top .number-of-room {
+	display: inline-block;
+	margin-left: 20px;
+	width: 100px;
+}
+
+.search-top .number-of-room-selector {
+	margin-left: 30px;
+}

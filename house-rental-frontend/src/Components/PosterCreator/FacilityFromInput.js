@@ -8,7 +8,7 @@ function FacilityFromInput(props) {
 	const { other, setOther, onChangeHandler } = props;
 
 	return (
-		<div style={{ maxWidth: '600px' }}>
+		<div className="facility-input-form">
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 				<Col span={6}>Phòng tắm</Col>
 				<Col span={18}>
