@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import './App.css';
-import PosterCreator from './Components/PosterCreator/PosterCreator';
 import Navbar from './Components/Navbar/Navbar';
 import SearchPanel from './Components/SearchPanel/SearchPanel';
+import CustomSelector from './Components/CustomSelectorWithInputText/CustomSelectorWithInput';
 
 function App() {
 	let slides = [
@@ -21,6 +21,7 @@ function App() {
 	];
 	return (
 		<div className="App">
+			<Navbar />
 			<SearchPanel />
 		</div>
 	);
