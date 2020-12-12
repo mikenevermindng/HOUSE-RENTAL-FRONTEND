@@ -13,8 +13,11 @@
 	font-size: 1.1rem;
 	font-weight: 500;
 	padding: 0 20px 0 20px;
-	color: #8e8e8e;
 	cursor: pointer;
+}
+
+.select-normal .select-normal-input .select-normal-value .place-holder {
+	color: #8e8e8e;
 }
 
 .select-normal-input img {

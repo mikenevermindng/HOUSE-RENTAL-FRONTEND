@@ -9,6 +9,8 @@ const texts = [ 'New York', 'Tokio', 'Hanoi', 'Bejing', 'London' ].map((text, in
 });
 
 function SearchBarAutoComplete(props) {
+	const { placeHolder } = props;
+
 	const [ value, setValue ] = useState('');
 	const [ recommendations, setRecommendationList ] = useState([ ...texts ]);
 	const [ activeSuggestion, setActiveSuggestion ] = useState(0);
@@ -77,7 +79,7 @@ function SearchBarAutoComplete(props) {
 				<OutsideClickHandler onOutsideClick={() => setRecommendationList([])}>
 					<input
 						type="text"
-						placeholder="Địa điểm"
+						placeholder={placeHolder}
 						onChange={onChangeHandler}
 						value={value}
 						onKeyUp={onPressArrowHandler}

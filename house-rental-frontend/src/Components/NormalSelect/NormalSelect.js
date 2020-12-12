@@ -24,6 +24,7 @@ function NormalSelect(props) {
 	};
 
 	const onPressArrowHandler = (event) => {
+		event.preventDefault();
 		if (listFilterOption.length === 0) return;
 		if (event.keyCode === 13) {
 			setValue(listFilterOption[activeSuggestion].value);
@@ -37,19 +38,19 @@ function NormalSelect(props) {
 		}
 	};
 
-	const clickOnSuggestionItem = (recommandtion) => {
+	const clickOnSuggestionItem = (recommendation) => {
 		return () => {
-			setValue(recommandtion.value);
+			setValue(recommendation.value);
 			setShowSuggestion(false);
 			setActiveSuggestion(0);
 		};
 	};
 
-	const onMouseOverHandler = (evnet) => {
+	const onMouseOverHandler = (event) => {
 		setMouseOver(true);
 	};
 
-	const onMouseLeaveHandler = (evnet) => {
+	const onMouseLeaveHandler = (event) => {
 		setMouseOver(false);
 	};
 
@@ -65,7 +66,13 @@ function NormalSelect(props) {
 		<div className="select-normal">
 			<div className="select-normal-input" onClick={onClickHandler}>
 				<OutsideClickHandler onOutsideClick={clickOutsideHandler}>
-					<div className="select-normal-value">{value.length === 0 ? placeHolder : value}</div>
+					<div className="select-normal-value">
+						{value.length === 0 ? (
+							<span className="place-holder">{placeHolder}</span>
+						) : (
+							<span className="value">{value}</span>
+						)}
+					</div>
 					{!showSuggestion && <img src={arrowDown} alt="" />}
 					{showSuggestion && <img src={arrowUp} alt="" />}
 					{showSuggestion && (

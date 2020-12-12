@@ -1,9 +1,7 @@
-import { useEffect } from 'react';
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import SearchPanel from './Components/SearchPanel/SearchPanel';
-import CustomSelector from './Components/CustomSelectorWithInputText/CustomSelectorWithInput';
-import MobieSearchPanel from './Components/MobieSearchPanel/MobieSearchPanel';
+import MobileSearchPanel from './Components/MobileSearchPanel/MobileSearchPanel';
 
 function App() {
 	let slides = [
@@ -25,7 +23,7 @@ function App() {
 			<Navbar />
 			<SearchPanel />
 			<div>
-				<MobieSearchPanel />
+				<MobileSearchPanel />
 			</div>
 		</div>
 	);

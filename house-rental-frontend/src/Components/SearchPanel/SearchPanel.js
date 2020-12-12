@@ -17,13 +17,13 @@ function SearchPanel() {
 					<div className="search-input">
 						<img src={mapLocationIcon} alt="" title="location" width="15" height="20" />
 						<div className="display-inline-block">
-							<SearchBarAutoComplete />
+							<SearchBarAutoComplete placeHolder="Địa điểm" />
 						</div>
 					</div>
 					<div className="number-of-room-selector">
 						<img src={badroomIcon} alt="" title="location" width="24" height="24" />
 						<div className="display-inline-block">
-							<CustomSelector />
+							<CustomSelector placeHolder="Số lượng phòng" />
 						</div>
 					</div>
 					<div className="type-of-accommod">

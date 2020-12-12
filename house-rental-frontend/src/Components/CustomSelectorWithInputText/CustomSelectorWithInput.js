@@ -9,7 +9,9 @@ const texts = [ 'New York', 'Tokio', 'Hanoi', 'Bejing', 'London' ].map((text, in
 	return { id: index, value: text };
 });
 
-function CustomSelector() {
+function CustomSelector(props) {
+	const { placeHolder } = props;
+
 	const [ value, setValue ] = useState('');
 	const [ isFocusing, setFocusing ] = useState(false);
 	const [ listOption, setListOption ] = useState([ ...texts ]);
@@ -94,7 +96,7 @@ function CustomSelector() {
 				<OutsideClickHandler onOutsideClick={clickOutsideHandler}>
 					<input
 						type="text"
-						placeholder="Số lượng phòng"
+						placeholder={placeHolder}
 						onFocus={onFocusHandler}
 						onChange={onChangeHandler}
 						onKeyUp={onPressArrowHandler}
