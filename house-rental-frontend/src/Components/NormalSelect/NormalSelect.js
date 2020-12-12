@@ -9,7 +9,9 @@ const texts = [ 'New York', 'Tokio', 'Hanoi', 'Bejing', 'London' ].map((text, in
 	return { id: index, value: text };
 });
 
-function NormalSelect() {
+function NormalSelect(props) {
+	const { placeHolder } = props;
+
 	const [ value, setValue ] = useState('');
 	const [ listOption, setListOption ] = useState([ ...texts ]);
 	const [ listFilterOption, setListFilterOption ] = useState([]);
@@ -63,7 +65,7 @@ function NormalSelect() {
 		<div className="select-normal">
 			<div className="select-normal-input" onClick={onClickHandler}>
 				<OutsideClickHandler onOutsideClick={clickOutsideHandler}>
-					<div className="select-normal-value">{value.length === 0 ? 'Kiểu nhà' : value}</div>
+					<div className="select-normal-value">{value.length === 0 ? placeHolder : value}</div>
 					{!showSuggestion && <img src={arrowDown} alt="" />}
 					{showSuggestion && <img src={arrowUp} alt="" />}
 					{showSuggestion && (

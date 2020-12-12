@@ -1,7 +1,6 @@
 .wrapper {
-	max-width: 450px;
 	display: inline-block;
-	margin-left: 10px;
+	width: 100%;
 }
 
 .wrapper .search-input {
@@ -31,6 +30,7 @@
 	z-index: 1000000;
 	width: 100%;
 	color: white;
+	text-align: left;
 }
 
 .search-input .autocom-box li {

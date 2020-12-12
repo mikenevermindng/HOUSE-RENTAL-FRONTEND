@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import SearchPanel from './Components/SearchPanel/SearchPanel';
 import CustomSelector from './Components/CustomSelectorWithInputText/CustomSelectorWithInput';
+import MobieSearchPanel from './Components/MobieSearchPanel/MobieSearchPanel';
 
 function App() {
 	let slides = [
@@ -23,6 +24,9 @@ function App() {
 		<div className="App">
 			<Navbar />
 			<SearchPanel />
+			<div>
+				<MobieSearchPanel />
+			</div>
 		</div>
 	);
 }

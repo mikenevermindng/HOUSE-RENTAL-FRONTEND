@@ -1,34 +1,44 @@
 .search-panel {
-	background-color: antiquewhite;
 	border-radius: 5px;
 	max-width: 960px;
+	text-align: center;
+	padding: 10px;
 }
 
-.search-top {
+.search-panel .search-top {
 	padding: 15px 20px 15px 20px;
 }
 
-.search-top .input-place {
+.search-panel .search-top .input-place {
 	align-items: center;
 	display: inline-block;
 }
 
-.input-place .search-input {
+.search-top .input-place .search-input {
 	margin-left: 5px;
 	display: inline-block;
 }
 
-.input-place .number-of-room-selector {
+.search-top .input-place .number-of-room-selector {
 	margin-left: 30px;
 	display: inline-block;
 }
 
-.input-place .number-of-room-selector .number-of-room {
+.search-top .input-place .number-of-room-selector .number-of-room {
 	margin-left: 20px;
 	width: 100px;
 }
 
-.input-place .type-of-accommod {
+.search-top .input-place .type-of-accommod {
 	display: inline-block;
 	margin-left: 30px;
+}
+
+.search-top .input-place .type-of-accommod .type-house-selector {
+	width: 200px;
+}
+
+.search-panel .search-bottom {
+	background-color: #0a1438;
+	padding: 20px;
 }

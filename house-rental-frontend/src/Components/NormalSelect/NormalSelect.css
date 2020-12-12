@@ -1,8 +1,6 @@
 .select-normal {
-	max-width: 200px;
 	display: inline-block;
-	margin-left: 20px;
-	width: 200px;
+	width: 100%;
 }
 
 .select-normal .select-normal-input {
@@ -36,6 +34,7 @@
 	color: white;
 	top: 40px;
 	left: 0;
+	text-align: left;
 }
 
 .select-normal-input .options-box li {
