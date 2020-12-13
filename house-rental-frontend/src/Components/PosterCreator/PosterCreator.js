@@ -4,6 +4,7 @@ import PosterFromInput from './PosterFromInput';
 import FacilityFromInput from './FacilityFromInput';
 import ImageFromInput from './ImageFromInput';
 import { apiImageUploader } from '../../Services/accommodation_services';
+import classNames from 'classnames';
 import './PosterCreator.css';
 
 const { Step } = Steps;
@@ -29,27 +30,35 @@ function PosterCreator() {
 
 	const facilityFormOnChangeHandler = (event) => {
 		const facility = facilities;
-		console.log(facilities);
+		console.log('facility', facilities);
 		setFacilities({ ...facility, [event.target.name]: event.target.value });
 	};
 
 	const facilityFormOnSelectHandler = (label) => {
 		const facility = facilities;
-		console.log(facilities);
+		console.log('facility', facilities);
 		if (label) {
-			setPosterInfo({ ...facility, [label.name]: label.value });
+			setFacilities({ ...facility, [label.name]: label.value });
 		}
+	};
+
+	const facilityFormOnRemoveHandler = (item) => {
+		return () => {
+			const others = facilities.other;
+			const index = others.indexOf((fac) => fac === item);
+			console.log('facility', facilities);
+		};
 	};
 
 	const posterInfoFormOnChangeHandler = (event) => {
 		const posterInformation = posterInfo;
-		console.log(posterInformation);
+		console.log('poster', posterInformation);
 		setPosterInfo({ ...posterInformation, [event.target.name]: event.target.value });
 	};
 
 	const posterInfoFormOnSelectHandler = (label) => {
 		const posterInformation = posterInfo;
-		console.log(posterInformation);
+		console.log('poster', posterInformation);
 		if (label) {
 			setPosterInfo({ ...posterInformation, [label.name]: label.value });
 		}
@@ -72,7 +81,8 @@ function PosterCreator() {
 					posterInfo={posterInfo}
 					posterInfoFormOnSelectHandler={posterInfoFormOnSelectHandler}
 				/>
-			)
+			),
+			activeOrder: 0
 		},
 		{
 			title: 'Second',
@@ -82,8 +92,10 @@ function PosterCreator() {
 					setOther={setOther}
 					onChangeHandler={facilityFormOnChangeHandler}
 					facilityFormOnSelectHandler={facilityFormOnSelectHandler}
+					facilityFormOnRemoveHandler={facilityFormOnRemoveHandler}
 				/>
-			)
+			),
+			activeOrder: 1
 		},
 		{
 			title: 'Last',
@@ -94,14 +106,25 @@ function PosterCreator() {
 					setImageList={setImageList}
 					imageList={imageList}
 				/>
-			)
+			),
+			activeOrder: 2
 		}
 	];
 
 	return (
 		<div className="poster-creator">
-			<Steps current={current}>{steps.map((item) => <Step key={item.title} title={item.title} />)}</Steps>
-			<div className="steps-content">{steps[current].component}</div>
+			<Steps size="small" current={current}>
+				{steps.map((item) => <Step key={item.title} title={item.title} />)}
+			</Steps>
+			<div className="steps-content">
+				{steps.map((step) => {
+					return (
+						<div key={step.title} className={classNames({ 'display-none': step.activeOrder !== current })}>
+							{step.component}
+						</div>
+					);
+				})}
+			</div>
 			<div className="steps-action">
 				{current < steps.length - 1 && (
 					<Button type="primary" onClick={() => next()} style={{ float: 'right', marginLeft: '10px' }}>

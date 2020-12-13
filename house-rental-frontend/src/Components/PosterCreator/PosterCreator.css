@@ -1,16 +1,31 @@
 .poster-creator {
 	padding: 10px;
-	max-width: 600px;
+	max-width: 650px;
 }
 
+.poster-creator .input-label {
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
 .steps-content {
 	margin-top: 30px;
 	align-items: center;
 	padding: 20px;
-	height: 350px;
+	height: 450px;
+	overflow-y: auto;
 }
 
 .steps-action {
 	padding: 0 30px;
 	margin-top: auto;
+}
+
+.poster-creator .ant-row {
+	margin: 10px;
+	align-items: center;
+}
+
+.poster-creator .ant-row .remove-action {
+	color: #c0392b;
 }

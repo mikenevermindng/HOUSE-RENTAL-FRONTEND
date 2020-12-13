@@ -24,24 +24,26 @@ function PosterFromInput(props) {
 		setPrices(priceList);
 	};
 
-	useEffect(
-		() => {
-			setPosterInfo({ ...posterInfo, pricePerTimber: prices });
-			console.log(posterInfo);
-		},
-		[ prices ]
-	);
+	useEffect(() => {
+		console.log('calling');
+		setPosterInfo({ ...posterInfo, pricePerTimber: prices });
+		console.log(posterInfo);
+	}, []);
 
 	return (
 		<div>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-				<Col span={6}>Chủ đề</Col>
+				<Col span={6}>
+					<div className="input-label">Chủ đề</div>
+				</Col>
 				<Col span={18}>
 					<Input placeholder="Ví dụ: Nhà trọ Thọ An số 3 Tây Hồ" name="title" onChange={onChangeHandler} />
 				</Col>
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-				<Col span={6}>Thể loại</Col>
+				<Col span={6}>
+					<div className="input-label">Thể loại</div>
+				</Col>
 				<Col span={18}>
 					<Select
 						style={{ width: '100%' }}
@@ -66,7 +68,9 @@ function PosterFromInput(props) {
 				</Col>
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-				<Col span={6}>Thành phố</Col>
+				<Col span={6}>
+					<div className="input-label">Thành phố</div>
+				</Col>
 				<Col span={18}>
 					<Select
 						style={{ width: '100%' }}
@@ -80,9 +84,9 @@ function PosterFromInput(props) {
 							optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())}
 						onChange={(value, label) => posterInfoFormOnSelectHandler(label)}
 					>
-						{typeOfAccommodation.map((type) => {
+						{typeOfAccommodation.map((type, index) => {
 							return (
-								<Option value={type} name="city">
+								<Option value={type} key={'city' + index} name="city">
 									{type}
 								</Option>
 							);
@@ -91,7 +95,9 @@ function PosterFromInput(props) {
 				</Col>
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-				<Col span={6}>Quận/Huyện</Col>
+				<Col span={6}>
+					<div className="input-label">Quận/Huyện</div>
+				</Col>
 				<Col span={18}>
 					<Select
 						style={{ width: '100%' }}
@@ -105,9 +111,9 @@ function PosterFromInput(props) {
 							optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())}
 						onChange={(value, label) => posterInfoFormOnSelectHandler(label)}
 					>
-						{typeOfAccommodation.map((type) => {
+						{typeOfAccommodation.map((type, index) => {
 							return (
-								<Option value={type} name="district">
+								<Option value={type} key={'district-' + index} name="district">
 									{type}
 								</Option>
 							);
@@ -116,7 +122,9 @@ function PosterFromInput(props) {
 				</Col>
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-				<Col span={6}>Phường/Xã</Col>
+				<Col span={6}>
+					<div className="input-label">Phường/Xã</div>
+				</Col>
 				<Col span={18}>
 					<Select
 						style={{ width: '100%' }}
@@ -130,9 +138,9 @@ function PosterFromInput(props) {
 							optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())}
 						onChange={(value, label) => posterInfoFormOnSelectHandler(label)}
 					>
-						{typeOfAccommodation.map((type) => {
+						{typeOfAccommodation.map((type, index) => {
 							return (
-								<Option value={type} name="subDistrict">
+								<Option value={type} key={'subDistrict-' + index} name="subDistrict">
 									{type}
 								</Option>
 							);
@@ -141,25 +149,33 @@ function PosterFromInput(props) {
 				</Col>
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-				<Col span={6}>Tòa nhà, Tên đường</Col>
+				<Col span={6}>
+					<div className="input-label">Tòa nhà, Tên đường</div>
+				</Col>
 				<Col span={18}>
 					<Input placeholder="Tòa nhà, Tên đường" onChange={onChangeHandler} name="address" />
 				</Col>
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-				<Col span={6}>Diện tích</Col>
+				<Col span={6}>
+					<div className="input-label">Diện tích</div>
+				</Col>
 				<Col span={18}>
 					<Input placeholder="Diện tích (mét vuông)" type="number" name="area" onChange={onChangeHandler} />
 				</Col>
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-				<Col span={6}>Số lượng phòng</Col>
+				<Col span={6}>
+					<div className="input-label">Số lượng phòng</div>
+				</Col>
 				<Col span={18}>
 					<Input placeholder="Số lượng phòng" type="number" name="numberOfRoom" onChange={onChangeHandler} />
 				</Col>
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-				<Col span={6}>Giá thuê</Col>
+				<Col span={6}>
+					<div className="input-label">Giá thuê</div>
+				</Col>
 				<Col span={6}>
 					<label name="month">Tháng</label>
 					<Input placeholder="Tháng (Đồng)" type="number" name="month" onChange={priceChangeHandler} />

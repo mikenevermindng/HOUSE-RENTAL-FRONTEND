@@ -1,5 +1,6 @@
 import React from 'react';
 import './SearchPanel.css';
+import { Carousel, Radio } from 'antd';
 
 import mapLocationIcon from '../../Asset/Icon/map-locationpin.png';
 import badroomIcon from '../../Asset/Icon/search-bed.png';
@@ -16,29 +17,40 @@ function SearchPanel() {
 				<div className="input-place">
 					<div className="search-input">
 						<img src={mapLocationIcon} alt="" title="location" width="15" height="20" />
-						<div className="display-inline-block">
+						<div className="display-inline-block max-w-200px">
 							<SearchBarAutoComplete placeHolder="Địa điểm" />
 						</div>
 					</div>
 					<div className="number-of-room-selector">
 						<img src={badroomIcon} alt="" title="location" width="24" height="24" />
-						<div className="display-inline-block">
+						<div className="display-inline-block max-w-200px">
 							<CustomSelector placeHolder="Số lượng phòng" />
 						</div>
 					</div>
 					<div className="type-of-accommod">
 						<img src={houseIcon} alt="" title="location" width="18" height="18" />
-						<div className="display-inline-block type-house-selector">
+						<div className="display-inline-block type-house-selector max-w-200px">
 							<NormalSelect placeHolder="Kiểu nhà" />
 						</div>
+					</div>
+					<div className="search-button margin-x-15px">
+						<button>Search</button>
 					</div>
 				</div>
 			</div>
 			<div className="search-bottom">
 				<div className="price-of-accommod">
 					<img src={MoneyIcon} alt="" title="location" width="24" height="24" />
-					<NormalSelect placeHolder="Kiểu nhà" />
-					<NormalSelect placeHolder="Kiểu nhà" />
+					<div className="min-price margin-x-15px">
+						<div className="w-200px">
+							<NormalSelect placeHolder="Kiểu nhà" />
+						</div>
+					</div>
+					<div className="max-price margin-x-15px">
+						<div className="w-200px">
+							<NormalSelect placeHolder="Kiểu nhà" />
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
