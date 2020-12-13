@@ -1,0 +1,70 @@
+.contact-card-container {
+    background-color: #F0F0F3;
+    border-radius: 16px;
+    box-shadow: -10px -10px 30px #FFFFFF, 10px 10px 30px rgba(174, 174, 192, 0.4);
+    padding: 49px 30px;
+    position: sticky;
+    top: 60px;
+    right: 0;
+}
+
+#price {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+#price span {
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.ant-picker {
+    width: 100%;
+}
+
+.ant-picker-dropdown,
+.ant-picker-header,
+.ant-picker-body {
+    background-color: #F0F0F3;
+}
+
+.ant-picker,
+.ant-input-number {
+    min-height: 42px;
+    border-radius: 10px !important;
+    margin-bottom: 44px !important;
+}
+
+.ant-input-number-input {
+    margin-top: 6px;
+}
+
+#submit-btn {
+    color: white !important;
+    background-color: #333;
+    border: none;
+    outline: none;
+    width: 100%;
+    border-radius: 20px;
+    height: 69px;
+    margin-top: 84px;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+
+.btn-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 36%;
+    margin: 0 auto;
+}
+
+#submit-btn:hover {
+    transform: translateY(-6px);
+    background-color: rgba(51, 51, 51, 0.85);
+}
+
+#submit-btn:active {
+    transform: translateY(3px);
+}

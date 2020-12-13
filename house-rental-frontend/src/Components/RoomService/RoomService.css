@@ -1,0 +1,25 @@
+.room-services {
+    margin-top: 100px;
+}
+
+h1 {
+    font-weight: bold;
+    line-height: 45px;
+    font-size: 40px;
+}
+
+.service-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 68px;
+}
+
+.service {
+    display: flex;
+    align-items: center;
+    margin-bottom: 44px;
+}
+
+.service-info {
+    margin-left: 23px;
+}

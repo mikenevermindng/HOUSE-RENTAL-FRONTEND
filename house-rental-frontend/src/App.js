@@ -1,8 +1,12 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import PosterCreator from './Components/PosterCreator/PosterCreator';
 import Navbar from './Components/Navbar/Navbar';
 import SearchPanel from './Components/SearchPanel/SearchPanel';
+import Slider from './Components/Slider/Slider';
+import PosterCard from "./Components/PosterCard/PosterCard";
+import RoomDetails from './pages/RoomDetails';
+import {Route, Switch} from 'react-router-dom';
 
 function App() {
 	let slides = [
@@ -21,7 +25,9 @@ function App() {
 	];
 	return (
 		<div className="App">
-			<SearchPanel />
+			<Switch>
+				<Route exact path='/room-details/' component={RoomDetails} />
+			</Switch>
 		</div>
 	);
 }

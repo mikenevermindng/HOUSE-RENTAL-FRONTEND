@@ -23,7 +23,7 @@
 }
 
 .search-input .autocom-box {
-	padding: 0px 0px;
+	padding: 0 0;
 	overflow-y: auto;
 	background-color: #0a1438;
 	position: absolute;

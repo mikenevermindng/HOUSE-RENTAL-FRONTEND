@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap');
+
+.room-info {
+    padding: 96px 140px 0;
+    font-size: 20px;
+    font-family: 'Comfortaa', cursive;
+}
+
+.info-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 65px;
+}
+
+.left-info {
+    width: 60%;
+}
+
+.right-info {
+    width: 36%;
+    position: relative !important;
+}
+
+#room-name {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 45px;
+}
+
+.brief-info-text {
+    margin: 0 20px;
+}
+
+.brief-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+#room-description {
+    margin-top: 53px;
+}
+
+@media screen and (max-width: 960px) {
+    .room-info {
+        padding: 60px 60px 0;
+        font-size: 18px;
+    }
+}
