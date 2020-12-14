@@ -2,7 +2,8 @@ import "./App.css";
 import Navbar from "./Components/Navbar/Navbar";
 import SearchPanel from "./Components/SearchPanel/SearchPanel";
 import MobileSearchPanel from "./Components/MobileSearchPanel/MobileSearchPanel";
-
+import LoginPage from "./Components/LoginPage";
+import LoginForOwner from "./Components/LoginForOwner/index";
 function App() {
   let slides = [
     {
@@ -20,11 +21,7 @@ function App() {
   ];
   return (
     <div className="App">
-      <Navbar />
-      <SearchPanel />
-      <div>
-        <MobileSearchPanel />
-      </div>
+      <LoginForOwner></LoginForOwner>
     </div>
   );
 }

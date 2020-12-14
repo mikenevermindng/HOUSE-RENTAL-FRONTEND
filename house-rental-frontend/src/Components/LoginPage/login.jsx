@@ -1,6 +1,7 @@
 import React, { Component, useState } from "react";
 import axios from "axios";
 import "./style.css";
+import { apiUserLogin } from "../../Services/user_sevice";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,16 +12,16 @@ function Login() {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = async () => {
-    const { data } = await axios({
-      method: "POST",
-      url: "http://localhost:3001/login",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: { email, password },
-    });
-  };
+  // const handleSubmit = async () => {
+  //   const { data } = await axios({
+  //     method: "POST",
+  //     url: "http://localhost:3001/login",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     data: { email, password },
+  //   });
+  // };
 
   return (
     <div className="form-container sign-in-container">
@@ -51,7 +52,7 @@ function Login() {
           onChange={handleChangePass}
         />
         <a href="#">Forgot your password?</a>
-        <button onClick={handleSubmit}>Sign In</button>
+        <button onClick={apiUserLogin}>Sign In</button>
       </form>
     </div>
   );

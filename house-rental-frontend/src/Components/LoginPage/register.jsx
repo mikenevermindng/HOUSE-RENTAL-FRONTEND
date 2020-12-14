@@ -1,7 +1,7 @@
 import React, { Component, useState } from "react";
 import axios from "axios";
 import "./style.css";
-
+import { apiUserRegister } from "../../Services/user_sevice";
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,16 +17,16 @@ function Register() {
   const handleName = (event) => {
     setName(event.target.value);
   };
-  const handleSubmit = async () => {
-    const { data } = await axios({
-      method: "POST",
-      url: "http://localhost:3001/login",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: { email, password },
-    });
-  };
+  // const handleSubmit = async () => {
+  //   const { data } = await axios({
+  //     method: "POST",
+  //     url: "http://localhost:3001/login",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     data: { email, password },
+  //   });
+  // };
 
   return (
     <div className="form-container sign-up-container">
@@ -62,7 +62,7 @@ function Register() {
           value={password}
           onChange={handleChangePass}
         />
-        <button onClick={handleSubmit}>Sign Up</button>
+        <button onClick={apiUserRegister}>Sign Up</button>
       </form>
     </div>
   );

@@ -18,8 +18,8 @@ function LoginPage() {
   return (
     <>
       <div
-        class={`container ${isSwitch ? "right-panel-active" : ""}`}
-        id="container"
+        class={`sign-in-box ${isSwitch ? "right-panel-active" : ""}`}
+        id="sign-in-box"
       >
         <Login></Login>
         <Register></Register>
