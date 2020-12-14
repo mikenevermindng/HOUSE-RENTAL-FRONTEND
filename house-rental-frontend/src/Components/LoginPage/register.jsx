@@ -3,30 +3,15 @@ import axios from "axios";
 import "./style.css";
 import { apiUserRegister } from "../../Services/user_sevice";
 function Register() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [userInfo, setUserInfo] = useState({});
 
-  const handleChangeEmail = (event) => {
-    setEmail(event.target.value);
+  const onChangeHandler = (event) => {
+    console.log(userInfo);
+    setUserInfo({ ...userInfo, [event.target.name]: event.target.value });
   };
-  const handleChangePass = (event) => {
-    setPassword(event.target.value);
+  const onSubmitLoginForm = () => {
+    const response = apiUserRegister(userInfo);
   };
-
-  const handleName = (event) => {
-    setName(event.target.value);
-  };
-  // const handleSubmit = async () => {
-  //   const { data } = await axios({
-  //     method: "POST",
-  //     url: "http://localhost:3001/login",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     data: { email, password },
-  //   });
-  // };
 
   return (
     <div className="form-container sign-up-container">
@@ -47,22 +32,22 @@ function Register() {
         <input
           type="text"
           placeholder="Name"
-          value={name}
-          onChange={handleName}
+          name="name"
+          onChange={onChangeHandler}
         />
         <input
           type="email"
           placeholder="Email"
-          value={email}
-          onChange={handleChangeEmail}
+          name="email"
+          onChange={onChangeHandler}
         />
         <input
           type="password"
           placeholder="Password"
-          value={password}
-          onChange={handleChangePass}
+          name="password"
+          onChange={onChangeHandler}
         />
-        <button onClick={apiUserRegister}>Sign Up</button>
+        <button onClick={onSubmitLoginForm}>Sign Up</button>
       </form>
     </div>
   );

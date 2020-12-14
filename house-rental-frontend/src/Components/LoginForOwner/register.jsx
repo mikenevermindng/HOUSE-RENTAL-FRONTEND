@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-import 
+import { apiOwnerRegister } from "../../Services/owner_service";
+import "./style.css";
+
 function Register() {
   const [ownerInfo, setOwnerInfo] = useState({});
 
   const onChangeHandler = (event) => {
-    // console.log(ownerInfo);
+    console.log(ownerInfo);
     setOwnerInfo({ ...ownerInfo, [event.target.name]: event.target.value });
+  };
+  const onSubmitLoginForm = () => {
+    const response = apiOwnerRegister(ownerInfo);
   };
 
   return (
@@ -40,7 +45,7 @@ function Register() {
         placeholder="Email"
         onChange={onChangeHandler}
       ></input>
-      <button>Sign Up</button>
+      <button onClick={onSubmitLoginForm}>Sign Up</button>
     </div>
   );
 }

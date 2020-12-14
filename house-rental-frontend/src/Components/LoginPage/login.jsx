@@ -3,25 +3,16 @@ import axios from "axios";
 import "./style.css";
 import { apiUserLogin } from "../../Services/user_sevice";
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const handleChangeEmail = (event) => {
-    setEmail(event.target.value);
-  };
-  const handleChangePass = (event) => {
-    setPassword(event.target.value);
+  const [userInfo, setUserInfo] = useState({});
+
+  const onChangeHandler = (event) => {
+    console.log(userInfo);
+    setUserInfo({ ...userInfo, [event.target.name]: event.target.value });
   };
 
-  // const handleSubmit = async () => {
-  //   const { data } = await axios({
-  //     method: "POST",
-  //     url: "http://localhost:3001/login",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     data: { email, password },
-  //   });
-  // };
+  const onSubmitLoginForm = () => {
+    const response = apiUserLogin(userInfo);
+  };
 
   return (
     <div className="form-container sign-in-container">
@@ -42,17 +33,17 @@ function Login() {
         <input
           type="email"
           placeholder="Email"
-          value={email}
-          onChange={handleChangeEmail}
+          name="email"
+          onChange={onChangeHandler}
         />
         <input
           type="password"
           placeholder="Password"
-          value={password}
-          onChange={handleChangePass}
+          name="password"
+          onChange={onChangeHandler}
         />
         <a href="#">Forgot your password?</a>
-        <button onClick={apiUserLogin}>Sign In</button>
+        <button onClick={onSubmitLoginForm}>Sign In</button>
       </form>
     </div>
   );
