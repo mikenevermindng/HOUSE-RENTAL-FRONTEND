@@ -4,18 +4,18 @@ import './index.css';
 import App from './App';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import 'antd/dist/antd.css'
+import 'antd/dist/antd.css';
 
 import reducer from './Store/Reducer/indexReducer';
 
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
-	<React.StrictMode>
+	<React.Fragment>
 		<Provider store={store}>
 			<App />
 		</Provider>
-	</React.StrictMode>,
+	</React.Fragment>,
 	document.getElementById('root')
 );
 

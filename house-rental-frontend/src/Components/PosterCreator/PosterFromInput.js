@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Input, Select } from 'antd';
+import { Row, Col, Input, Select, DatePicker } from 'antd';
+import 'moment/locale/vi';
+import locale from 'antd/es/date-picker/locale/vi_VN';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 const { Option } = Select;
+const { RangePicker } = DatePicker;
 
 function PosterFromInput(props) {
 	const typeOfAccommodation = [ 'Phòng trọ', 'Chung cư mini', 'Nhà nguyên căn', 'Chung cư nguyên căn' ];
 
-	const { onChangeHandler, setPosterInfo, posterInfo, posterInfoFormOnSelectHandler } = props;
+	const {
+		onChangeHandler,
+		setPosterInfo,
+		posterInfo,
+		posterInfoFormOnSelectHandler,
+		posterDatePickerHandler
+	} = props;
 
 	const [ prices, setPrices ] = useState([]);
 
@@ -187,6 +198,17 @@ function PosterFromInput(props) {
 				<Col span={6}>
 					<label name="year">Năm</label>
 					<Input placeholder="Năm (Đồng)" type="number" name="year" onChange={priceChangeHandler} />
+				</Col>
+			</Row>
+			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+				<Col span={6}>
+					<div className="input-label">Thời gian hiển thị</div>
+				</Col>
+				<Col span={18}>
+					<RangePicker
+						locale={locale}
+						onChange={(date, dateString) => posterDatePickerHandler(date, dateString)}
+					/>
 				</Col>
 			</Row>
 		</div>

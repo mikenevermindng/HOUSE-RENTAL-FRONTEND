@@ -64,6 +64,15 @@ function PosterCreator() {
 		}
 	};
 
+	const posterDatePickerHandler = (date, dateString) => {
+		const posterInformation = posterInfo;
+		console.log(posterInformation);
+		setPosterInfo({
+			...posterInformation,
+			avaliableDate: { date: date.map((time) => time._d), dateString: dateString }
+		});
+	};
+
 	const submitFromHandler = async () => {
 		const images = [ ...posterInfo.images ];
 		const res = await apiImageUploader(images);
@@ -80,6 +89,7 @@ function PosterCreator() {
 					setPosterInfo={setPosterInfo}
 					posterInfo={posterInfo}
 					posterInfoFormOnSelectHandler={posterInfoFormOnSelectHandler}
+					posterDatePickerHandler={posterDatePickerHandler}
 				/>
 			),
 			activeOrder: 0
