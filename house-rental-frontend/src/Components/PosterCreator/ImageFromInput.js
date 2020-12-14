@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Upload, Modal } from 'antd';
+import { Upload, Modal, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
 function getBase64(file) {
@@ -18,7 +18,7 @@ const dummyRequest = ({ file, onSuccess }) => {
 };
 
 function ImageFromInput(props) {
-	const { posterInfo, setPosterInfo, imageList, setImageList } = props;
+	const { posterInfo, setPosterInfo } = props;
 
 	const [ previewVisible, setPreviewVisible ] = useState(false);
 	const [ previewImage, setPreviewImage ] = useState('');
@@ -45,7 +45,25 @@ function ImageFromInput(props) {
 	);
 
 	const handleChange = ({ fileList }) => {
-		setFileList(fileList);
+		setFileList(fileList.filter((file) => file.type.split('/')[0] === 'image').slice(0, 12));
+	};
+
+	const properties = {
+		action: 'http://localhost:3001/accommodationPost/upload',
+		listType: 'picture-card',
+		fileList,
+		beforeUpload: (file) => {
+			const validate = file.type.split('/')[0] !== 'image';
+			if (validate) {
+				message.error(`${file.name} không phải là ảnh`);
+			}
+			return !validate;
+		},
+		multiple: true,
+		accept: 'image/*',
+		onPreview: handlePreview,
+		onChange: handleChange,
+		customRequest: dummyRequest
 	};
 
 	useEffect(
@@ -58,19 +76,7 @@ function ImageFromInput(props) {
 	);
 	return (
 		<div>
-			<Upload
-				action="http://localhost:3001/accommodationPost/upload"
-				listType="picture-card"
-				accept=".png .jpg .svg"
-				fileList={fileList}
-				onPreview={handlePreview}
-				onChange={handleChange}
-				multiple={true}
-				customRequest={dummyRequest}
-				accept="png jpg svg"
-			>
-				{fileList.length >= 8 ? null : uploadButton}
-			</Upload>
+			<Upload {...properties}>{fileList.length >= 12 ? null : uploadButton}</Upload>
 			<Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
 				<img alt="example" style={{ width: '100%' }} src={previewImage} />
 			</Modal>

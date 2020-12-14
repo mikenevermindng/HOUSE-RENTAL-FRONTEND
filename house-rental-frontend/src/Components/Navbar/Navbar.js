@@ -7,7 +7,7 @@ function Navbar() {
 	return (
 		<nav className="navbar">
 			<input type="checkbox" id="checkbox-burger" />
-			<label form="checkbox-burger" className="burger">
+			<label htmlFor="checkbox-burger" className="burger">
 				<MenuOutlined />
 			</label>
 			<label className="logo">Logo</label>

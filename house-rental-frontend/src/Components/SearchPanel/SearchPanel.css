@@ -1,29 +1,74 @@
 .search-panel {
-	background-color: #faebd7;
+	background-color: antiquewhite;
 	max-width: 768px;
 	border-radius: 5px;
+	text-align: center;
 }
 
-.search-top {
-	padding: 15px 0 15px 20px;
+.search-panel img {
+	margin: 0px 10px;
 }
 
-.search-top .input-place {
+.search-panel .search-top {
+	padding: 15px 10px 15px 10px;
+	max-width: 960px;
+	background-color: beige;
+	margin: auto;
+	margin-top: auto;
+}
+
+.search-panel .search-top .input-place {
 	align-items: center;
-	display: flex;
 }
 
-.search-input {
-	display: inline-block;
+.search-top .input-place .search-input {
 	margin-left: 5px;
+	display: inline-block;
 }
 
-.search-top .number-of-room {
+.search-top .input-place .number-of-room-selector {
+	margin-left: 30px;
 	display: inline-block;
+}
+
+.search-top .input-place .number-of-room-selector .number-of-room {
 	margin-left: 20px;
 	width: 100px;
 }
 
-.search-top .number-of-room-selector {
+.search-top .input-place .type-of-accommod {
+	display: inline-block;
 	margin-left: 30px;
+}
+
+.search-top .input-place .type-of-accommod .type-house-selector {
+	width: 200px;
+}
+
+.search-top .input-place .search-button {
+	display: inline-block;
+}
+
+.search-top .input-place .search-button button {
+	background-color: #b69a5d;
+	border: none;
+	outline: none;
+	width: 80px;
+	height: 100%;
+	font-size: 1.1rem;
+	font-weight: 500;
+	color: white;
+	height: 40px;
+	border-radius: 5px;
+}
+
+.search-panel .search-bottom {
+	background-color: #0a1438;
+	padding: 20px;
+}
+
+.search-panel .search-bottom .price-of-accommod {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

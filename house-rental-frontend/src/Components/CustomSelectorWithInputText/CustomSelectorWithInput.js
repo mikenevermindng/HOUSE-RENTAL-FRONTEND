@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import './SearchBarAuto.css';
-import MapLocation from '../../Asset/Icon/map-locationpin.png';
 import OutsideClickHandler from 'react-outside-click-handler';
+import './CustomSelector.css';
+import arrowDown from '../../Asset/Icon/downArrow.svg';
+import loupe from '../../Asset/Icon/loupe.svg';
 import classNames from 'classnames';
 
 const texts = [ 'New York', 'Tokio', 'Hanoi', 'Bejing', 'London' ].map((text, index) => {
 	return { id: index, value: text };
 });
 
-function SearchBarAutoComplete(props) {
+function CustomSelector(props) {
 	const { placeHolder } = props;
 
 	const [ value, setValue ] = useState('');
-	const [ recommendations, setRecommendationList ] = useState([ ...texts ]);
+	const [ isFocusing, setFocusing ] = useState(false);
+	const [ listOption, setListOption ] = useState([ ...texts ]);
+	const [ listFilterOption, setListFilterOption ] = useState([]);
 	const [ activeSuggestion, setActiveSuggestion ] = useState(0);
-	const [ showSuggestion, setShowSuggestion ] = useState(false);
 	const [ isMouseOver, setMouseOver ] = useState(false);
+	const [ showSuggestion, setShowSuggestion ] = useState(false);
 
 	const onChangeHandler = (event) => {
 		event.preventDefault();
@@ -24,16 +27,16 @@ function SearchBarAutoComplete(props) {
 	};
 
 	const onPressArrowHandler = (event) => {
-		if (recommendations.length === 0) return;
+		if (listFilterOption.length === 0) return;
 		if (event.keyCode === 13) {
-			setValue(recommendations[activeSuggestion].value);
+			setValue(listFilterOption[activeSuggestion].value);
 			setShowSuggestion(false);
 			setActiveSuggestion(0);
 		} else if (event.keyCode === 38) {
-			const temp = activeSuggestion - 1 >= 0 ? activeSuggestion - 1 : recommendations.length - 1;
+			const temp = activeSuggestion - 1 >= 0 ? activeSuggestion - 1 : listFilterOption.length - 1;
 			setActiveSuggestion(temp);
 		} else if (event.keyCode === 40) {
-			setActiveSuggestion((activeSuggestion + 1) % recommendations.length);
+			setActiveSuggestion((activeSuggestion + 1) % listFilterOption.length);
 		}
 	};
 
@@ -53,10 +56,24 @@ function SearchBarAutoComplete(props) {
 		setMouseOver(false);
 	};
 
+	const clickOutsideHandler = () => {
+		setFocusing(false);
+		setShowSuggestion(false);
+		if (listOption.findIndex((option) => option.value === value) === -1) {
+			setValue('');
+		}
+		setActiveSuggestion(0);
+	};
+
+	const onFocusHandler = () => {
+		setFocusing(true);
+		setShowSuggestion(true);
+	};
+
 	useEffect(
 		() => {
-			if (value === '') {
-				setRecommendationList([]);
+			if (value.length === 0) {
+				setListFilterOption(listOption);
 			} else {
 				const listRecommand = texts.filter((text) => {
 					return (
@@ -67,26 +84,29 @@ function SearchBarAutoComplete(props) {
 							.indexOf(value.toLowerCase().split(',').join('')) !== -1
 					);
 				});
-				setRecommendationList([ ...listRecommand.sort((a, b) => a.value.length - b.value.length) ]);
+				setListFilterOption([ ...listRecommand.sort((a, b) => a.value.length - b.value.length) ]);
 			}
 		},
 		[ value ]
 	);
 
 	return (
-		<div className="wrapper">
-			<div className="search-input">
-				<OutsideClickHandler onOutsideClick={() => setRecommendationList([])}>
+		<div className="select-custom">
+			<div className="select-custom-input">
+				<OutsideClickHandler onOutsideClick={clickOutsideHandler}>
 					<input
 						type="text"
 						placeholder={placeHolder}
+						onFocus={onFocusHandler}
 						onChange={onChangeHandler}
-						value={value}
 						onKeyUp={onPressArrowHandler}
+						value={value}
 					/>
+					{!isFocusing && <img src={arrowDown} alt="" />}
+					{isFocusing && <img src={loupe} alt="" />}
 					{showSuggestion && (
-						<div className="autocom-box">
-							{recommendations.map((recommandtion, index) => {
+						<div className="options-box">
+							{listFilterOption.slice(0, 5).map((recommandtion, index) => {
 								return (
 									<li
 										key={recommandtion.id}
@@ -94,7 +114,7 @@ function SearchBarAutoComplete(props) {
 										onMouseOver={onMouseOverHandler}
 										onMouseLeave={onMouseLeaveHandler}
 										className={classNames({
-											'hightlight-item': index === activeSuggestion && !isMouseOver
+											'highlight-item': index === activeSuggestion && !isMouseOver
 										})}
 									>
 										<span>{recommandtion.value}</span>
@@ -109,4 +129,4 @@ function SearchBarAutoComplete(props) {
 	);
 }
 
-export default SearchBarAutoComplete;
+export default CustomSelector;

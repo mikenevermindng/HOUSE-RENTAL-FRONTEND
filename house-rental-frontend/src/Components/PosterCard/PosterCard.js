@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Avatar, Row, Col } from 'antd';
+import { Card, Row, Col, Rate } from 'antd';
 import { HomeFilled, LayoutFilled, BorderOuterOutlined, HeartFilled, PlusSquareFilled } from '@ant-design/icons';
 import Slider from '../../Components/Slider/Slider';
 import classNames from 'classnames';
@@ -21,6 +21,8 @@ function PosterCard() {
 			text: 'Sound'
 		}
 	];
+
+	const desc = [ 'Rất tệ', 'Tệ', 'Trung bình', 'Tốt', 'Rất tốt' ];
 
 	const [ isLike, setIsLike ] = useState(false);
 	const [ isFollow, setFollow ] = useState(false);
@@ -61,11 +63,16 @@ function PosterCard() {
 				</Col>
 			</Row>
 			<Row className="card-action">
-				<div className="card-action-icon">
-					<HeartFilled className={classNames({ liked: isLike })} />
+				<div>
+					<Rate tooltips={desc} allowHalf defaultValue={4} disabled />
 				</div>
-				<div className="card-action-icon">
-					<PlusSquareFilled className={classNames({ isFollowed: isFollow })} />
+				<div>
+					<div className="card-action-icon">
+						<HeartFilled className={classNames({ liked: isLike })} />
+					</div>
+					<div className="card-action-icon">
+						<PlusSquareFilled className={classNames({ isFollowed: isFollow })} />
+					</div>
 				</div>
 			</Row>
 		</Card>
