@@ -19,3 +19,26 @@ h1 {
 .map {
     margin-top: 47px;
 }
+
+@media screen and (max-width: 1024px) {
+    .room-location {
+        margin-top: 60px;
+    }
+
+    h1 {
+        font-size: 30px;
+        line-height: 40px;
+    }
+
+    .locations-list {
+        margin-top: 40px;
+    }
+
+    .location {
+        margin-bottom: 16px;
+    }
+
+    .map {
+        margin-top: 40px;
+    }
+}

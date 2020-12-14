@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../Components/Navbar/Navbar';
 import Slider from '../Components/Slider/Slider';
+import Carousel from '../Components/Carousel/Carousel';
 import RoomInfo from '../Components/RoomInfo/RoomInfo';
 
 export default function RoomDetails() {
@@ -56,7 +57,8 @@ export default function RoomDetails() {
     return (
         <div>
             <Navbar/>
-            <Slider slides={slides}/>
+            {/*<Slider slides={slides}/>*/}
+            <Carousel />
             <RoomInfo information={information} />
         </div>
     )

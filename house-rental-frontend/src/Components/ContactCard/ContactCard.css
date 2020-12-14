@@ -8,6 +8,16 @@
     right: 0;
 }
 
+.favorite {
+    position: absolute;
+    background-image: url("../../Asset/Icon/heart.svg");
+    width: 32px;
+    height: 32px;
+    top: 32px;
+    right: 32px;
+    cursor: pointer;
+}
+
 #price {
     text-align: center;
     margin-bottom: 60px;
@@ -39,6 +49,10 @@
     margin-top: 6px;
 }
 
+.ant-input-number-handler-wrap {
+    border-radius: 0 10px 10px 0 !important;
+}
+
 #submit-btn {
     color: white !important;
     background-color: #333;
@@ -67,4 +81,75 @@
 
 #submit-btn:active {
     transform: translateY(3px);
+}
+
+@media screen and (max-width: 1366px) {
+    .contact-card-container {
+        padding: 60px 27px !important;
+    }
+
+    #price {
+        margin-bottom: 40px !important;
+    }
+
+    #submit-btn {
+        font-size: 18px;
+    }
+
+    .btn-content {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #submit-btn {
+        font-size: 14px;
+        height: 50px;
+    }
+
+    #icon {
+        width: 22px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .contact-card-container {
+        padding: 30px 24px;
+        position: relative;
+        top: 0;
+        margin-bottom: 60px;
+    }
+
+    #price {
+        margin-bottom: 40px;
+    }
+
+    #price span {
+        font-size: 30px;
+    }
+
+    .ant-picker,
+    .ant-input-number {
+        min-height: 36px;
+        margin-bottom: 36px !important;
+    }
+
+    #submit-btn {
+        height: 55px;
+        margin-top: 40px;
+    }
+
+    .btn-content {
+        width: 26%;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    #submit-btn {
+        font-size: 14px;
+    }
+
+    .btn-content {
+        width: 46%;
+    }
 }
