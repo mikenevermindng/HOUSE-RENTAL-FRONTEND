@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Row, Col, Input, Select, Radio } from 'antd';
+import {Row, Col, Input, Select, InputNumber} from 'antd';
 import { PlusOutlined, CloseSquareFilled } from '@ant-design/icons';
 
 const { Option } = Select;
@@ -122,28 +122,114 @@ function FacilityFromInput(props) {
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 				<Col span={6}>
-					<div className="input-label">Giá điện</div>
+					<div className="input-label">Tủ lạnh</div>
 				</Col>
 				<Col span={18}>
-					<Input
-						name="electricityPrice"
-						placeholder="Giá điện (Đơn vị đồng)"
-						type="number"
-						onChange={onChangeHandler}
-					/>
+					<Select
+						style={{ width: '100%' }}
+						allowClear
+						placeholder="Tủ lạnh"
+						optionFilterProp="children"
+						onChange={(value, label) => facilityFormOnSelectHandler(label)}
+					>
+						<Option value={true} name="fridge">
+							Có
+						</Option>
+						<Option value={false} name="fridge">
+							Không
+						</Option>
+					</Select>
 				</Col>
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 				<Col span={6}>
-					<div className="input-label">Giá nước</div>
+					<div className="input-label">Máy giặt</div>
 				</Col>
 				<Col span={18}>
-					<Input
-						name="domesticWaterPrice"
-						placeholder="Giá nước (Đơn vị đồng)"
-						type="number"
-						onChange={onChangeHandler}
-					/>
+					<Select
+						style={{ width: '100%' }}
+						allowClear
+						placeholder="Máy giặt"
+						optionFilterProp="children"
+						onChange={(value, label) => facilityFormOnSelectHandler(label)}
+					>
+						<Option value={true} name="washingMachine">
+							Có
+						</Option>
+						<Option value={false} name="washingMachine">
+							Không
+						</Option>
+					</Select>
+				</Col>
+			</Row>
+			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+				<Col span={6}>
+					<div className="input-label">Giường</div>
+				</Col>
+				<Col span={18}>
+					<Select
+						style={{ width: '100%' }}
+						allowClear
+						placeholder="Giường"
+						optionFilterProp="children"
+						onChange={(value, label) => facilityFormOnSelectHandler(label)}
+					>
+						<Option value={true} name="bed">
+							Có
+						</Option>
+						<Option value={false} name="bed">
+							Không
+						</Option>
+					</Select>
+				</Col>
+			</Row>
+			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+				<Col span={6}>
+					<div className="input-label">Tủ</div>
+				</Col>
+				<Col span={18}>
+					<Select
+						style={{ width: '100%' }}
+						allowClear
+						placeholder="Tủ"
+						optionFilterProp="children"
+						onChange={(value, label) => facilityFormOnSelectHandler(label)}
+					>
+						<Option value={true} name="wardrobe">
+							Có
+						</Option>
+						<Option value={false} name="wardrobe">
+							Không
+						</Option>
+					</Select>
+				</Col>
+			</Row>
+			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+				<Col span={6}>
+					<div className="input-label">Giá điện (đồng)</div>
+				</Col>
+				<Col span={18}>
+					{/*<Input*/}
+					{/*	name="electricityPrice"*/}
+					{/*	placeholder="Giá điện (Đơn vị đồng)"*/}
+					{/*	type="number"*/}
+					{/*	onChange={onChangeHandler}*/}
+					{/*/>*/}
+					<InputNumber placeholder="Giá điện" min="1" />
+				</Col>
+			</Row>
+			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+				<Col span={6}>
+					<div className="input-label">Giá nước (đồng)</div>
+				</Col>
+				<Col span={18}>
+					{/*<Input*/}
+					{/*	name="domesticWaterPrice"*/}
+					{/*	placeholder="Giá nước (Đơn vị đồng)"*/}
+					{/*	type="number"*/}
+					{/*	onChange={onChangeHandler}*/}
+					{/*/>*/}
+					<InputNumber placeholder="Giá nước" min="1" />
 				</Col>
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -186,7 +272,7 @@ function FacilityFromInput(props) {
 			))}
 			<Row>
 				<Col span={24}>
-					<div onClick={() => setOther([ ...other, { facility: '', description: '' } ])}>
+					<div onClick={() => setOther([ ...other, { facility: '', description: '' } ])} id="add">
 						<PlusOutlined />
 					</div>
 				</Col>

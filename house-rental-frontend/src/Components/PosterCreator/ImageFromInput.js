@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Upload, Modal, message } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import {Upload, Modal, message, Input, Row, Col} from 'antd';
+import {CloseSquareFilled, PlusOutlined} from '@ant-design/icons';
+
+const { TextArea } = Input;
 
 function getBase64(file) {
 	return new Promise((resolve, reject) => {
@@ -40,7 +42,7 @@ function ImageFromInput(props) {
 	const uploadButton = (
 		<div>
 			<PlusOutlined />
-			<div style={{ marginTop: 8 }}>Upload</div>
+			<div style={{ marginTop: 8 }}>Đăng ảnh</div>
 		</div>
 	);
 
@@ -76,6 +78,18 @@ function ImageFromInput(props) {
 	);
 	return (
 		<div>
+			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+				<Col span={24}>
+					<div className="input-label">Thêm mô tả về nơi ở của bạn</div>
+				</Col>
+			</Row>
+			<TextArea rows={4} maxLength={3000}/>
+
+			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+				<Col span={24}>
+					<div className="input-label">Thêm ảnh nơi ở của bạn (tối thiểu 3 ảnh)</div>
+				</Col>
+			</Row>
 			<Upload {...properties}>{fileList.length >= 12 ? null : uploadButton}</Upload>
 			<Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
 				<img alt="example" style={{ width: '100%' }} src={previewImage} />

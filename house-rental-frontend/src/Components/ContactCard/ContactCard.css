@@ -4,7 +4,7 @@
     box-shadow: -10px -10px 30px #FFFFFF, 10px 10px 30px rgba(174, 174, 192, 0.4);
     padding: 49px 30px;
     position: sticky;
-    top: 60px;
+    top: 120px;
     right: 0;
 }
 
@@ -28,17 +28,6 @@
     font-size: 40px;
 }
 
-.ant-picker {
-    width: 100%;
-}
-
-.ant-picker-dropdown,
-.ant-picker-header,
-.ant-picker-body {
-    background-color: #F0F0F3;
-}
-
-.ant-picker,
 .ant-input-number {
     min-height: 42px;
     border-radius: 10px !important;
@@ -51,6 +40,15 @@
 
 .ant-input-number-handler-wrap {
     border-radius: 0 10px 10px 0 !important;
+}
+
+.contact-card p {
+    margin: 0;
+}
+
+.contact-card a {
+    font-weight: bold;
+    color: #333;
 }
 
 #submit-btn {

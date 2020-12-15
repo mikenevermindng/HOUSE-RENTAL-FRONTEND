@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Input, Select, DatePicker } from 'antd';
+import { Row, Col, Input, Select, DatePicker, InputNumber } from 'antd';
 import 'moment/locale/vi';
 import locale from 'antd/es/date-picker/locale/vi_VN';
 import { useFormik } from 'formik';
@@ -45,7 +45,7 @@ function PosterFromInput(props) {
 		<div>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 				<Col span={6}>
-					<div className="input-label">Chủ đề</div>
+					<div className="input-label">Tên nhà trọ</div>
 				</Col>
 				<Col span={18}>
 					<Input placeholder="Ví dụ: Nhà trọ Thọ An số 3 Tây Hồ" name="title" onChange={onChangeHandler} />
@@ -169,10 +169,11 @@ function PosterFromInput(props) {
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 				<Col span={6}>
-					<div className="input-label">Diện tích</div>
+					<div className="input-label">Diện tích (m2)</div>
 				</Col>
 				<Col span={18}>
-					<Input placeholder="Diện tích (mét vuông)" type="number" name="area" onChange={onChangeHandler} />
+					{/*<Input placeholder="Diện tích (mét vuông)" type="number" name="area" min="1" onChange={onChangeHandler} />*/}
+					<InputNumber placeholder="Diện tích (mét vuông)" min="1" />
 				</Col>
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -180,24 +181,25 @@ function PosterFromInput(props) {
 					<div className="input-label">Số lượng phòng</div>
 				</Col>
 				<Col span={18}>
-					<Input placeholder="Số lượng phòng" type="number" name="numberOfRoom" onChange={onChangeHandler} />
+					{/*<Input placeholder="Số lượng phòng" type="number" name="numberOfRoom" min="1" onChange={onChangeHandler} />*/}
+					<InputNumber placeholder="Số lượng phòng" min="1" />
 				</Col>
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 				<Col span={6}>
-					<div className="input-label">Giá thuê</div>
+					<div className="input-label">Giá thuê (đồng)</div>
 				</Col>
 				<Col span={6}>
-					<label name="month">Tháng</label>
-					<Input placeholder="Tháng (Đồng)" type="number" name="month" onChange={priceChangeHandler} />
+					{/*<Input placeholder="Tháng" type="number" name="month" min="1" onChange={priceChangeHandler} />*/}
+					<InputNumber placeholder="Tháng" min="1" />
 				</Col>
 				<Col span={6}>
-					<label name="quarter">Quý</label>
-					<Input placeholder="Quý (Đồng)" type="number" name="quarter" onChange={priceChangeHandler} />
+					{/*<Input placeholder="Quý" type="number" name="quarter" min="1" onChange={priceChangeHandler} />*/}
+					<InputNumber placeholder="Quý" min="1" />
 				</Col>
 				<Col span={6}>
-					<label name="year">Năm</label>
-					<Input placeholder="Năm (Đồng)" type="number" name="year" onChange={priceChangeHandler} />
+					{/*<Input placeholder="Năm" type="number" name="year" onChange={priceChangeHandler} />*/}
+					<InputNumber placeholder="Năm" min="1" />
 				</Col>
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>

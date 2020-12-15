@@ -3,6 +3,7 @@ import Navbar from '../Components/Navbar/Navbar';
 import Slider from '../Components/Slider/Slider';
 import Carousel from '../Components/Carousel/Carousel';
 import RoomInfo from '../Components/RoomInfo/RoomInfo';
+import PosterCreator from "../Components/PosterCreator/PosterCreator";
 
 export default function RoomDetails() {
     const slides = [
@@ -46,6 +47,7 @@ export default function RoomDetails() {
         },
         price: '800.000',
         contactNumber: '123456',
+        email: 'sharingHome@email.com',
         nearbyLocations: [
             'Smack Dab - Urban Lounge - JW Marriott Hotel Hanoi',
             'Sumo BBQ - Nhà Hàng Thịt Nướng Nhật Bản - Trung Yên',
@@ -60,6 +62,7 @@ export default function RoomDetails() {
             {/*<Slider slides={slides}/>*/}
             <Carousel />
             <RoomInfo information={information} />
+            <PosterCreator />
         </div>
     )
 }

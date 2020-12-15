@@ -28,6 +28,7 @@ function App() {
 			<Switch>
 				<Route exact path='/room-details/' component={RoomDetails} />
 			</Switch>
+			<PosterCard />
 		</div>
 	);
 }
