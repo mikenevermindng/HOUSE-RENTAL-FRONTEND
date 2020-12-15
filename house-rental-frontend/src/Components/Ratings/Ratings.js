@@ -3,6 +3,7 @@ import './Ratings.css';
 import 'antd/dist/antd.css';
 import { Comment, Tooltip, List, Rate } from 'antd';
 import moment from 'moment';
+import UserRating from "../UserRating/UserRating";
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
 
 function Ratings(props) {
@@ -43,6 +44,7 @@ function Ratings(props) {
     return (
         <div className="ratings">
             <h1>Đánh giá</h1>
+            <UserRating />
             <List
                 className="ratings-list"
                 itemLayout="horizontal"
