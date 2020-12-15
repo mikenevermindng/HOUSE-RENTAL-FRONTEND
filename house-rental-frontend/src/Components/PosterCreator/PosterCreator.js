@@ -3,7 +3,7 @@ import { Steps, Button, message } from 'antd';
 import PosterFromInput from './PosterFromInput';
 import FacilityFromInput from './FacilityFromInput';
 import ImageFromInput from './ImageFromInput';
-import { apiImageUploader } from '../../Services/accommodation_services';
+import { apiImageUploader } from '../../Services/accommodation_poster_services';
 import classNames from 'classnames';
 import './PosterCreator.css';
 
@@ -67,10 +67,18 @@ function PosterCreator() {
 	const posterDatePickerHandler = (date, dateString) => {
 		const posterInformation = posterInfo;
 		console.log(posterInformation);
-		setPosterInfo({
-			...posterInformation,
-			avaliableDate: { date: date.map((time) => time._d), dateString: dateString }
-		});
+		if (date) {
+			console.log(date);
+			setPosterInfo({
+				...posterInformation,
+				avaliableDate: { date: date.map((time) => time._d), dateString: dateString }
+			});
+		} else {
+			setPosterInfo({
+				...posterInformation,
+				avaliableDate: null
+			});
+		}
 	};
 
 	const submitFromHandler = async () => {
