@@ -90,7 +90,7 @@ function PosterCreator() {
 
 	const steps = [
 		{
-			title: 'First',
+			title: 'Thông tin chung',
 			component: (
 				<PosterFromInput
 					onChangeHandler={posterInfoFormOnChangeHandler}
@@ -103,7 +103,7 @@ function PosterCreator() {
 			activeOrder: 0
 		},
 		{
-			title: 'Second',
+			title: 'Tiện ích',
 			component: (
 				<FacilityFromInput
 					other={other}
@@ -116,7 +116,7 @@ function PosterCreator() {
 			activeOrder: 1
 		},
 		{
-			title: 'Last',
+			title: 'Mô tả',
 			component: (
 				<ImageFromInput
 					setPosterInfo={setPosterInfo}
@@ -130,42 +130,45 @@ function PosterCreator() {
 	];
 
 	return (
-		<div className="poster-creator">
-			<Steps size="small" current={current}>
-				{steps.map((item) => <Step key={item.title} title={item.title} />)}
-			</Steps>
-			<div className="steps-content">
-				{steps.map((step) => {
-					return (
-						<div key={step.title} className={classNames({ 'display-none': step.activeOrder !== current })}>
-							{step.component}
-						</div>
-					);
-				})}
+		<div className="poster-creator-container">
+			<div className="poster-creator">
+				<Steps current={current}>
+					{steps.map((item) => <Step key={item.title} title={item.title} />)}
+				</Steps>
+				<div className="steps-content">
+					{steps.map((step) => {
+						return (
+							<div key={step.title} className={classNames({ 'display-none': step.activeOrder !== current })}>
+								{step.component}
+							</div>
+						);
+					})}
+				</div>
+				<div className="steps-action">
+					{current < steps.length - 1 && (
+						<Button type="primary" onClick={() => next()} style={{ float: 'right', marginLeft: '10px' }}>
+							Tiếp theo
+						</Button>
+					)}
+					{current === steps.length - 1 && (
+						<Button type="primary" onClick={submitFromHandler} style={{ float: 'right', marginLeft: '10px' }}>
+							Hoàn thành
+						</Button>
+					)}
+					{current > 0 && (
+						<Button
+							style={{ margin: '0 8px' }}
+							onClick={() => prev()}
+							style={{ float: 'right', marginLeft: '10px' }}
+						>
+							Trở lại
+						</Button>
+					)}
+				</div>
 			</div>
-			<div className="steps-action">
-				{current < steps.length - 1 && (
-					<Button type="primary" onClick={() => next()} style={{ float: 'right', marginLeft: '10px' }}>
-						Tiếp theo
-					</Button>
-				)}
-				{current === steps.length - 1 && (
-					<Button type="primary" onClick={submitFromHandler} style={{ float: 'right', marginLeft: '10px' }}>
-						Hoàn thành
-					</Button>
-				)}
-				{current > 0 && (
-					<Button
-						style={{ margin: '0 8px' }}
-						onClick={() => prev()}
-						style={{ float: 'right', marginLeft: '10px' }}
-					>
-						Trở lại
-					</Button>
-				)}
-			</div>
+			);
 		</div>
-	);
+	)
 }
 
 export default PosterCreator;

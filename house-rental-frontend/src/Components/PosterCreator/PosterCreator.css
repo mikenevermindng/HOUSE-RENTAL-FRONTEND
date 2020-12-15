@@ -1,18 +1,82 @@
+.poster-creator-container {
+	background-color: rgba(51, 51, 51, 0.8);
+	position: fixed;
+	z-index: 5;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/*display: none;*/
+}
+
 .poster-creator {
-	padding: 10px;
-	max-width: 650px;
+	padding: 30px 40px;
+	width: 60%;
+	margin: 0 auto;
+	box-shadow: -10px -10px 30px rgba(255, 255, 255, 0.25), 10px 10px 30px rgba(174, 174, 192, 0.1);
+	border-radius: 16px;
+	background-color: #F0F0F3;
+	height: 90%;
+}
+
+.ant-steps-item-container {
+	padding: 20px;
+	display: flex;
+	align-items: center;
+}
+
+.ant-steps-item-icon {
+	width: 60px !important;
+	height: 60px !important;
+	border-radius: 50% !important;
+	border: none !important;
+	outline: none;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	margin: 0 !important;
+}
+
+.ant-steps-icon {
+	font-size: 20px;
+	line-height: 28px;
+	color: #333 !important;
+}
+
+.ant-steps-item-active .ant-steps-item-icon,
+.ant-steps-item-finish .ant-steps-item-icon {
+	box-shadow: 6px 6px 16px #BECDE2, -6px -6px 16px #FFFFFF;
+	background-color: #F0F0F3 !important;
+}
+
+.ant-steps-item-wait .ant-steps-item-icon {
+	box-shadow: inset 4px 4px 8px rgba(190, 205, 226, 0.5), inset -5px -5px 30px #FFFFFF;
+	background-color: #F0F0F3 !important;
+}
+
+.ant-steps-item-content {
+	margin-left: 20px !important;
+}
+
+.ant-steps-item-title {
+	font-size: 20px !important;
 }
 
 .poster-creator .input-label {
 	height: 100%;
 	display: flex;
 	align-items: center;
+	font-size: 20px;
 }
+
 .steps-content {
-	margin-top: 30px;
+	margin-top: 50px;
 	align-items: center;
-	padding: 20px;
-	height: 450px;
+	padding: 0 20px;
+	height: 65%;
 	overflow-y: auto;
 }
 
@@ -22,10 +86,231 @@
 }
 
 .poster-creator .ant-row {
-	margin: 10px;
 	align-items: center;
+	margin-bottom: 24px;
 }
 
-.poster-creator .ant-row .remove-action {
-	color: #c0392b;
+.poster-creator .ant-row .ant-input,
+.poster-creator .ant-row .ant-select-selector,
+.poster-creator .ant-row .ant-input-number,
+.poster-creator .ant-row .ant-picker {
+	height: 50px !important;
+	border-radius: 20px !important;
+	box-shadow: inset 4px 4px 8px rgba(190, 205, 226, 0.5), inset -5px -5px 30px #FFFFFF;
+	outline: none !important;
+	border: none !important;
+	padding: 0 20px !important;
+	font-size: 16px !important;
+}
+
+.poster-creator .ant-row .ant-input-number {
+	margin: 0 !important;
+	width: 100%;
+	padding: 0 20px !important;
+}
+
+.poster-creator .ant-row .ant-input-number .ant-input-number-input {
+	margin: 10px 0;
+}
+
+.poster-creator .ant-row .ant-select-selector {
+	padding-top: 10px !important;
+}
+
+.poster-creator .ant-select-selection-search input {
+	margin-top: 10px !important;
+}
+
+.poster-creator .steps-action .ant-btn {
+	margin-top: 15px;
+	width: 140px;
+	height: 50px;
+	border: 2px solid #333;
+	outline: none;
+	border-radius: 20px;
+	background-color: transparent;
+	font-size: 18px;
+	color: #333;
+	transition: all 0.2s ease-out;
+}
+
+.poster-creator .steps-action .ant-btn:hover,
+.poster-creator .steps-action .ant-btn-primary {
+	background-color: #333;
+	color: white;
+}
+
+.poster-creator .steps-action .ant-btn-primary:hover {
+	background-color: rgba(51, 51, 51, 0.85);
+}
+
+.poster-creator .ant-row .remove-action span svg {
+	cursor: pointer;
+	width: 20px;
+	height: 20px;
+	color: #333;
+	border-radius: 100%;
+}
+
+#add span svg {
+	cursor: pointer;
+	transition: all 0.2s ease-out;
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+}
+
+#add span svg:hover {
+	background-color: #d4d4d4;
+}
+
+.poster-creator textarea {
+	font-size: 16px;
+	border-radius: 20px !important;
+	box-shadow: inset 4px 4px 8px rgba(190, 205, 226, 0.5), inset -5px -5px 30px #FFFFFF;
+	outline: none !important;
+	border: none !important;
+	margin-bottom: 40px;
+	padding: 10px 20px;
+}
+
+@media screen and (max-width: 1500px) {
+	.ant-steps-item-container {
+		flex-direction: column;
+		width: 30%;
+	}
+
+	.ant-steps-item-content {
+		margin: 10px 0 !important;
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.poster-creator {
+		width: 70%;
+		padding: 30px 30px;
+	}
+
+	.ant-steps-item-icon {
+		width: 40px !important;
+		height: 40px !important;
+	}
+
+	.ant-step-icon {
+		font-size: 18px;
+		line-height: 24px;
+	}
+
+	.ant-steps-item-title {
+		font-size: 16px !important;
+	}
+
+	.poster-creator .input-label {
+		font-size: 16px;
+	}
+
+	.steps-content {
+		margin-top: 35px;
+	}
+
+	.poster-creator .ant-row {
+		margin-bottom: 20px;
+	}
+
+	.poster-creator .ant-row .ant-input,
+	.poster-creator .ant-row .ant-select-selector,
+	.poster-creator .ant-row .ant-input-number,
+	.poster-creator .ant-row .ant-picker {
+		height: 40px !important;
+		padding: 0 20px !important;
+		font-size: 15px !important;
+	}
+
+	.poster-creator .ant-input-number .ant-input-number-input {
+		margin: 7px 0;
+	}
+
+	.poster-creator .ant-select-selection-search input {
+		margin-top: 5px !important;
+	}
+
+	.poster-creator .steps-action .ant-btn {
+		margin-top: 15px;
+		width: 135px;
+		height: 46px;
+		font-size: 16px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.poster-creator {
+		width: 80%;
+	}
+
+	.ant-steps-item-icon {
+		display: none !important;
+	}
+
+	.ant-steps-item-title {
+		font-weight: bold;
+	}
+
+	.poster-creator .ant-row .remove-action span svg {
+		width: 16px;
+		height: 16px;
+	}
+
+	#add span svg {
+		width: 20px;
+		height: 20px;
+	}
+}
+
+@media screen and (max-width: 700px) {
+	.poster-creator {
+		padding: 20px 20px;
+	}
+
+	.ant-steps-item {
+		display: none !important;
+	}
+}
+
+@media screen and (max-width: 550px) {
+	.poster-creator {
+		width: 95%;
+	}
+
+	.poster-creator .input-label {
+		font-size: 14px;
+	}
+
+	.poster-creator .ant-row {
+		flex-direction: column;
+		justify-content: left !important;
+		align-items: flex-start;
+	}
+
+	.poster-creator .ant-col {
+		width: 100%;
+	}
+
+	.poster-creator .ant-col-6 {
+		max-width: 100%;
+	}
+
+	.poster-creator .ant-col-18 {
+		min-width: 100%;
+	}
+
+	.poster-creator .input-label {
+		margin-bottom: 10px;
+	}
+
+	.poster-creator .steps-action .ant-btn {
+		width: 120px;
+		height: 40px;
+		font-size: 14px;
+	}
 }

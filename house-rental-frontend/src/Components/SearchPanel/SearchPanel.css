@@ -1,4 +1,6 @@
 .search-panel {
+	background-color: antiquewhite;
+	width: 100%;
 	border-radius: 5px;
 	text-align: center;
 }

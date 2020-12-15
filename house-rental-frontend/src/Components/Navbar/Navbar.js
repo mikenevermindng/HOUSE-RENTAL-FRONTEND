@@ -2,6 +2,7 @@ import React from 'react';
 import './Navbar.css';
 import { MenuOutlined } from '@ant-design/icons';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
+import HeartIcon from '../../Asset/Icon/heart_white.svg';
 
 function Navbar() {
 	return (
@@ -13,17 +14,16 @@ function Navbar() {
 			<label className="logo">Logo</label>
 			<Router>
 				<ul>
-					<li>
-						<Link>Home</Link>
+					<li className="nav-link">
+						<Link>Tìm thuê</Link>
 					</li>
-					<li>
-						<Link>Discover</Link>
-					</li>
-					<li>
-						<Link>Rent</Link>
-					</li>
-					<li>
-						<Link>Contact</Link>
+					<li className="nav-link">
+						<Link>
+							<div className="favorite-link">
+								<span>Yêu thích</span>
+								<img src={HeartIcon} alt="heart" id="heart" />
+							</div>
+						</Link>
 					</li>
 					<span className="nav-login-button">Đăng nhập</span>
 				</ul>

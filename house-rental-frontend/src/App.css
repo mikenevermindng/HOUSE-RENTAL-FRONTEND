@@ -2,6 +2,10 @@
 	font-size: 14px;
 }
 
+body {
+	background-color: #F0F0F3 !important;
+}
+
 .display-inline-block {
 	display: inline-block;
 }
@@ -23,5 +27,22 @@
 }
 
 .margin-x-15px {
-	margin: 0px 15px;
+	margin: 0 15px;
+}
+
+::-webkit-scrollbar {
+	width: 7px;
+}
+
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #333;
+	border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
 }

@@ -1,0 +1,153 @@
+.contact-card-container {
+    background-color: #F0F0F3;
+    border-radius: 16px;
+    box-shadow: -10px -10px 30px #FFFFFF, 10px 10px 30px rgba(174, 174, 192, 0.4);
+    padding: 49px 30px;
+    position: sticky;
+    top: 120px;
+    right: 0;
+}
+
+.favorite {
+    position: absolute;
+    background-image: url("../../Asset/Icon/heart.svg");
+    width: 32px;
+    height: 32px;
+    top: 32px;
+    right: 32px;
+    cursor: pointer;
+}
+
+#price {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+#price span {
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.ant-input-number {
+    min-height: 42px;
+    border-radius: 10px !important;
+    margin-bottom: 44px !important;
+}
+
+.ant-input-number-input {
+    margin-top: 6px;
+}
+
+.ant-input-number-handler-wrap {
+    border-radius: 0 10px 10px 0 !important;
+}
+
+.contact-card p {
+    margin: 0;
+}
+
+.contact-card a {
+    font-weight: bold;
+    color: #333;
+}
+
+#submit-btn {
+    color: white !important;
+    background-color: #333;
+    border: none;
+    outline: none;
+    width: 100%;
+    border-radius: 20px;
+    height: 69px;
+    margin-top: 84px;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+
+.btn-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 36%;
+    margin: 0 auto;
+}
+
+#submit-btn:hover {
+    transform: translateY(-6px);
+    background-color: rgba(51, 51, 51, 0.85);
+}
+
+#submit-btn:active {
+    transform: translateY(3px);
+}
+
+@media screen and (max-width: 1366px) {
+    .contact-card-container {
+        padding: 60px 27px !important;
+    }
+
+    #price {
+        margin-bottom: 40px !important;
+    }
+
+    #submit-btn {
+        font-size: 18px;
+    }
+
+    .btn-content {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #submit-btn {
+        font-size: 14px;
+        height: 50px;
+    }
+
+    #icon {
+        width: 22px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .contact-card-container {
+        padding: 30px 24px;
+        position: relative;
+        top: 0;
+        margin-bottom: 60px;
+    }
+
+    #price {
+        margin-bottom: 40px;
+    }
+
+    #price span {
+        font-size: 30px;
+    }
+
+    .ant-picker,
+    .ant-input-number {
+        min-height: 36px;
+        margin-bottom: 36px !important;
+    }
+
+    #submit-btn {
+        height: 55px;
+        margin-top: 40px;
+    }
+
+    .btn-content {
+        width: 26%;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    #submit-btn {
+        font-size: 14px;
+    }
+
+    .btn-content {
+        width: 46%;
+    }
+}

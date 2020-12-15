@@ -17,21 +17,21 @@ function Slider(props) {
 	};
 	return (
 		<div>
-			<div class="slideshow-container">
+			<div className="slideshow-container">
 				{slides.map((slide, index) => {
 					return (
-						<div className={classNames('mySlides fade', { 'displae-block': activeSlide === index })}>
-							<div class="numbertext">
+						<div className={classNames('mySlides fade', { 'display-block': activeSlide === index })}>
+							<div className="numbertext">
 								{index} / {slides.length}
 							</div>
 							<img src={slide.background} alt="" style={{ width: '100%' }} />
 						</div>
 					);
 				})}
-				<span class="prev" onClick={prevSlide}>
+				<span className="prev" onClick={prevSlide}>
 					&#10094;
 				</span>
-				<span class="next" onClick={nextSlide}>
+				<span className="next" onClick={nextSlide}>
 					&#10095;
 				</span>
 			</div>

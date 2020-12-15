@@ -1,0 +1,64 @@
+.room-services {
+    margin-top: 100px;
+}
+
+h1 {
+    font-weight: bold;
+    line-height: 45px;
+    font-size: 40px;
+}
+
+.service-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 68px;
+}
+
+.service {
+    display: flex;
+    align-items: center;
+    margin-bottom: 44px;
+}
+
+.service-info {
+    margin-left: 23px;
+}
+
+@media screen and (max-width: 1366px) {
+    .service-icon {
+        width: 30px;
+    }
+
+    .service-info {
+        margin-left: 16px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .room-services {
+        margin-top: 60px;
+    }
+
+    h1 {
+        font-size: 30px;
+        line-height: 40px;
+    }
+
+    .service-container {
+        margin-top: 40px;
+    }
+
+    .service {
+        margin-bottom: 34px;
+    }
+
+    .service-info {
+        margin-left: 18px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .service-container {
+        flex-direction: column;
+    }
+}

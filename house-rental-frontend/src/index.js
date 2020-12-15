@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import { createStore } from 'redux';
@@ -13,7 +14,9 @@ const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window
 ReactDOM.render(
 	<React.Fragment>
 		<Provider store={store}>
-			<App />
+			<Router>
+				<App />
+			</Router>
 		</Provider>
 	</React.Fragment>,
 	document.getElementById('root')
