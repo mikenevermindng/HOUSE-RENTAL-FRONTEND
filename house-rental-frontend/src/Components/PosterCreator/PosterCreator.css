@@ -9,7 +9,8 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	/*display: none;*/
+	display: none;
+	overflow-y: auto;
 }
 
 .poster-creator {
@@ -20,6 +21,7 @@
 	border-radius: 16px;
 	background-color: #F0F0F3;
 	height: 90%;
+	min-height: 500px;
 }
 
 .ant-steps-item-container {
@@ -76,7 +78,7 @@
 	margin-top: 50px;
 	align-items: center;
 	padding: 0 20px;
-	height: 65%;
+	height: 73%;
 	overflow-y: auto;
 }
 
@@ -184,6 +186,10 @@
 		margin: 10px 0 !important;
 		width: 100%;
 	}
+
+	.steps-content {
+		height: 60%;
+	}
 }
 
 @media screen and (max-width: 1024px) {
@@ -270,6 +276,10 @@
 @media screen and (max-width: 700px) {
 	.poster-creator {
 		padding: 20px 20px;
+	}
+
+	.steps-content {
+		height: 90%;
 	}
 
 	.ant-steps-item {

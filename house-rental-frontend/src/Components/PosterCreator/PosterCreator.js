@@ -135,29 +135,29 @@ function PosterCreator() {
 							</div>
 						);
 					})}
+					<div className="steps-action">
+						{current < steps.length - 1 && (
+							<Button type="primary" onClick={() => next()} style={{ float: 'right', marginLeft: '10px' }}>
+								Tiếp theo
+							</Button>
+						)}
+						{current === steps.length - 1 && (
+							<Button type="primary" onClick={submitFromHandler} style={{ float: 'right', marginLeft: '10px' }}>
+								Hoàn thành
+							</Button>
+						)}
+						{current > 0 && (
+							<Button
+								style={{ margin: '0 8px' }}
+								onClick={() => prev()}
+								style={{ float: 'right', marginLeft: '10px' }}
+							>
+								Trở lại
+							</Button>
+						)}
+					</div>
 				</div>
-				<div className="steps-action">
-					{current < steps.length - 1 && (
-						<Button type="primary" onClick={() => next()} style={{ float: 'right', marginLeft: '10px' }}>
-							Tiếp theo
-						</Button>
-					)}
-					{current === steps.length - 1 && (
-						<Button type="primary" onClick={submitFromHandler} style={{ float: 'right', marginLeft: '10px' }}>
-							Hoàn thành
-						</Button>
-					)}
-					{current > 0 && (
-						<Button
-							style={{ margin: '0 8px' }}
-							onClick={() => prev()}
-							style={{ float: 'right', marginLeft: '10px' }}
-						>
-							Trở lại
-						</Button>
-					)}
 				</div>
-			</div>
 			);
 		</div>
 	)
