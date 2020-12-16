@@ -2,8 +2,9 @@ import http from './http';
 
 const apiImageUploader = async (data) => {
 	try {
+		console.log(data)
 		const formData = new FormData();
-		const images = [ ...data ];
+		const images = [...data];
 		images.forEach((img) => {
 			formData.append('images', img.originFileObj);
 		});

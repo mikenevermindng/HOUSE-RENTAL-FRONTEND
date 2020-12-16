@@ -3,75 +3,39 @@ import { Steps, Button, message } from 'antd';
 import PosterFromInput from './PosterFromInput';
 import FacilityFromInput from './FacilityFromInput';
 import ImageFromInput from './ImageFromInput';
-import { apiImageUploader } from '../../Services/accommodation_poster_services';
+import { apiImageUploader, apiPosterCreator } from '../../Services/accommodation_poster_services';
 import classNames from 'classnames';
 import './PosterCreator.css';
 
 const { Step } = Steps;
 
 function PosterCreator() {
-	const [ current, setCurrent ] = React.useState(0);
+	const [current, setCurrent] = React.useState(0);
 
 	const next = () => {
 		setCurrent(current + 1);
 	};
 
 	const prev = () => {
+		console.log(current)
 		setCurrent(current - 1);
 	};
 
-	const [ other, setOther ] = useState([]);
 
-	const [ facilities, setFacilities ] = useState({});
+	const [facilities, setFacilities] = useState({});
 
-	const [ posterInfo, setPosterInfo ] = useState({});
+	const [posterInfo, setPosterInfo] = useState({});
 
-	const [ imageList, setImageList ] = useState([]);
-
-	const facilityFormOnChangeHandler = (event) => {
-		const facility = facilities;
-		console.log('facility', facilities);
-		setFacilities({ ...facility, [event.target.name]: event.target.value });
-	};
-
-	const facilityFormOnSelectHandler = (label) => {
-		const facility = facilities;
-		console.log('facility', facilities);
-		if (label) {
-			setFacilities({ ...facility, [label.name]: label.value });
-		}
-	};
-
-	const facilityFormOnRemoveHandler = (item) => {
-		return () => {
-			const others = facilities.other;
-			const index = others.indexOf((fac) => fac === item);
-			console.log('facility', facilities);
-		};
-	};
-
-	const posterInfoFormOnChangeHandler = (event) => {
-		const posterInformation = posterInfo;
-		console.log('poster', posterInformation);
-		setPosterInfo({ ...posterInformation, [event.target.name]: event.target.value });
-	};
-
-	const posterInfoFormOnSelectHandler = (label) => {
-		const posterInformation = posterInfo;
-		console.log('poster', posterInformation);
-		if (label) {
-			setPosterInfo({ ...posterInformation, [label.name]: label.value });
-		}
-	};
+	const [imageList, setImageList] = useState([]);
 
 	const posterDatePickerHandler = (date, dateString) => {
 		const posterInformation = posterInfo;
 		console.log(posterInformation);
 		if (date) {
-			console.log(date);
+			console.log(typeof date.map(d => d._d)[0]);
 			setPosterInfo({
 				...posterInformation,
-				avaliableDate: { date: date.map((time) => time._d), dateString: dateString }
+				avaliableDate: date.map((time) => time._d)
 			});
 		} else {
 			setPosterInfo({
@@ -81,8 +45,26 @@ function PosterCreator() {
 		}
 	};
 
+
+	const submitHandler = async (posterMoreInfo) => {
+		try {
+			console.log(posterInfo)
+			const imageUploadResponse = await apiImageUploader(posterInfo.images)
+			const data = {
+				senderId: "5fa67e4a3023fd285005c10e",
+				senderName: "Micheal",
+				materialFacilitiesInfo: facilities,
+				accommodationInfo: { ...posterInfo, ...posterMoreInfo, images: imageUploadResponse.files.map(image => image.path) },
+			}
+			const response = await apiPosterCreator(data)
+			console.log(response)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	const submitFromHandler = async () => {
-		const images = [ ...posterInfo.images ];
+		const images = [...posterInfo.images];
 		const res = await apiImageUploader(images);
 		console.log(res);
 		message.success('Processing complete!');
@@ -93,10 +75,9 @@ function PosterCreator() {
 			title: 'Thông tin chung',
 			component: (
 				<PosterFromInput
-					onChangeHandler={posterInfoFormOnChangeHandler}
+					next={next}
 					setPosterInfo={setPosterInfo}
 					posterInfo={posterInfo}
-					posterInfoFormOnSelectHandler={posterInfoFormOnSelectHandler}
 					posterDatePickerHandler={posterDatePickerHandler}
 				/>
 			),
@@ -106,11 +87,9 @@ function PosterCreator() {
 			title: 'Tiện ích',
 			component: (
 				<FacilityFromInput
-					other={other}
-					setOther={setOther}
-					onChangeHandler={facilityFormOnChangeHandler}
-					facilityFormOnSelectHandler={facilityFormOnSelectHandler}
-					facilityFormOnRemoveHandler={facilityFormOnRemoveHandler}
+					setFacilities={setFacilities}
+					next={next}
+					prev={prev}
 				/>
 			),
 			activeOrder: 1
@@ -123,6 +102,8 @@ function PosterCreator() {
 					posterInfo={posterInfo}
 					setImageList={setImageList}
 					imageList={imageList}
+					prev={prev}
+					submitHandler={submitHandler}
 				/>
 			),
 			activeOrder: 2
@@ -165,7 +146,7 @@ function PosterCreator() {
 						)}
 					</div>
 				</div>
-				</div>
+			</div>
 			);
 		</div>
 	)

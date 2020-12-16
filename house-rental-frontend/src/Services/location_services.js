@@ -29,10 +29,19 @@ let apiGetAllLocationData = async () => {
 
 		console.log('result');
 
-		return [ ...subDistrictAddresses, ...districtAddresses, ...cityAddress ];
+		return [...subDistrictAddresses, ...districtAddresses, ...cityAddress];
 	} catch (error) {
 		return [];
 	}
 };
 
-export { apiGetAllLocationData };
+const getAreaData = async () => {
+	try {
+		const response = await http.get('location/');
+		return response.data;
+	} catch (error) {
+		return [];
+	}
+}
+
+export { apiGetAllLocationData, getAreaData };

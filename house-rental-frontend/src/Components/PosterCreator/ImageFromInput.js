@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {Upload, Modal, message, Input, Row, Col} from 'antd';
-import {CloseSquareFilled, PlusOutlined} from '@ant-design/icons';
+import { Upload, Modal, message, Input, Row, Col } from 'antd';
+import { CloseSquareFilled, PlusOutlined } from '@ant-design/icons';
+import { useFormik } from 'formik';
+import * as Yup from 'yup'
 
 const { TextArea } = Input;
 
@@ -20,12 +22,45 @@ const dummyRequest = ({ file, onSuccess }) => {
 };
 
 function ImageFromInput(props) {
-	const { posterInfo, setPosterInfo } = props;
+	const { posterInfo, setPosterInfo, prev, submitHandler } = props;
 
-	const [ previewVisible, setPreviewVisible ] = useState(false);
-	const [ previewImage, setPreviewImage ] = useState('');
-	const [ previewTitle, setPreviewTitle ] = useState('');
-	const [ fileList, setFileList ] = useState([]);
+	const backToPrevStep = (e) => {
+		e.preventDefault()
+		prev()
+	}
+
+	const validateSchema = Yup.object().shape({
+		description: Yup.string()
+			.min(500, "Bài đăng nên được mô tả tối thiểu 500 kí tự")
+			.max(3000, "Bài đăng không nên được môt tả bởi quá 3000 kí tự")
+			.required("bắt buộc")
+	})
+
+	const formik = useFormik({
+		initialValues: {
+			description: '',
+		},
+		validationSchema: validateSchema,
+		onSubmit: (values) => {
+			submitHandler({ description: values.description })
+		},
+	})
+
+	const {
+		values,
+		touched,
+		errors,
+		handleSubmit,
+		handleChange,
+		handleBlur,
+	} = formik;
+
+	const { description } = values;
+
+	const [previewVisible, setPreviewVisible] = useState(false);
+	const [previewImage, setPreviewImage] = useState('');
+	const [previewTitle, setPreviewTitle] = useState('');
+	const [fileList, setFileList] = useState([]);
 
 	const handleCancel = () => setPreviewVisible(false);
 
@@ -46,7 +81,13 @@ function ImageFromInput(props) {
 		</div>
 	);
 
-	const handleChange = ({ fileList }) => {
+	const changeHandler = ({ fileList }) => {
+		if (fileList.length > 12) {
+			message.error("Không thể đăng tải quá 12 ảnh")
+		}
+		if (fileList.length < 3) {
+			message.error("Đăng tải tổi thiểu 3 ảnh")
+		}
 		setFileList(fileList.filter((file) => file.type.split('/')[0] === 'image').slice(0, 12));
 	};
 
@@ -63,28 +104,38 @@ function ImageFromInput(props) {
 		},
 		multiple: true,
 		accept: 'image/*',
+		name: "images",
 		onPreview: handlePreview,
-		onChange: handleChange,
+		onChange: changeHandler,
 		customRequest: dummyRequest
 	};
 
 	useEffect(
 		() => {
-			console.log(fileList);
 			setPosterInfo({ ...posterInfo, images: fileList });
-			console.log(posterInfo);
 		},
-		[ fileList ]
+		[fileList]
 	);
+
+	console.log({ errors, values, touched })
+
 	return (
-		<div>
+		<form onSubmit={handleSubmit}>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 				<Col span={24}>
 					<div className="input-label">Thêm mô tả về nơi ở của bạn</div>
 				</Col>
 			</Row>
-			<TextArea rows={4} maxLength={3000}/>
-
+			<div>
+				<TextArea
+					rows={4}
+					maxLength={3000}
+					name="description"
+					onChange={handleChange('description')}
+					onBlur={handleBlur('description')}
+				/>
+				{errors.description && touched.description && <span>{errors.description}</span>}
+			</div>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 				<Col span={24}>
 					<div className="input-label">Thêm ảnh nơi ở của bạn (tối thiểu 3 ảnh)</div>
@@ -94,7 +145,9 @@ function ImageFromInput(props) {
 			<Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
 				<img alt="example" style={{ width: '100%' }} src={previewImage} />
 			</Modal>
-		</div>
+			<button onClick={backToPrevStep}>Back</button>
+			<button type="submit">submit</button>
+		</form>
 	);
 }
 

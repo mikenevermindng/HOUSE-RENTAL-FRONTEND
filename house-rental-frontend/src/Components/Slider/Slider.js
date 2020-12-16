@@ -5,7 +5,7 @@ import classNames from 'classnames';
 function Slider(props) {
 	const { slides } = props;
 
-	const [ activeSlide, setActiveSlide ] = useState(0);
+	const [activeSlide, setActiveSlide] = useState(0);
 
 	const prevSlide = () => {
 		let slide = activeSlide - 1 < 0 ? slides.length - 1 : activeSlide - 1;
@@ -20,7 +20,7 @@ function Slider(props) {
 			<div className="slideshow-container">
 				{slides.map((slide, index) => {
 					return (
-						<div className={classNames('mySlides fade', { 'display-block': activeSlide === index })}>
+						<div key={"slider-" + index} className={classNames('mySlides fade', { 'display-block': activeSlide === index })}>
 							<div className="numbertext">
 								{index} / {slides.length}
 							</div>
