@@ -64,7 +64,7 @@ function PosterFromInput(props) {
 		validationSchema: validateSchema,
 	})
 
-	const { values, touched, errors, handleSubmit, handleChange, handleBlur } = formik;
+	const { values, touched, errors, handleSubmit, handleChange, handleBlur, setFieldValue } = formik;
 	const {
 		title, city, district,
 		subDistrict, address,
@@ -89,15 +89,17 @@ function PosterFromInput(props) {
 			const districtMap = _.groupBy(districts, 'cityId');
 			const trackingCity = cities.find(c => c.city === city)
 			// console.log(districtMap[trackingCity.cityId], trackingCity.cityId)
+			setFieldValue('district', '')
 			setRecommendedDistricts(districtMap[trackingCity.cityId])
 		}
 	}, [city])
 
 	useEffect(() => {
-		if (city) {
+		if (district) {
 			const subDistrictMap = _.groupBy(subDistricts, 'districtId');
 			const trackingDistrict = districts.find(d => d.district === district)
 			// console.log(subDistrictMap[trackingDistrict.districtId], trackingDistrict.districtId)
+			setFieldValue('subDistrict', '')
 			setRecommendedSubDistricts(subDistrictMap[trackingDistrict.districtId])
 		}
 	}, [district])
@@ -167,7 +169,7 @@ function PosterFromInput(props) {
 						filterSort={(optionA, optionB) =>
 							optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())}
 					>
-						{cities.slice(0, 5).map((c, index) => {
+						{cities.map((c, index) => {
 							return (
 								<Option value={c.city} key={'city' + index} name="city">
 									{c.city}
@@ -198,7 +200,7 @@ function PosterFromInput(props) {
 						filterSort={(optionA, optionB) =>
 							optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())}
 					>
-						{recommendedDistricts.slice(0, 5).map((d, index) => {
+						{recommendedDistricts.map((d, index) => {
 							return (
 								<Option value={d.district} key={'district-' + index} name="district">
 									{d.district}
