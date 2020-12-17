@@ -3,7 +3,6 @@ import Navbar from '../Components/Navbar/Navbar';
 import Slider from '../Components/Slider/Slider';
 import Carousel from '../Components/Carousel/Carousel';
 import RoomInfo from '../Components/RoomInfo/RoomInfo';
-import PosterCreator from "../Components/PosterCreator/PosterCreator";
 
 export default function RoomDetails() {
     const slides = [
@@ -62,7 +61,6 @@ export default function RoomDetails() {
             {/*<Slider slides={slides}/>*/}
             <Carousel />
             <RoomInfo information={information} />
-            <PosterCreator />
         </div>
     )
 }

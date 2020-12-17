@@ -9,7 +9,9 @@ export default class MultipleItems extends React.Component {
             infinite: true,
             arrows: false,
             slidesToShow: 2,
-            slidesToScroll: 1
+            slidesToScroll: 1,
+            centerMode: true,
+            widthVariable: true
         };
         return (
             <div>
