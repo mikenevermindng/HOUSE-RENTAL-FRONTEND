@@ -6,7 +6,8 @@ import SearchPanel from './Components/SearchPanel/SearchPanel';
 import Slider from './Components/Slider/Slider';
 import PosterCard from "./Components/PosterCard/PosterCard";
 import RoomDetails from './pages/RoomDetails';
-import { Route, Switch } from 'react-router-dom';
+import Owner from './pages/Owner';
+import {Route, Switch} from 'react-router-dom';
 
 function App() {
 	let slides = [
@@ -27,8 +28,8 @@ function App() {
 		<div className="App">
 			<Switch>
 				<Route exact path='/room-details/' component={RoomDetails} />
+				<Route exact path='/owner/' component={Owner} />
 			</Switch>
-			<PosterCreator />
 			<PosterCard />
 		</div>
 	);

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Row, Col, Input, Select, DatePicker } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Row, Col, Input, Select, DatePicker, InputNumber } from 'antd';
 import 'moment/locale/vi';
 import locale from 'antd/es/date-picker/locale/vi_VN';
 import { useFormik } from 'formik'
