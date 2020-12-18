@@ -1,3 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Pattaya&display=swap');
+
 .hero-section {
-    width: 100%;
+    color: white;
+    font-size: 30px;
+    font-family: 'Comfortaa', sans-serif;
+    background-position: bottom;
+}
+
+.content-container {
+    text-align: center;
+}
+
+.hero-section .hero-headline {
+    font-weight: lighter;
+    color: white;
+    font-family: 'Pattaya', sans-serif;
+    font-size: 80px;
+    line-height: 111px;
+    letter-spacing: 0.05em;
+}
+
+.hero-section .hero-subtitle {
+    line-height: 33px;
+}
+
+.hero-section .hero-buttons {
+    display: flex;
+    width: 625px;
+    justify-content: space-between;
+    margin: 47px auto 0;
+}
+
+.hero-section .hero-buttons button {
+    background: transparent;
+    outline: none;
+    border-radius: 20px;
+    border: 2px solid white;
+    padding: 12px 53px;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+}
+
+.hero-section .hero-buttons button:hover {
+    background: white;
+    color: #333333;
 }

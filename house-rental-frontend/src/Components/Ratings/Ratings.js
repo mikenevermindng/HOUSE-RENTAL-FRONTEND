@@ -42,15 +42,15 @@ function Ratings(props) {
     ];
 
     return (
-        <div className="ratings">
+        <div>
             <h1>Đánh giá</h1>
             <UserRating />
             <List
-                className="ratings-list"
+
                 itemLayout="horizontal"
                 dataSource={ratings}
                 renderItem={item => (
-                    <li className="ratings-item">
+                    <li>
                         <Rate allowHalf disabled defaultValue={item.rating}/>
                         <Comment
                             actions={actions}

@@ -45,7 +45,6 @@ function PosterFromInput(props) {
 		<div>
 			<div className="input-field">
 				<div className="input-label">Tên nhà trọ</div>
-
 			</div>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 				<Col span={6}>
@@ -62,7 +61,6 @@ function PosterFromInput(props) {
 				<Col span={18}>
 					<Select
 						style={{ width: '100%' }}
-						allowClear
 						showSearch
 						placeholder="Thể loại"
 						optionFilterProp="children"

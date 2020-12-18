@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Table, Tooltip } from 'antd';
+import { Table, Tooltip, Tag } from 'antd';
 import './StatisticTable.css';
+import RoomDetailDrawer from "../RoomDetailDrawer/RoomDetailDrawer";
 
 function StatisticTable(props) {
     const data = props.data;
@@ -9,18 +10,18 @@ function StatisticTable(props) {
     const columns = [
         {
             title: 'Tên phòng',
-            dataIndex: 'roomName',
-            key: 'roomName',
+            dataIndex: 'title',
+            key: 'title',
             ellipsis: {
                 showTitle: false
             },
             sorter: (first, second) => {
-                return first.roomName.toLowerCase().charCodeAt(0) - second.roomName.toLowerCase().charCodeAt(0);
+                return first.title.toLowerCase().charCodeAt(0) - second.title.toLowerCase().charCodeAt(0);
             },
             sortDirections: ['descend', 'ascend'],
-            render: name => (
-                <Tooltip placement="topLeft" title={name}>
-                    {name}
+            render: title => (
+                <Tooltip placement="topLeft" title={title}>
+                    {title}
                 </Tooltip>
             )
         },
@@ -44,43 +45,49 @@ function StatisticTable(props) {
         },
         {
             title: 'Lượt xem',
-            key: 'views',
-            dataIndex: 'views',
+            key: 'visited',
+            dataIndex: ['rating', 'visits', 'length'],
             responsive: ['md'],
             sorter: (first, second) => {
-                return first.views - second.views;
+                return first.visited - second.visited;
             },
             sortDirections: ['descend', 'ascend'],
         },
         {
             title: 'Lượt thích',
-            key: 'favorites',
-            dataIndex: 'favorites',
+            key: 'likes',
+            dataIndex: ['rating', 'likedUser', 'length'],
             responsive: ['md'],
             sorter: (first, second) => {
-                return first.views - second.views;
+                return first.likes - second.likes;
             },
             sortDirections: ['descend', 'ascend'],
         },
         {
             title: 'Lượt đánh giá',
-            key: 'ratings',
-            dataIndex: 'ratings',
+            key: 'rate',
+            dataIndex: ['rating', 'rate'],
             responsive: ['md'],
             sorter: (first, second) => {
-                return first.views - second.views;
+                return first.rate - second.rate;
             },
             sortDirections: ['descend', 'ascend'],
         },
         {
             title: 'Tình trạng',
             key: 'status',
-            dataIndex: 'status'
+            dataIndex: 'status',
+            render: () => {
+
+            }
         },
         {
             title: '',
             key: 'detail',
-            dataIndex: 'detail'
+            dataIndex: 'detail',
+            render: () => (
+                <RoomDetailDrawer props={data[0]}/>
+            )
         }
     ];
 
