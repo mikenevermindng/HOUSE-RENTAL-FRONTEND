@@ -7,7 +7,9 @@ import UserRating from "../UserRating/UserRating";
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
 
 function Ratings(props) {
-    const ratings = props.ratings;
+    const { rating, userId, username } = props;
+
+    console.log(rating)
 
     const [likes, setLikes] = useState(0);
     const [dislikes, setDislikes] = useState(0);
@@ -27,36 +29,36 @@ function Ratings(props) {
 
     const actions = [
         <Tooltip key="comment-basic-like" title="Like">
-      <span onClick={like}>
-        {createElement(action === 'liked' ? LikeFilled : LikeOutlined)}
-          <span className="comment-action">{likes}</span>
-      </span>
+            <span onClick={like}>
+                {createElement(action === 'liked' ? LikeFilled : LikeOutlined)}
+                <span className="comment-action">{likes}</span>
+            </span>
         </Tooltip>,
         <Tooltip key="comment-basic-dislike" title="Dislike">
-      <span onClick={dislike}>
-        {React.createElement(action === 'disliked' ? DislikeFilled : DislikeOutlined)}
-          <span className="comment-action">{dislikes}</span>
-      </span>
+            <span onClick={dislike}>
+                {React.createElement(action === 'disliked' ? DislikeFilled : DislikeOutlined)}
+                <span className="comment-action">{dislikes}</span>
+            </span>
         </Tooltip>,
         <span key="comment-basic-reply-to">Reply to</span>,
     ];
 
     return (
-        <div>
+        <div className="ratings">
             <h1>Đánh giá</h1>
-            <UserRating />
+            <UserRating ratingId={rating._id} userId={userId} username={username} />
             <List
-
+                className="ratings-list"
                 itemLayout="horizontal"
-                dataSource={ratings}
+                dataSource={rating.ratedTime}
                 renderItem={item => (
-                    <li>
-                        <Rate allowHalf disabled defaultValue={item.rating}/>
+                    <li className="ratings-item">
+                        <Rate allowHalf disabled defaultValue={item.stars} />
                         <Comment
                             actions={actions}
-                            author={item.name}
+                            author={item.username}
                             avatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                            content={item.content}
+                            content={item.comment}
                         />
                     </li>
                 )}

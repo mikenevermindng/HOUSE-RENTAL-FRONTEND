@@ -26,7 +26,7 @@ const modifyPoster = (state, payload) => {
 	const { posterId, modifiedData } = payload;
 	const index = state.findIndex((poster) => poster._id === posterId);
 	const poster = state[index];
-	poster = { ...poster, ...modifiedData };
+	// poster = { ...poster, ...modifiedData };
 	return state;
 };
 

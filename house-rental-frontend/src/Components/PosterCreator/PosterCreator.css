@@ -9,7 +9,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	display: none;
+	/* display: none; */
 	overflow-y: auto;
 }
 
@@ -19,7 +19,7 @@
 	margin: 0 auto;
 	box-shadow: -10px -10px 30px rgba(255, 255, 255, 0.25), 10px 10px 30px rgba(174, 174, 192, 0.1);
 	border-radius: 16px;
-	background-color: #F0F0F3;
+	background-color: #f0f0f3;
 	height: 90%;
 	min-height: 500px;
 }
@@ -50,13 +50,13 @@
 
 .ant-steps-item-active .ant-steps-item-icon,
 .ant-steps-item-finish .ant-steps-item-icon {
-	box-shadow: 6px 6px 16px #BECDE2, -6px -6px 16px #FFFFFF;
-	background-color: #F0F0F3 !important;
+	box-shadow: 6px 6px 16px #becde2, -6px -6px 16px #ffffff;
+	background-color: #f0f0f3 !important;
 }
 
 .ant-steps-item-wait .ant-steps-item-icon {
-	box-shadow: inset 4px 4px 8px rgba(190, 205, 226, 0.5), inset -5px -5px 30px #FFFFFF;
-	background-color: #F0F0F3 !important;
+	box-shadow: inset 4px 4px 8px rgba(190, 205, 226, 0.5), inset -5px -5px 30px #ffffff;
+	background-color: #f0f0f3 !important;
 }
 
 .ant-steps-item-content {
@@ -98,7 +98,7 @@
 .poster-creator .ant-row .ant-picker {
 	height: 50px !important;
 	border-radius: 20px !important;
-	box-shadow: inset 4px 4px 8px rgba(190, 205, 226, 0.5), inset -5px -5px 30px #FFFFFF;
+	box-shadow: inset 4px 4px 8px rgba(190, 205, 226, 0.5), inset -5px -5px 30px #ffffff;
 	outline: none !important;
 	border: none !important;
 	padding: 0 20px !important;
@@ -169,7 +169,7 @@
 .poster-creator textarea {
 	font-size: 16px;
 	border-radius: 20px !important;
-	box-shadow: inset 4px 4px 8px rgba(190, 205, 226, 0.5), inset -5px -5px 30px #FFFFFF;
+	box-shadow: inset 4px 4px 8px rgba(190, 205, 226, 0.5), inset -5px -5px 30px #ffffff;
 	outline: none !important;
 	border: none !important;
 	margin-bottom: 40px;

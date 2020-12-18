@@ -12,7 +12,9 @@ import BedIcon from '../../Asset/Icon/bed.svg';
 import DrobeIcon from '../../Asset/Icon/wardrobe.svg';
 
 function RoomService(props) {
-    const services = props.roomInfo.services;
+    const { services } = props.roomInfo;
+
+    console.log(services)
 
     return (
         <div className="room-services">
@@ -24,35 +26,35 @@ function RoomService(props) {
                     <div className="service">
                         <img src={ElecIcon} alt="light icon" className="service-icon" />
                         <div className="service-info">
-                            tiền điện: {services.electricity}
+                            tiền điện: {services.electricityPrice} đồng/số/tháng
                         </div>
                     </div>
 
                     <div className="service">
-                        <img src={WaterIcon} alt="water icon" className="service-icon"/>
+                        <img src={WaterIcon} alt="water icon" className="service-icon" />
                         <div className="service-info">
-                            tiền nước: {services.water}
+                            tiền nước: {services.domesticWaterPrice} đồng/số/tháng
                         </div>
                     </div>
 
                     <div className="service">
-                        <img src={BathIcon} alt="bath icon" className="service-icon"/>
+                        <img src={BathIcon} alt="bath icon" className="service-icon" />
                         <div className="service-info">
-                            phòng tắm: {services.bath}
+                            phòng tắm: {services.bathroom}
                         </div>
                     </div>
 
                     <div className="service">
-                        <img src={KitIcon} alt="kitchen icon" className="service-icon"/>
+                        <img src={KitIcon} alt="kitchen icon" className="service-icon" />
                         <div className="service-info">
                             bếp: {services.kitchen}
                         </div>
                     </div>
 
                     <div className="service">
-                        <img src={ACIcon} alt="air conditioner icon" className="service-icon"/>
+                        <img src={ACIcon} alt="air conditioner icon" className="service-icon" />
                         <div className="service-info">
-                            điều hoà: {services.airConditioner}
+                            điều hoà: {services.airConditioner ? 'có' : 'không'}
                         </div>
                     </div>
 
@@ -61,37 +63,37 @@ function RoomService(props) {
                 <div className="right-services">
 
                     <div className="service">
-                        <img src={BalconyIcon} alt="balcony icon" className="service-icon"/>
+                        <img src={BalconyIcon} alt="balcony icon" className="service-icon" />
                         <div className="service-info">
-                            ban công: {services.balcony}
+                            ban công: {services.balcony ? 'có' : 'không'}
                         </div>
                     </div>
 
                     <div className="service">
-                        <img src={FridgeIcon} alt="fridge icon" className="service-icon"/>
+                        <img src={FridgeIcon} alt="fridge icon" className="service-icon" />
                         <div className="service-info">
-                            tủ lạnh: {services.fridge}
+                            tủ lạnh: {services.fridge ? 'có' : 'không'}
                         </div>
                     </div>
 
                     <div className="service">
-                        <img src={WashIcon} alt="washing machine icon" className="service-icon"/>
+                        <img src={WashIcon} alt="washing machine icon" className="service-icon" />
                         <div className="service-info">
-                            máy giặt: {services.washingMachine}
+                            máy giặt: {services.washingMachine ? 'có' : 'không'}
                         </div>
                     </div>
 
                     <div className="service">
-                        <img src={BedIcon} alt="bed icon" className="service-icon"/>
+                        <img src={BedIcon} alt="bed icon" className="service-icon" />
                         <div className="service-info">
-                            giường: {services.bed}
+                            giường: {services.bed ? 'có' : 'không'}
                         </div>
                     </div>
 
                     <div className="service">
-                        <img src={DrobeIcon} alt="wardrobe icon" className="service-icon"/>
+                        <img src={DrobeIcon} alt="wardrobe icon" className="service-icon" />
                         <div className="service-info">
-                            tủ: {services.wardrobe}
+                            tủ: {services.wardrobe ? 'có' : 'không'}
                         </div>
                     </div>
 

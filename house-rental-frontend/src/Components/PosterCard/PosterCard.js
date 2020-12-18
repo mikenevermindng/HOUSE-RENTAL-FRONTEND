@@ -22,10 +22,10 @@ function PosterCard() {
 		}
 	];
 
-	const desc = [ 'Rất tệ', 'Tệ', 'Trung bình', 'Tốt', 'Rất tốt' ];
+	const desc = ['Rất tệ', 'Tệ', 'Trung bình', 'Tốt', 'Rất tốt'];
 
-	const [ isLike, setIsLike ] = useState(false);
-	const [ isFollow, setFollow ] = useState(false);
+	const [isLike, setIsLike] = useState(false);
+	const [isFollow, setFollow] = useState(false);
 
 	return (
 		<Card style={{ width: 300 }} cover={<Slider slides={slides} />}>
@@ -38,8 +38,8 @@ function PosterCard() {
 				</div>
 			</div>
 			<Row>
-				<div class="item-media-price">
-					<span class="item-price">
+				<div className="item-media-price">
+					<span className="item-price">
 						10.000.000<sup>đ</sup>
 						<sub>/tháng</sub>
 					</span>

@@ -3,93 +3,59 @@ import { Steps, Button, message } from 'antd';
 import PosterFromInput from './PosterFromInput';
 import FacilityFromInput from './FacilityFromInput';
 import ImageFromInput from './ImageFromInput';
-import { apiImageUploader } from '../../Services/accommodation_services';
+import { apiImageUploader, apiPosterCreator } from '../../Services/accommodation_poster_services';
 import classNames from 'classnames';
 import './PosterCreator.css';
 
 const { Step } = Steps;
 
 function PosterCreator() {
-	const [ current, setCurrent ] = React.useState(0);
+	const [current, setCurrent] = React.useState(0);
 
 	const next = () => {
 		setCurrent(current + 1);
 	};
 
 	const prev = () => {
+		console.log(current)
 		setCurrent(current - 1);
 	};
 
-	const [ other, setOther ] = useState([]);
 
-	const [ facilities, setFacilities ] = useState({});
+	const [facilities, setFacilities] = useState({});
 
-	const [ posterInfo, setPosterInfo ] = useState({});
+	const [posterInfo, setPosterInfo] = useState({});
 
-	const [ imageList, setImageList ] = useState([]);
+	const [imageList, setImageList] = useState([]);
 
-	const facilityFormOnChangeHandler = (event) => {
-		const facility = facilities;
-		console.log('facility', facilities);
-		setFacilities({ ...facility, [event.target.name]: event.target.value });
-	};
-
-	const facilityFormOnSelectHandler = (label) => {
-		const facility = facilities;
-		console.log('facility', facilities);
-		if (label) {
-			setFacilities({ ...facility, [label.name]: label.value });
+	const submitHandler = async (posterMoreInfo) => {
+		try {
+			console.log(posterInfo)
+			if (posterInfo.images.length < 3) {
+				return message.error("Bạn phải đăng tải tối thiểu 3 ảnh")
+			}
+			const imageUploadResponse = await apiImageUploader(posterInfo.images)
+			const data = {
+				senderId: "5fa67e4a3023fd285005c10e",
+				senderName: "Micheal",
+				materialFacilitiesInfo: facilities,
+				accommodationInfo: { ...posterInfo, ...posterMoreInfo, images: imageUploadResponse.files.map(image => image.path) },
+			}
+			const response = await apiPosterCreator(data)
+			console.log(response)
+		} catch (error) {
+			console.log(error)
 		}
-	};
-
-	const facilityFormOnRemoveHandler = (item) => {
-		return () => {
-			const others = facilities.other;
-			const index = others.indexOf((fac) => fac === item);
-			console.log('facility', facilities);
-		};
-	};
-
-	const posterInfoFormOnChangeHandler = (event) => {
-		const posterInformation = posterInfo;
-		console.log('poster', posterInformation);
-		setPosterInfo({ ...posterInformation, [event.target.name]: event.target.value });
-	};
-
-	const posterInfoFormOnSelectHandler = (label) => {
-		const posterInformation = posterInfo;
-		console.log('poster', posterInformation);
-		if (label) {
-			setPosterInfo({ ...posterInformation, [label.name]: label.value });
-		}
-	};
-
-	const posterDatePickerHandler = (date, dateString) => {
-		const posterInformation = posterInfo;
-		console.log(posterInformation);
-		setPosterInfo({
-			...posterInformation,
-			avaliableDate: { date: date.map((time) => time._d), dateString: dateString }
-		});
-	};
-
-	const submitFromHandler = async () => {
-		const images = [ ...posterInfo.images ];
-		const res = await apiImageUploader(images);
-		console.log(res);
-		message.success('Processing complete!');
-	};
+	}
 
 	const steps = [
 		{
 			title: 'Thông tin chung',
 			component: (
 				<PosterFromInput
-					onChangeHandler={posterInfoFormOnChangeHandler}
+					next={next}
 					setPosterInfo={setPosterInfo}
 					posterInfo={posterInfo}
-					posterInfoFormOnSelectHandler={posterInfoFormOnSelectHandler}
-					posterDatePickerHandler={posterDatePickerHandler}
 				/>
 			),
 			activeOrder: 0
@@ -98,11 +64,9 @@ function PosterCreator() {
 			title: 'Tiện ích',
 			component: (
 				<FacilityFromInput
-					other={other}
-					setOther={setOther}
-					onChangeHandler={facilityFormOnChangeHandler}
-					facilityFormOnSelectHandler={facilityFormOnSelectHandler}
-					facilityFormOnRemoveHandler={facilityFormOnRemoveHandler}
+					setFacilities={setFacilities}
+					next={next}
+					prev={prev}
 				/>
 			),
 			activeOrder: 1
@@ -115,6 +79,8 @@ function PosterCreator() {
 					posterInfo={posterInfo}
 					setImageList={setImageList}
 					imageList={imageList}
+					prev={prev}
+					submitHandler={submitHandler}
 				/>
 			),
 			activeOrder: 2
@@ -142,7 +108,7 @@ function PosterCreator() {
 							</Button>
 						)}
 						{current === steps.length - 1 && (
-							<Button type="primary" onClick={submitFromHandler} style={{ float: 'right', marginLeft: '10px' }}>
+							<Button type="primary" style={{ float: 'right', marginLeft: '10px' }}>
 								Hoàn thành
 							</Button>
 						)}
@@ -157,7 +123,7 @@ function PosterCreator() {
 						)}
 					</div>
 				</div>
-				</div>
+			</div>
 			);
 		</div>
 	)

@@ -11,7 +11,7 @@ function RoomLocation(props) {
             <div className="locations-list">
                 {locations.map((location, index) => {
                     return (
-                        <div className="location">
+                        <div className="location" key={'nearBy-' + index}>
                             {index + 1}. {location}
                         </div>
                     )
