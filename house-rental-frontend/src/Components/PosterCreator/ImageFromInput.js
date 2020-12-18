@@ -81,14 +81,28 @@ function ImageFromInput(props) {
 		</div>
 	);
 
+	const imageFilter = (image) => {
+		if (image.type === "image/svg+xml") {
+			return true
+		}
+		if (image.type === "image/jpeg") {
+			if (image.size < 200000) {
+				message.error("Kích thước ảnh quá nhỏ")
+			}
+			return image.size > 200000
+		} else {
+			if (image.size < 1000000) {
+				message.error("Kích thước ảnh quá nhỏ")
+			}
+			return image.size > 1000000
+		}
+	}
+
 	const changeHandler = ({ fileList }) => {
 		if (fileList.length > 12) {
 			message.error("Không thể đăng tải quá 12 ảnh")
 		}
-		if (fileList.length < 3) {
-			message.error("Đăng tải tổi thiểu 3 ảnh")
-		}
-		setFileList(fileList.filter((file) => file.type.split('/')[0] === 'image').slice(0, 12));
+		setFileList(fileList.filter((file) => file.type.split('/')[0] === 'image' && imageFilter(file)).slice(0, 12));
 	};
 
 	const properties = {
@@ -116,8 +130,6 @@ function ImageFromInput(props) {
 		},
 		[fileList]
 	);
-
-	console.log({ errors, values, touched })
 
 	return (
 		<form onSubmit={handleSubmit}>

@@ -28,27 +28,12 @@ function PosterCreator() {
 
 	const [imageList, setImageList] = useState([]);
 
-	const posterDatePickerHandler = (date, dateString) => {
-		const posterInformation = posterInfo;
-		console.log(posterInformation);
-		if (date) {
-			console.log(typeof date.map(d => d._d)[0]);
-			setPosterInfo({
-				...posterInformation,
-				avaliableDate: date.map((time) => time._d)
-			});
-		} else {
-			setPosterInfo({
-				...posterInformation,
-				avaliableDate: null
-			});
-		}
-	};
-
-
 	const submitHandler = async (posterMoreInfo) => {
 		try {
 			console.log(posterInfo)
+			if (posterInfo.images.length < 3) {
+				return message.error("Bạn phải đăng tải tối thiểu 3 ảnh")
+			}
 			const imageUploadResponse = await apiImageUploader(posterInfo.images)
 			const data = {
 				senderId: "5fa67e4a3023fd285005c10e",
@@ -63,13 +48,6 @@ function PosterCreator() {
 		}
 	}
 
-	const submitFromHandler = async () => {
-		const images = [...posterInfo.images];
-		const res = await apiImageUploader(images);
-		console.log(res);
-		message.success('Processing complete!');
-	};
-
 	const steps = [
 		{
 			title: 'Thông tin chung',
@@ -78,7 +56,6 @@ function PosterCreator() {
 					next={next}
 					setPosterInfo={setPosterInfo}
 					posterInfo={posterInfo}
-					posterDatePickerHandler={posterDatePickerHandler}
 				/>
 			),
 			activeOrder: 0
@@ -131,7 +108,7 @@ function PosterCreator() {
 							</Button>
 						)}
 						{current === steps.length - 1 && (
-							<Button type="primary" onClick={submitFromHandler} style={{ float: 'right', marginLeft: '10px' }}>
+							<Button type="primary" style={{ float: 'right', marginLeft: '10px' }}>
 								Hoàn thành
 							</Button>
 						)}

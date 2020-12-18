@@ -2,7 +2,7 @@ import http from './http';
 
 const apiUserLikeAction = async (ratingId, userId) => {
 	try {
-		const response = await http.patch('like/' + ratingId, { userId: userId });
+		const response = await http.patch('rating/like/' + ratingId, { userId: userId });
 		console.log(response);
 		return response.data;
 	} catch (error) {
@@ -13,7 +13,7 @@ const apiUserLikeAction = async (ratingId, userId) => {
 
 const apiUserUnlikeAction = async (ratingId, userId) => {
 	try {
-		const response = await http.patch('unlike/' + ratingId, { userId: userId });
+		const response = await http.patch('rating/unlike/' + ratingId, { userId: userId });
 		console.log(response);
 		return response.data;
 	} catch (error) {
@@ -24,7 +24,7 @@ const apiUserUnlikeAction = async (ratingId, userId) => {
 
 const apiUserVisitAction = async (ratingId, userId) => {
 	try {
-		const response = await http.patch('visit/' + ratingId);
+		const response = await http.patch('rating/visit/' + ratingId);
 		console.log(response);
 		return response.data;
 	} catch (error) {

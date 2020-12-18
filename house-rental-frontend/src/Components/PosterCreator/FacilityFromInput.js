@@ -79,10 +79,10 @@ function FacilityFromInput(props) {
 									onChange={handleChange('bathroom')}
 									onBlur={handleBlur('bathroom')}
 								>
-									<Option value="close" name="typeOfBathroom">
+									<Option value="khép kín" name="typeOfBathroom">
 										Khép kín
 									</Option>
-									<Option value="share" name="typeOfBathroom">
+									<Option value="chia sẻ" name="typeOfBathroom">
 										Dùng chung
 									</Option>
 								</Select>
@@ -125,13 +125,13 @@ function FacilityFromInput(props) {
 									onBlur={handleBlur('kitchen')}
 									onChange={handleChange('kitchen')}
 								>
-									<Option value="closed" name="kitchen">
+									<Option value="khép kín" name="kitchen">
 										Khép kín
 									</Option>
-									<Option value="shared" name="kitchen">
+									<Option value="chia sẻ" name="kitchen">
 										Dùng chung
 									</Option>
-									<Option value="none" name="kitchen">
+									<Option value="không" name="kitchen">
 										Không
 									</Option>
 								</Select>
@@ -303,7 +303,6 @@ function FacilityFromInput(props) {
 							name="other"
 							render={
 								arrayHelpers => {
-									console.log(errors)
 									return (
 										<div>
 											{

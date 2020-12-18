@@ -34,7 +34,6 @@ const apiPosterCreator = async (data) => {
 const apiGetPoster = async (filterOption) => {
 	try {
 		const response = await http.get('accommodationPost/', { filterOption: filterOption });
-		console.log(response);
 		return response.data;
 	} catch (error) {
 		console.log(error);
@@ -45,7 +44,6 @@ const apiGetPoster = async (filterOption) => {
 const apiGetPosterById = async (posterId) => {
 	try {
 		const response = await http.get('accommodationPost/' + posterId);
-		console.log(response);
 		return response.data;
 	} catch (error) {
 		console.log(error);

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Input, Select, DatePicker, InputNumber } from 'antd';
+import { Row, Col, Input, Select, DatePicker } from 'antd';
 import 'moment/locale/vi';
 import locale from 'antd/es/date-picker/locale/vi_VN';
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import _ from 'lodash'
 import { getAreaData } from '../../Services/location_services'
+import moment from 'moment';
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
@@ -20,9 +21,9 @@ function PosterFromInput(props) {
 	const [recommendedCity, setRecommendedCity] = useState([])
 	const [recommendedDistricts, setRecommendedDistricts] = useState([])
 	const [recommendedSubDistricts, setRecommendedSubDistricts] = useState([])
+	const [pickedDate, setPickedDate] = useState([])
 
 	const {
-		posterDatePickerHandler,
 		setPosterInfo,
 		posterInfo,
 		next
@@ -40,8 +41,12 @@ function PosterFromInput(props) {
 		pricePerMonth: Yup.number("Xin vui lòng chỉ nhập chữ số").required("Bắt buộc"),
 		pricePerQuarter: Yup.number("Xin vui lòng chỉ nhập chữ số"),
 		pricePerYear: Yup.number("Xin vui lòng chỉ nhập chữ số"),
-
+		availableDate: Yup.array().of(Yup.string()).required()
 	});
+
+	const datePickerHandler = (date, dateString) => {
+		setFieldValue('availableDate', dateString)
+	}
 
 	const formik = useFormik({
 		initialValues: {
@@ -55,7 +60,8 @@ function PosterFromInput(props) {
 			pricePerMonth: "",
 			pricePerQuarter: "",
 			pricePerYear: "",
-			area: ""
+			area: "",
+			availableDate: []
 		},
 		onSubmit: (values) => {
 			setPosterInfo({ ...posterInfo, ...values })
@@ -74,6 +80,11 @@ function PosterFromInput(props) {
 		area,
 	} = values;
 
+	function disabledDate(current) {
+		// Can not select days before today and today
+		return current && current < moment().endOf('day');
+	}
+
 	useEffect(() => {
 		const loadLocationData = async () => {
 			const res = await getAreaData();
@@ -88,7 +99,6 @@ function PosterFromInput(props) {
 		if (city) {
 			const districtMap = _.groupBy(districts, 'cityId');
 			const trackingCity = cities.find(c => c.city === city)
-			// console.log(districtMap[trackingCity.cityId], trackingCity.cityId)
 			setFieldValue('district', '')
 			setRecommendedDistricts(districtMap[trackingCity.cityId])
 		}
@@ -98,7 +108,6 @@ function PosterFromInput(props) {
 		if (district) {
 			const subDistrictMap = _.groupBy(subDistricts, 'districtId');
 			const trackingDistrict = districts.find(d => d.district === district)
-			// console.log(subDistrictMap[trackingDistrict.districtId], trackingDistrict.districtId)
 			setFieldValue('subDistrict', '')
 			setRecommendedSubDistricts(subDistrictMap[trackingDistrict.districtId])
 		}
@@ -263,6 +272,7 @@ function PosterFromInput(props) {
 				<Col span={18}>
 					<Input
 						type="number"
+						min="3"
 						placeholder="Diện tích (mét vuông)"
 						name="area"
 						value={area}
@@ -279,6 +289,7 @@ function PosterFromInput(props) {
 					<Input
 						placeholder="Số lượng phòng"
 						type="number"
+						min="1"
 						name="numberOfRoom"
 						value={numberOfRoom}
 						onChange={handleChange}
@@ -294,6 +305,7 @@ function PosterFromInput(props) {
 					<Input
 						placeholder="Tháng"
 						type="number"
+						min="1"
 						name="pricePerMonth"
 						value={pricePerMonth}
 						onBlur={handleBlur('pricePerMonth')}
@@ -305,6 +317,7 @@ function PosterFromInput(props) {
 					<Input
 						placeholder="Quý"
 						type="number"
+						min="1"
 						name="pricePerQuarter"
 						value={pricePerQuarter}
 						onBlur={handleBlur('pricePerQuarter')}
@@ -314,6 +327,7 @@ function PosterFromInput(props) {
 				<Col span={6}>
 					<Input placeholder="Năm"
 						type="number"
+						min="1"
 						name="pricePerYear"
 						value={pricePerYear}
 						onBlur={handleBlur('pricePerYear')}
@@ -328,8 +342,10 @@ function PosterFromInput(props) {
 				<Col span={18}>
 					<RangePicker
 						locale={locale}
-						onChange={(date, dateString) => posterDatePickerHandler(date, dateString)}
+						onChange={datePickerHandler}
+						disabledDate={disabledDate}
 					/>
+					{values.availableDate.length > 0 && values.availableDate[0] !== '' && <span>{moment(values.availableDate[1]).diff(moment(values.availableDate[0]), 'days')}</span>}
 				</Col>
 			</Row>
 			<button type="submit">submit</button>
