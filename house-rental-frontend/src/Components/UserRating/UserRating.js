@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Popover, Button, Rate, Input, message } from 'antd';
-import { apiUserRatingAction } from '../../Services/rating_service'
+import { apiPostComment } from '../../Services/comment_services'
 
 const TextArea = Input;
 
 function UserRating(props) {
 
-    const { ratingId, userId, username } = props
+    console.log(props)
+
+    const { ratingId, userId, username, posterId } = props
 
     const [star, setStar] = useState(0)
     const [comment, setComment] = useState('')
@@ -25,10 +27,13 @@ function UserRating(props) {
                 userId: userId,
                 stars: star,
                 comment: comment,
-                username: username
+                username: username,
+                ratingId: ratingId,
+                postId: posterId
+
             }
             if (star === 0) return message.error("Bạn chưa đánh giá Bất động sản")
-            const res = await apiUserRatingAction(ratingId, rateData)
+            const res = await apiPostComment(rateData)
             console.log(res)
         } catch (error) {
             console.log(error)

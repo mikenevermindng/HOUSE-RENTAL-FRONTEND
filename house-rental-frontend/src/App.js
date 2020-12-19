@@ -3,8 +3,8 @@ import './App.css';
 import RoomDetails from './pages/RoomDetails';
 import Owner from './pages/Owner';
 import { Route, Switch } from 'react-router-dom';
-import PosterCreator from './Components/PosterCreator/PosterCreator'
 import Admin from './pages/Admin';
+import Chat from './pages/Chating'
 
 function App() {
 	return (
@@ -13,6 +13,7 @@ function App() {
 				<Route exact path='/owner/' component={Owner} />
 				<Route exact path='/admin/' component={Admin} />
 				<Route exact path='/room-details/:accomodId' component={RoomDetails} />
+				<Route exact path='/chat' component={Chat} />
 			</Switch>
 		</div>
 	);

@@ -7,9 +7,9 @@ import UserRating from "../UserRating/UserRating";
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
 
 function Ratings(props) {
-    const { rating, userId, username } = props;
+    const { rating, userId, username, posterId } = props;
 
-    console.log(rating)
+    console.log(props)
 
     const [likes, setLikes] = useState(0);
     const [dislikes, setDislikes] = useState(0);
@@ -46,7 +46,7 @@ function Ratings(props) {
     return (
         <div className="ratings">
             <h1>Đánh giá</h1>
-            <UserRating ratingId={rating._id} userId={userId} username={username} />
+            <UserRating ratingId={rating._id} userId={userId} username={username} posterId={posterId} />
             <List
                 className="ratings-list"
                 itemLayout="horizontal"
