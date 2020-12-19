@@ -14,13 +14,32 @@ const apiGetCommentById = async (commentId) => {
 const apiPostComment = async (data) => {
 	try {
 		const response = await http.post('comment/', data);
-		console.log(response);
 		return response.data;
 	} catch (error) {
 		console.log(error);
 		return null;
 	}
 };
+
+const apiGetCommentByPosterId = async (posterId) => {
+	try {
+		const response = await http.get('comment/posterComment/' + posterId)
+		return response.data
+	} catch (error) {
+		console.log(error)
+		return []
+	}
+}
+
+const apiGetCommentByRatingId = async (ratingId) => {
+	try {
+		const response = await http.get('comment/ratingComment/' + ratingId)
+		return response.data
+	} catch (error) {
+		console.log(error)
+		return []
+	}
+}
 
 const apiApprovedComment = async (commentId) => {
 	try {
@@ -43,4 +62,4 @@ const apiDeleteComment = async (commentId) => {
 	}
 };
 
-export { apiGetCommentById, apiPostComment, apiApprovedComment, apiDeleteComment };
+export { apiGetCommentById, apiPostComment, apiApprovedComment, apiDeleteComment, apiGetCommentByPosterId, apiGetCommentByRatingId };
