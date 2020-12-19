@@ -7,7 +7,7 @@ function LoginForOwner() {
   return (
     <div>
       <Login></Login>
-      <Register></Register>
+      {/* <Register></Register> */}
     </div>
   );
 }
