@@ -26,7 +26,6 @@ const apiPosterCreator = async (data) => {
 		console.log(response);
 		return response.data;
 	} catch (error) {
-		return console.log(error);
 		return null;
 	}
 };

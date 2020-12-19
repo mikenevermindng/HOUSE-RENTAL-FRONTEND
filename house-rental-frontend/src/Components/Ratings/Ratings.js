@@ -2,10 +2,9 @@ import React, { createElement, useState, useEffect } from 'react';
 import './Ratings.css';
 import 'antd/dist/antd.css';
 import { Comment, Tooltip, List, Rate } from 'antd';
-import moment from 'moment';
 import UserRating from "../UserRating/UserRating";
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
-import { apiGetCommentByPosterId, apiGetCommentByRatingId } from '../../Services/comment_services'
+import { apiGetCommentByPosterId } from '../../Services/comment_services'
 
 function Ratings(props) {
     const { rating, userId, username, posterId } = props;
@@ -37,7 +36,7 @@ function Ratings(props) {
         }
 
         fetchData()
-    }, [])
+    }, [posterId])
 
     const actions = [
         <Tooltip key="comment-basic-like" title="Like">

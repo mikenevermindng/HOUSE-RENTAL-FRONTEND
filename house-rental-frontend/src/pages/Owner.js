@@ -1,6 +1,5 @@
 import React from 'react';
 import Navbar from "../Components/Navbar/Navbar";
-import PosterCreator from "../Components/PosterCreator/PosterCreator";
 import StatisticTable from "../Components/StatisticTable/StatisticTable";
 import RoomDetailDrawer from "../Components/RoomDetailDrawer/RoomDetailDrawer";
 

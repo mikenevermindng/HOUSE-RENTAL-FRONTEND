@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Table, Tooltip } from 'antd';
 import './StatisticTable.css';
 
@@ -86,7 +86,7 @@ function StatisticTable(props) {
 
     return (
         <div className="table-container">
-            <Table columns={columns} dataSource={data}/>
+            <Table columns={columns} dataSource={data} />
         </div>
     )
 }

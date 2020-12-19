@@ -12,7 +12,7 @@ function ContactCard(props) {
     const info = props.roomInfo;
     const { rating, userId, ownerId, posterId } = props.roomInfo
 
-    const [isLikedByUser, setLikedByUser] = useState(rating.likedUser.indexOf(userId) !== -1)
+    const [isLikedByUser, setLikedByUser] = useState(rating.likedUser.findIndex(like => like.userId === userId) !== -1)
 
     const [numberOfPeople, setNumberOfPeople] = useState(1)
 

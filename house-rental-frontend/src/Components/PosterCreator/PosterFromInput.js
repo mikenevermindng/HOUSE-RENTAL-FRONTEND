@@ -18,10 +18,8 @@ function PosterFromInput(props) {
 	const [cities, setCities] = useState([])
 	const [districts, setDistrics] = useState([])
 	const [subDistricts, setSubdistricts] = useState([])
-	const [recommendedCity, setRecommendedCity] = useState([])
 	const [recommendedDistricts, setRecommendedDistricts] = useState([])
 	const [recommendedSubDistricts, setRecommendedSubDistricts] = useState([])
-	const [pickedDate, setPickedDate] = useState([])
 
 	const {
 		setPosterInfo,

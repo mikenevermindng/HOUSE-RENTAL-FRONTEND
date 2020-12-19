@@ -17,7 +17,6 @@ function PosterCreator() {
 	};
 
 	const prev = () => {
-		console.log(current)
 		setCurrent(current - 1);
 	};
 
@@ -114,9 +113,8 @@ function PosterCreator() {
 						)}
 						{current > 0 && (
 							<Button
-								style={{ margin: '0 8px' }}
+								style={{ margin: '0 8px', float: 'right', marginLeft: '10px' }}
 								onClick={() => prev()}
-								style={{ float: 'right', marginLeft: '10px' }}
 							>
 								Trở lại
 							</Button>

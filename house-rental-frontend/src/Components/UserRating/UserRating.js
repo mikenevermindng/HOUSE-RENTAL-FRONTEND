@@ -33,6 +33,7 @@ function UserRating(props) {
             }
             if (star === 0) return message.error("Bạn chưa đánh giá Bất động sản")
             const res = await apiPostComment(rateData)
+            console.log(res)
             message.success("Đăng tải bình luận thành công, hãy chờ admin phê duyệt để được hiện thị")
         } catch (error) {
             console.log(error)

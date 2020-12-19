@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import './SearchBarAuto.css';
-import MapLocation from '../../Asset/Icon/map-locationpin.png';
 import OutsideClickHandler from 'react-outside-click-handler';
 import classNames from 'classnames';
 
-const texts = [ 'New York', 'Tokio', 'Hanoi', 'Bejing', 'London' ].map((text, index) => {
+const texts = ['New York', 'Tokio', 'Hanoi', 'Bejing', 'London'].map((text, index) => {
 	return { id: index, value: text };
 });
 
 function SearchBarAutoComplete(props) {
 	const { placeHolder } = props;
 
-	const [ value, setValue ] = useState('');
-	const [ recommendations, setRecommendationList ] = useState([ ...texts ]);
-	const [ activeSuggestion, setActiveSuggestion ] = useState(0);
-	const [ showSuggestion, setShowSuggestion ] = useState(false);
-	const [ isMouseOver, setMouseOver ] = useState(false);
+	const [value, setValue] = useState('');
+	const [recommendations, setRecommendationList] = useState([...texts]);
+	const [activeSuggestion, setActiveSuggestion] = useState(0);
+	const [showSuggestion, setShowSuggestion] = useState(false);
+	const [isMouseOver, setMouseOver] = useState(false);
 
 	const onChangeHandler = (event) => {
 		event.preventDefault();
@@ -67,10 +66,10 @@ function SearchBarAutoComplete(props) {
 							.indexOf(value.toLowerCase().split(',').join('')) !== -1
 					);
 				});
-				setRecommendationList([ ...listRecommand.sort((a, b) => a.value.length - b.value.length) ]);
+				setRecommendationList([...listRecommand.sort((a, b) => a.value.length - b.value.length)]);
 			}
 		},
-		[ value ]
+		[value]
 	);
 
 	return (
