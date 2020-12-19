@@ -21,31 +21,33 @@ function Chatbox({ location }) {
 
 	const ENDPOINT = 'localhost:3002';
 
-	useEffect(
-		() => {
-			socket = io(ENDPOINT, { transports: ['websocket', 'polling', 'flashsocket'] });
+	// useEffect(
+	// 	() => {
+	// 		socket = io(ENDPOINT, { transports: ['websocket', 'polling', 'flashsocket'] });
 
-			axios
-				.get('http://localhost:3002/' + userId)
-				.then((result) => {
-					setChatboxList(result.data.chatboxes);
-					setChatboxId(result.data.chatboxes[0]._id);
-				})
-				.catch((error) => console.log(error));
+	// 		axios
+	// 			.get('http://localhost:3002/' + userId)
+	// 			.then((result) => {
+	// 				setChatboxList(result.data.chatboxes);
+	// 				setChatboxId(result.data.chatboxes[0]._id);
+	// 			})
+	// 			.catch((error) => console.log(error));
 
-			return () => {
-				socket.emit('disconnect');
-				socket.off();
-			};
-		},
-		[ENDPOINT]
-	);
+	// 		return () => {
+	// 			socket.emit('disconnect');
+	// 			socket.off();
+	// 		};
+	// 	},
+	// 	[ENDPOINT]
+	// );
 
-	useEffect(() => {
-		socket.on('message', (messageSent) => {
-			setMessagesList((messages) => [...messages, messageSent]);
-		});
-	}, []);
+	console.log(chatboxList)
+
+	// useEffect(() => {
+	// 	socket.on('message', (messageSent) => {
+	// 		setMessagesList((messages) => [...messages, messageSent]);
+	// 	});
+	// }, []);
 
 	console.log(messagesList)
 
@@ -61,6 +63,38 @@ function Chatbox({ location }) {
 			// 		})
 			// 		.catch((error) => console.log(error));
 			// }
+
+			const chatcards = [
+				{
+					"_id": "5fc74284e5666c4754f0b05d",
+					"members": [
+						{
+							"_id": "5fc60d1ffc13ae7947000000",
+							"name": "Nam"
+						},
+						{
+							"_id": "5fc60d1ffc13ae7947000001",
+							"name": "Manh"
+						}
+					]
+				},
+				{
+					"_id": "5fc74297e5666c4754f0b060",
+					"members": [
+						{
+							"_id": "5fc60d1ffc13ae7947000000",
+							"name": "Nam"
+						},
+						{
+							"_id": "5fc60d1ffc13ae7947000002",
+							"name": "Manh"
+						}
+					]
+				}
+			]
+
+			setChatboxList(chatcards)
+
 			const message = [
 				{
 					"_id": "5fca1b26060b33363cc82800",
