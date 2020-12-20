@@ -13,10 +13,6 @@ const { Paragraph } = Typography;
 function RoomInfo(props) {
     const roomInfo = props.information;
 
-    console.log(roomInfo)
-
-    //Fake data
-
     return (
         <div className="room-info">
             <h1 id="room-name">

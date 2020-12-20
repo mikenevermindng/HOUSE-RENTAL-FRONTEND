@@ -1,5 +1,5 @@
 :root {
-	font-size: 14px;
+  font-size: 14px;
 }
 
 body {
@@ -7,7 +7,7 @@ body {
 }
 
 .display-inline-block {
-	display: inline-block;
+  display: inline-block;
 }
 
 .display-none {
@@ -32,6 +32,7 @@ body {
 
 ::-webkit-scrollbar {
 	width: 7px;
+	height: 7px;
 }
 
 ::-webkit-scrollbar-track {

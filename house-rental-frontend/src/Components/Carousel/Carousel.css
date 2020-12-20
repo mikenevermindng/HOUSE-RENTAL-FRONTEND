@@ -1,7 +1,12 @@
 h2 {
-	visibility: hidden;
+    visibility: hidden;
 }
 
 .carousel-item {
-	width: 100%;
+    width: 400px !important;
+    height: 600px;
+    margin: 0 10px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }

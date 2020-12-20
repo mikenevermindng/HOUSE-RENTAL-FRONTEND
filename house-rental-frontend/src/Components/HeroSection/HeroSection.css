@@ -1,3 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Pattaya&display=swap');
+
 .hero-section {
+    color: white;
+    font-size: 30px;
+    font-family: 'Comfortaa', sans-serif;
+    background-position: bottom;
     width: 100%;
+    min-height: calc(100vh - 140px);
+    display: flex;
+    margin-top: 80px;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    clip-path: polygon(100% 0, 100% 89%, 76% 100%, 0 85%, 0 0);
+    overflow: hidden;
+}
+
+.content-container {
+    text-align: center;
+}
+
+.hero-section .hero-headline {
+    font-weight: lighter;
+    color: white;
+    font-family: 'Pattaya', sans-serif;
+    font-size: 80px;
+    line-height: 111px;
+    letter-spacing: 0.05em;
+}
+
+.hero-section .hero-subtitle {
+    line-height: 33px;
+}
+
+.hero-section .hero-buttons {
+    display: flex;
+    width: 625px;
+    justify-content: space-between;
+    margin: 47px auto 0;
+}
+
+.hero-section .hero-buttons button {
+    background: transparent;
+    outline: none;
+    border-radius: 20px;
+    border: 2px solid white;
+    padding: 12px 53px;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+}
+
+.hero-section .hero-buttons button:hover {
+    background: white;
+    color: #333333;
+}
+
+@media screen and (max-width: 1500px) {
+    .hero-section {
+        min-height: 640px;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .hero-section {
+        font-size: 24px;
+        margin-top: 60px;
+    }
+
+    .hero-section .hero-headline {
+        font-size: 70px;
+        line-height: 90px;
+    }
+
+    .hero-section .hero-buttons {
+        width: 560px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .hero-section {
+        height: 550px;
+        font-size: 20px;
+        margin-top: 40px;
+    }
+
+    .hero-section .hero-buttons {
+        width: 470px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero-section .hero-headline {
+        font-size: 45px;
+        line-height: 50px;
+    }
+
+    .content-container {
+        width: 90%;
+    }
+
+    .hero-section .hero-buttons {
+        flex-direction: column;
+        width: 300px;
+    }
+
+    .hero-section .hero-buttons button {
+        font-size: 16px;
+        margin-bottom: 15px;
+        background-color: white;
+        color: #333;
+        border: none;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .hero-section .hero-buttons {
+        width: auto;
+    }
 }

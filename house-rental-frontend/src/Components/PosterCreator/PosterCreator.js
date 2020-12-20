@@ -34,6 +34,7 @@ function PosterCreator() {
 				return message.error("Bạn phải đăng tải tối thiểu 3 ảnh")
 			}
 			const imageUploadResponse = await apiImageUploader(posterInfo.images)
+			console.log('imgae', imageUploadResponse)
 			const data = {
 				senderId: "5fa67e4a3023fd285005c10e",
 				senderName: "Micheal",

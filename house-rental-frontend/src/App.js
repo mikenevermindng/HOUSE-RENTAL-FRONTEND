@@ -4,7 +4,6 @@ import RoomDetails from './pages/RoomDetails';
 import Owner from './pages/Owner';
 import { Route, Switch } from 'react-router-dom';
 import Admin from './pages/Admin';
-import Chat from './pages/Chating'
 
 function App() {
 	return (

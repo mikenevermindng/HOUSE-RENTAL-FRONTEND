@@ -1,6 +1,7 @@
-import React from 'react';
-import { Table, Tooltip } from 'antd';
+import React, { useState } from 'react';
+import { Table, Tooltip, Tag } from 'antd';
 import './StatisticTable.css';
+import RoomDetailDrawer from "../RoomDetailDrawer/RoomDetailDrawer";
 
 function StatisticTable(props) {
     const data = props.data;
@@ -9,18 +10,18 @@ function StatisticTable(props) {
     const columns = [
         {
             title: 'Tên phòng',
-            dataIndex: 'roomName',
-            key: 'roomName',
+            dataIndex: 'title',
+            key: 'title',
             ellipsis: {
                 showTitle: false
             },
             sorter: (first, second) => {
-                return first.roomName.toLowerCase().charCodeAt(0) - second.roomName.toLowerCase().charCodeAt(0);
+                return first.title.toLowerCase().charCodeAt(0) - second.title.toLowerCase().charCodeAt(0);
             },
             sortDirections: ['descend', 'ascend'],
-            render: name => (
-                <Tooltip placement="topLeft" title={name}>
-                    {name}
+            render: title => (
+                <Tooltip placement="topLeft" title={title}>
+                    {title}
                 </Tooltip>
             )
         },
@@ -28,7 +29,7 @@ function StatisticTable(props) {
             title: 'Địa chỉ',
             dataIndex: 'address',
             key: 'address',
-            responsive: ['md'],
+            responsive: ['lg'],
             ellipsis: {
                 showTitle: false
             },
@@ -44,49 +45,53 @@ function StatisticTable(props) {
         },
         {
             title: 'Lượt xem',
-            key: 'views',
-            dataIndex: 'views',
+            key: 'visited',
+            dataIndex: ['rating', 'visits', 'length'],
             responsive: ['md'],
             sorter: (first, second) => {
-                return first.views - second.views;
+                return first.rating.visits.length - second.rating.visits.length;
             },
             sortDirections: ['descend', 'ascend'],
         },
         {
             title: 'Lượt thích',
-            key: 'favorites',
-            dataIndex: 'favorites',
+            key: 'likes',
+            dataIndex: ['rating', 'likedUser', 'length'],
             responsive: ['md'],
             sorter: (first, second) => {
-                return first.views - second.views;
+                return first.rating.likedUser.length - second.rating.likedUser.length;
             },
             sortDirections: ['descend', 'ascend'],
         },
         {
             title: 'Lượt đánh giá',
-            key: 'ratings',
-            dataIndex: 'ratings',
+            key: 'rate',
+            dataIndex: ['rating', 'rate'],
             responsive: ['md'],
             sorter: (first, second) => {
-                return first.views - second.views;
+                return first.rating.rate - second.rating.rate;
             },
             sortDirections: ['descend', 'ascend'],
         },
         {
             title: 'Tình trạng',
             key: 'status',
-            dataIndex: 'status'
+            dataIndex: 'status',
+            responsive: ['md'],
+            render: status => (
+                <Tag color="#65F659">{status}</Tag>
+            )
         },
         {
             title: '',
             key: 'detail',
-            dataIndex: 'detail'
+            dataIndex: 'detail',
         }
     ];
 
     return (
         <div className="table-container">
-            <Table columns={columns} dataSource={data} />
+            <Table columns={columns} dataSource={data}/>
         </div>
     )
 }
