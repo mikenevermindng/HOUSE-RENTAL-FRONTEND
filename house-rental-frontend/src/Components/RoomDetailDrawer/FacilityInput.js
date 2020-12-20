@@ -124,13 +124,13 @@ function FacilityInput(props) {
             </div>
 
             <div className="info-input">
-                <p>Giá điện</p>
-                <InputNumber placeholder="Giá điện" min="1" />
+                <p>Giá điện (đồng/kWh)</p>
+                <Input placeholder="Giá điện" min="1" type="number"/>
             </div>
 
             <div className="info-input">
-                <p>Giá nước</p>
-                <InputNumber placeholder="Giá nước" min="1" />
+                <p>Giá nước (đồng/m3)</p>
+                <Input placeholder="Giá nước" min="1" type="number"/>
             </div>
         </div>
     )

@@ -10,7 +10,7 @@ function Description(props) {
         <div className="info-box">
             <div className="info-input">
                 <p>Mô tả về nơi ở của bạn</p>
-                <TextArea rows={10} maxLength={3000} defaultValue={desc.description}/>
+                <TextArea rows={20} maxLength={3000} defaultValue={desc.description}/>
             </div>
         </div>
     )

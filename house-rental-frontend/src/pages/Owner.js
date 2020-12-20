@@ -1,10 +1,10 @@
 import React from 'react';
 import Navbar from "../Components/Navbar/Navbar";
-import PosterCreator from "../Components/PosterCreator/PosterCreator";
 import StatisticTable from "../Components/StatisticTable/StatisticTable";
-import RoomDetailDrawer from "../Components/RoomDetailDrawer/RoomDetailDrawer";
 import HeroSection from "../Components/HeroSection/HeroSection";
-import OwnerHeroContent from "../Components/OwnerHeroContent/OwnerHeroContent";
+import OwnerHeroContent from "../Components/HeroSection/OwnerHeroContent/OwnerHeroContent";
+import PosterCreator from "../Components/PosterCreator/PosterCreator";
+import RoomDetailDrawer from "../Components/RoomDetailDrawer/RoomDetailDrawer";
 
 export default function Owner() {
 
@@ -73,28 +73,119 @@ export default function Owner() {
                 __v: 0
             },
             __v: 0
+        },
+        {
+            searchingKeyWord: [],
+            images: [],
+            postedDate: "2020-12-16T13:24:45.378Z",
+            status: "available",
+            availableDate: [],
+            isApproved: false,
+            _id: "5fda10c3b4da690d101de80f",
+            avaliableDate: [
+                "2020-12-03T13:45:53.579Z",
+                "2020-12-18T13:45:53.579Z"
+            ],
+            title: "Capsule Hanoi Penthouse, view đẹp khắp trung tâm Hà Nội, tiện đi lại.",
+            city: "Hà Nội",
+            district: "Ba Đình",
+            subDistrict: "Ngọc Hà",
+            address: "Ba Đình, Hà Nội, Vietnam",
+            typeOfAccommodation: "nhà nguyên căn",
+            numberOfRoom: 4,
+            pricePerMonth: 5000000,
+            pricePerQuarter: 16000000,
+            pricePerYear: null,
+            area: 35,
+            description: "Phòng Penthouse, yên tĩnh, view đẹp an ninh và đầy đủ tiện nghi. Gần Lăng Bác cùng các địa điểm du lịch và khu ẩm thực phố cổ Hà Nội\n" +
+                "\n" +
+                "Di chuyển dễ dàng: Từ sân bay Nội Bài có chuyến xe bus số 90 (30p/chuyến) đến thẳng bến xe Kim Mã (cuối bến) Sau đó bạn đi bộ 10p là đến địa điểm Capsule Hanoi! Bạn có thể đi Grab đến thẳng địa chỉ 160 Ngọc Hà\n" +
+                "\n" +
+                "Phòng giường lớn 2-4 người, có thêm giường phụ! Ban công nhìn ra sân vườn, wifi, máy giặt free, nhà xe riêng biệt\n" +
+                "\n" +
+                "- Địa điểm cách Lăng Bác (100m).\n" +
+                "\n" +
+                "- Hồ Tây 1km! Đền Quan Thánh - chùa Trấn Quốc - Phủ Tây Hồ 1km!\n" +
+                "\n" +
+                "- Hoàng Thành Thăng Long - Chùa Một Cột 1.5km!\n" +
+                "\n" +
+                "- Phố Cổ Hà Nội - khu ẩm thực Tạ Hiện - Hồ Gươm - Kem Tràng Tiền - Phố đi bộ 3-4km!\n" +
+                "\n" +
+                "Chủ nhà thân thiện trực 24/24, có dịch vụ thuê xe máy, gần bãi gửi xe oto.",
+            ownerId: "5fda10c3b4da690d101de80e",
+            name: "Rye",
+            rating: {
+                rate: 10,
+                likedUser: [
+                    "5fd827c26c982835a08b9487",
+                    "5fd827c26c982835a08b9487",
+                    "5fd827c26c982835a08b9487",
+                    "5fd827c26c982835a08b9487"
+                ],
+                visits: ['a', 'b', 'c'],
+                _id: "5fda10c3b4da690d101de80e",
+                ratedTime: [
+                    {
+                        isApproved: false,
+                        _id: "5fdb20459523fa0544b5d7cc",
+                        time: "2020-12-17T09:09:25.804Z",
+                        stars: 5,
+                        userId: "5fd827c26c982835a08b9487",
+                        comment: "Tốt"
+                    },
+                    {
+                        isApproved: false,
+                        _id: "5fdb20459523fa0544b5d7cc",
+                        time: "2020-12-17T09:09:25.804Z",
+                        stars: 4.5,
+                        userId: "5fd827c26c982835a08b9487",
+                        comment: "Nice"
+                    },
+                    {
+                        isApproved: false,
+                        _id: "5fdb20459523fa0544b5d7cc",
+                        time: "2020-12-17T09:09:25.804Z",
+                        stars: 2.5,
+                        userId: "5fd827c26c982835a08b9487",
+                        comment: "Dở. Không quay lại abcxyz"
+                    }
+                ],
+                __v: 23
+            },
+            materialFacilities: {
+                other: [],
+                _id: "5fda10c3b4da690d101de80d",
+                bathroom: "close",
+                electricWaterHeater: true,
+                kitchen: "closed",
+                airConditioner: true,
+                balcony: true,
+                bed: true,
+                fridge: true,
+                washingMachine: true,
+                wardrobe: true,
+                electricityPrice: 1300,
+                domesticWaterPrice: 5000,
+                __v: 0
+            },
+            __v: 0
         }
     ]
 
     const tableData = data.map(post => {
         return {
             ...post,
-            rating: {},
-            rate: post.rating.rate,
-            visited: post.rating.visits.length,
-            likes: post.rating.likedUser.length,
-            detail: <RoomDetailDrawer data={post}/>
+            detail: <RoomDetailDrawer props={post}/>
         }
     })
 
     return (
         <div className="owner-page-container">
             <Navbar/>
-            <PosterCreator/>
             <HeroSection heroImage={ownerHeroImage}>
                 <OwnerHeroContent data={data}/>
             </HeroSection>
-            <StatisticTable data={data}/>
+            <StatisticTable data={tableData}/>
         </div>
     )
 }

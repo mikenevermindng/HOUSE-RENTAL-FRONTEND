@@ -9,7 +9,6 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	/* display: none; */
 	overflow-y: auto;
 }
 
@@ -92,10 +91,10 @@
 	margin-bottom: 24px;
 }
 
-.poster-creator .ant-row .ant-input,
-.poster-creator .ant-row .ant-select-selector,
-.poster-creator .ant-row .ant-input-number,
-.poster-creator .ant-row .ant-picker {
+.ant-input,
+.ant-select-selector,
+.ant-input-number,
+.ant-picker {
 	height: 50px !important;
 	border-radius: 20px !important;
 	box-shadow: inset 4px 4px 8px rgba(190, 205, 226, 0.5), inset -5px -5px 30px #ffffff;

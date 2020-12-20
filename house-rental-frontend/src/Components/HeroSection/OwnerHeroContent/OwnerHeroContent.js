@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PosterCreator from "../../PosterCreator/PosterCreator";
 
 function OwnerHeroContent(props) {
     const owner = props.data;

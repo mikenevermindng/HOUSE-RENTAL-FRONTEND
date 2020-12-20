@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Login from "./login";
 import Register from "./register";
-import "./style.css";
+// import "./style.css";
 
 function LoginPage() {
   const [isSwitch, setIsSwitch] = useState(false);

@@ -29,7 +29,7 @@ function StatisticTable(props) {
             title: 'Địa chỉ',
             dataIndex: 'address',
             key: 'address',
-            responsive: ['md'],
+            responsive: ['lg'],
             ellipsis: {
                 showTitle: false
             },
@@ -49,7 +49,7 @@ function StatisticTable(props) {
             dataIndex: ['rating', 'visits', 'length'],
             responsive: ['md'],
             sorter: (first, second) => {
-                return first.visited - second.visited;
+                return first.rating.visits.length - second.rating.visits.length;
             },
             sortDirections: ['descend', 'ascend'],
         },
@@ -59,7 +59,7 @@ function StatisticTable(props) {
             dataIndex: ['rating', 'likedUser', 'length'],
             responsive: ['md'],
             sorter: (first, second) => {
-                return first.likes - second.likes;
+                return first.rating.likedUser.length - second.rating.likedUser.length;
             },
             sortDirections: ['descend', 'ascend'],
         },
@@ -69,7 +69,7 @@ function StatisticTable(props) {
             dataIndex: ['rating', 'rate'],
             responsive: ['md'],
             sorter: (first, second) => {
-                return first.rate - second.rate;
+                return first.rating.rate - second.rating.rate;
             },
             sortDirections: ['descend', 'ascend'],
         },
@@ -77,17 +77,15 @@ function StatisticTable(props) {
             title: 'Tình trạng',
             key: 'status',
             dataIndex: 'status',
-            render: () => {
-
-            }
+            responsive: ['md'],
+            render: status => (
+                <Tag color="#65F659">{status}</Tag>
+            )
         },
         {
             title: '',
             key: 'detail',
             dataIndex: 'detail',
-            render: () => (
-                <RoomDetailDrawer props={data[0]}/>
-            )
         }
     ];
 

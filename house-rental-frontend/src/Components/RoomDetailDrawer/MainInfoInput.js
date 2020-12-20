@@ -1,16 +1,16 @@
 import React from 'react';
-import { Input, Select, InputNumber } from 'antd';
+import { Input, Select } from 'antd';
 
 const { Option } = Select;
 
 function MainInfoInput(props) {
     const mainInfo = props.data.props;
-    console.log(mainInfo);
 
     const typeOfAccommodation = [ 'Phòng trọ', 'Chung cư mini', 'Nhà nguyên căn', 'Chung cư nguyên căn' ];
 
     return (
         <div className="info-box">
+
             <div className="info-input">
                 <p>Tên nhà trọ</p>
                 <Input placeholder="Ví dụ: Nhà trọ Thọ An số 3 Tây Hồ" name="title" defaultValue={mainInfo.title} />
@@ -91,19 +91,19 @@ function MainInfoInput(props) {
 
             <div className="info-input">
                 <p>Diện tích (m2)</p>
-                <InputNumber placeholder="Diện tích (mét vuông)" min="1" defaultValue={mainInfo.area}/>
+                <Input placeholder="Diện tích (mét vuông)" min="1" defaultValue={mainInfo.area} type="number"/>
             </div>
 
             <div className="info-input">
                 <p>Số lượng phòng</p>
-                <InputNumber placeholder="Số lượng phòng" min="1" defaultValue={mainInfo.numberOfRoom}/>
+                <Input placeholder="Số lượng phòng" min="1" defaultValue={mainInfo.numberOfRoom} type="number"/>
             </div>
 
             <div className="info-input">
                 <p>Giá thuê (đồng)</p>
-                <InputNumber placeholder="Tháng" min="1" defaultValue={mainInfo.pricePerMonth}/>
-                <InputNumber placeholder="Quý" min="1" defaultValue={mainInfo.pricePerQuarter}/>
-                <InputNumber placeholder="Năm" min="1" defaultValue={mainInfo.pricePerYear}/>
+                <Input placeholder="Tháng" min="1" defaultValue={mainInfo.pricePerMonth} type="number" className="price-input"/>
+                <Input placeholder="Quý" min="1" defaultValue={mainInfo.pricePerQuarter} type="number" className="price-input"/>
+                <Input placeholder="Năm" min="1" defaultValue={mainInfo.pricePerYear} type="number" className="price-input"/>
             </div>
         </div>
     )
