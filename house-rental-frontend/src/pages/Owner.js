@@ -4,7 +4,11 @@ import StatisticTable from "../Components/StatisticTable/StatisticTable";
 import HeroSection from "../Components/HeroSection/HeroSection";
 import OwnerHeroContent from "../Components/HeroSection/OwnerHeroContent/OwnerHeroContent";
 import PosterCreator from "../Components/PosterCreator/PosterCreator"
-import UserLogin from "../Components/LoginPage/index";
+import LoginModal from "../Components/LoginModal/index";
+import OwnerSignIn from "../Components/LoginModal/OwnerForm/login";
+import OwnerSignUp from "../Components/LoginModal/OwnerForm/register";
+import UserSignIn from "../Components/LoginModal/UserForm/login";
+import UserSignUp from "../Components/LoginModal/UserForm/register";
 import RoomDetailDrawer from "../Components/RoomDetailDrawer/RoomDetailDrawer";
 
 export default function Owner() {
@@ -187,7 +191,10 @@ export default function Owner() {
                 <OwnerHeroContent data={data}/>
             </HeroSection>
             <StatisticTable data={tableData}/>
-            <UserLogin />
+            <LoginModal>
+                <OwnerSignIn/>
+                <OwnerSignUp/>
+            </LoginModal>
         </div>
     )
 }
