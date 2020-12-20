@@ -1,6 +1,7 @@
 import React from 'react'
 import { Table, Tooltip } from 'antd';
 import moment from 'moment'
+import RoomDetailDrawer from "../../RoomDetailDrawer/RoomDetailDrawer";
 
 const columns = [
     {
@@ -65,18 +66,6 @@ const columns = [
         }
     },
     {
-        title: 'Diện tích',
-        dataIndex: 'area',
-        key: '1',
-        sorter: (a, b) => a.area - b.area,
-    },
-    {
-        title: 'Số lượng phòng',
-        dataIndex: 'numberOfRoom',
-        key: '2',
-        sorter: (a, b) => a.numberOfRoom - b.numberOfRoom,
-    },
-    {
         title: 'Giá theo tháng',
         dataIndex: 'pricePerMonth',
         key: '3',
@@ -99,13 +88,6 @@ const columns = [
         dataIndex: ['rating', 'visits', 'length'],
         key: '6',
         sorter: (a, b) => a.rating.visits.length - b.rating.visits.length,
-    },
-    {
-        title: 'Ngày đăng tải',
-        dataIndex: 'postedDate',
-        key: '7',
-        render: (text, record, index) => `${moment(record.postedDate).format('DD/MM/YYYY')}`,
-        sorter: (a, b) => moment(a.postedDate).diff(b.postedDate),
     },
     {
         title: 'Thời gian đăng yêu cầu',
@@ -167,7 +149,7 @@ const columns = [
         title: 'Action',
         key: 'operation',
         fixed: 'right',
-        render: () => <a>action</a>,
+        render: (text, record, index) => <RoomDetailDrawer props={record} />,
     },
 ];
 

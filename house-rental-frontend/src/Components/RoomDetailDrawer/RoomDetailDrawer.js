@@ -98,7 +98,7 @@ function RoomDetailDrawer(props) {
                             <FacilityInput data={props} ownerId={ownerId} posterId={posterId} />
                         </TabPane>
                         <TabPane tab="Mô tả" key="3">
-                            <DescriptionInput data={props} ownerId={ownerId} />
+                            <DescriptionInput data={props} ownerId={ownerId} posterId={posterId} />
                         </TabPane>
                     </Tabs>
                 </div>
