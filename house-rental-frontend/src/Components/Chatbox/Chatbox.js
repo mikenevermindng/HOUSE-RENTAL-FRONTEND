@@ -4,7 +4,6 @@ import ChatCard from './ChatCard';
 import Messages from './Massages/Messages';
 import './Chatbox.css';
 import Input from './Input/Input';
-import queryString from 'query-string';
 import axios from 'axios';
 
 import io from 'socket.io-client';

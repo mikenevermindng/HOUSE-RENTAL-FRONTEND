@@ -99,6 +99,7 @@ function OwnerAccountTable(props) {
                 dataSource={ownerAccountList}
                 scroll={{ x: 1500, y: 300 }}
                 size="small"
+                rowKey="_id"
             />
         </div>
     )

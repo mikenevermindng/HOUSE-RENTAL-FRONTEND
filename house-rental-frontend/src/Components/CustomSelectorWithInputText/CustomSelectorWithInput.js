@@ -5,20 +5,20 @@ import arrowDown from '../../Asset/Icon/downArrow.svg';
 import loupe from '../../Asset/Icon/loupe.svg';
 import classNames from 'classnames';
 
-const texts = [ 'New York', 'Tokio', 'Hanoi', 'Bejing', 'London' ].map((text, index) => {
+const texts = ['New York', 'Tokio', 'Hanoi', 'Bejing', 'London'].map((text, index) => {
 	return { id: index, value: text };
 });
 
 function CustomSelector(props) {
 	const { placeHolder } = props;
 
-	const [ value, setValue ] = useState('');
-	const [ isFocusing, setFocusing ] = useState(false);
-	const [ listOption, setListOption ] = useState([ ...texts ]);
-	const [ listFilterOption, setListFilterOption ] = useState([]);
-	const [ activeSuggestion, setActiveSuggestion ] = useState(0);
-	const [ isMouseOver, setMouseOver ] = useState(false);
-	const [ showSuggestion, setShowSuggestion ] = useState(false);
+	const [value, setValue] = useState('');
+	const [isFocusing, setFocusing] = useState(false);
+	const [listOption, setListOption] = useState([...texts]);
+	const [listFilterOption, setListFilterOption] = useState([]);
+	const [activeSuggestion, setActiveSuggestion] = useState(0);
+	const [isMouseOver, setMouseOver] = useState(false);
+	const [showSuggestion, setShowSuggestion] = useState(false);
 
 	const onChangeHandler = (event) => {
 		event.preventDefault();
@@ -84,10 +84,10 @@ function CustomSelector(props) {
 							.indexOf(value.toLowerCase().split(',').join('')) !== -1
 					);
 				});
-				setListFilterOption([ ...listRecommand.sort((a, b) => a.value.length - b.value.length) ]);
+				setListFilterOption([...listRecommand.sort((a, b) => a.value.length - b.value.length)]);
 			}
 		},
-		[ value ]
+		[listOption, value]
 	);
 
 	return (

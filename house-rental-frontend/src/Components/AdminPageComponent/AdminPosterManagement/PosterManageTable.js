@@ -181,6 +181,7 @@ function PosterManageTable(props) {
                 scroll={{ x: 2000, y: 450 }}
                 bordered
                 size="small"
+                rowKey="_id"
             />
         </div>
     )

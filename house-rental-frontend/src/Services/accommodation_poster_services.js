@@ -1,4 +1,5 @@
 import http from './http';
+import axios from 'axios'
 
 const apiImageUploader = async (data) => {
 	try {
@@ -31,13 +32,23 @@ const apiPosterCreator = async (data) => {
 
 const apiGetPoster = async (filterOption) => {
 	try {
-		const response = await http.get('accommodationPost/', { filterOption: filterOption });
+		const response = await http.get('accommodationPost/', { filterOption });
 		return response.data;
 	} catch (error) {
 		console.log(error);
 		return [];
 	}
 };
+
+const aptGetPosterByOwnerId = async (ownerId) => {
+	try {
+		const response = await http.get('accommodationPost/getWithFilterOptions/' + ownerId);
+		return response.data;
+	} catch (error) {
+		console.log(error);
+		return [];
+	}
+}
 
 const apiGetPosterById = async (posterId) => {
 	try {
@@ -49,7 +60,7 @@ const apiGetPosterById = async (posterId) => {
 	}
 };
 
-const apiUpdateUnapprovedPoster = async (posterId, data) => {
+const apiUpdatePoster = async (posterId, data) => {
 	try {
 		const response = await http.put('accommodationPost/' + posterId, data);
 		console.log(response);
@@ -76,6 +87,7 @@ export {
 	apiPosterCreator,
 	apiGetPoster,
 	apiGetPosterById,
-	apiUpdateUnapprovedPoster,
-	apiDeletePoster
+	apiUpdatePoster,
+	apiDeletePoster,
+	aptGetPosterByOwnerId
 };

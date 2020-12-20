@@ -11,6 +11,7 @@ function Register() {
   };
   const onSubmitLoginForm = () => {
     const response = apiOwnerRegister(ownerInfo);
+    console.log(response)
   };
 
   return (

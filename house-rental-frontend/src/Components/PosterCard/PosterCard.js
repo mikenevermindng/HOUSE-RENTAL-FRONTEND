@@ -4,7 +4,6 @@ import { HomeFilled, LayoutFilled, BorderOuterOutlined, HeartFilled, PlusSquareF
 import Slider from '../../Components/Slider/Slider';
 import classNames from 'classnames';
 import './PosterCard.css';
-const { Meta } = Card;
 
 function PosterCard() {
 	let slides = [

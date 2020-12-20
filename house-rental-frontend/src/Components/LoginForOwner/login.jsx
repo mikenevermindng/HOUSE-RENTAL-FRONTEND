@@ -1,7 +1,6 @@
-import React, { Component, useState } from "react";
-import axios from "axios";
 import "./style.css";
 import { apiOwnerLogin } from "../../Services/owner_service";
+import React, { useState } from 'react'
 
 function Login() {
   const [ownerInfo, setOwnerInfo] = useState({});
@@ -13,6 +12,7 @@ function Login() {
 
   const onSubmitLoginForm = () => {
     const response = apiOwnerLogin(ownerInfo);
+    console.log(response)
   };
 
   return (

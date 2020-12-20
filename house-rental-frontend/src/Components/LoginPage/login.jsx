@@ -1,5 +1,4 @@
-import React, { Component, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import "./style.css";
 import { apiUserLogin } from "../../Services/user_sevice";
 function Login() {
@@ -12,6 +11,7 @@ function Login() {
 
   const onSubmitLoginForm = () => {
     const response = apiUserLogin(userInfo);
+    console.log(response)
   };
 
   return (

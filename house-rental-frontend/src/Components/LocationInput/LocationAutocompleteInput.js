@@ -5,11 +5,11 @@ import _ from 'lodash';
 import './LocationInput.css';
 
 function LocationAutocompleteInput(props) {
-	const [ value, setValue ] = useState('');
+	const [value, setValue] = useState('');
 
-	const [ recommandations, setRecommandation ] = useState([]);
+	const [recommandations, setRecommandation] = useState([]);
 
-	const [ textList, setTextList ] = useState([]);
+	const [textList, setTextList] = useState([]);
 	useEffect(() => {
 		const loadLocationData = async () => {
 			const locations = await apiGetAllLocationData();
@@ -35,27 +35,7 @@ function LocationAutocompleteInput(props) {
 				setRecommandation(listRecommand.sort((a, b) => a.value.length - b.value.length));
 			}
 		},
-		[ value ]
-	);
-
-	useEffect(
-		() => {
-			if (value === '') {
-				setRecommandation([]);
-			} else {
-				const listRecommand = textList.filter((text) => {
-					return (
-						text.value
-							.toLowerCase()
-							.split(',')
-							.join('')
-							.indexOf(value.toLowerCase().split(',').join('')) !== -1
-					);
-				});
-				setRecommandation([ ...listRecommand.sort((a, b) => a.value.length - b.value.length) ]);
-			}
-		},
-		[ value ]
+		[textList, value]
 	);
 
 	const onSelect = (data) => {

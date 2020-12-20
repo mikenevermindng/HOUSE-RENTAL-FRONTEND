@@ -1,5 +1,4 @@
-import React, { Component, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import "./style.css";
 import { apiUserRegister } from "../../Services/user_sevice";
 function Register() {
@@ -11,6 +10,7 @@ function Register() {
   };
   const onSubmitLoginForm = () => {
     const response = apiUserRegister(userInfo);
+    console.log(response)
   };
 
   return (

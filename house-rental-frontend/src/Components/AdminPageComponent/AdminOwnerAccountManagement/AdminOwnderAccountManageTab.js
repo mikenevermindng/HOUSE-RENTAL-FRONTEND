@@ -16,7 +16,7 @@ function AdminOwnderAccountManageTab(props) {
 
     return (
         <div>
-            <OwnerAccountTable ownerAccountList={ownerAccountList} />
+            <OwnerAccountTable ownerAccountList={ownerAccountList} rowKey="_id" />
         </div>
     )
 }
