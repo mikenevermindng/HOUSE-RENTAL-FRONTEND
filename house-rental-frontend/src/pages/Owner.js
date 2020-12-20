@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Navbar from "../Components/Navbar/Navbar";
 import StatisticTable from "../Components/StatisticTable/StatisticTable";
 import HeroSection from "../Components/HeroSection/HeroSection";
@@ -30,6 +30,7 @@ export default function Owner() {
                 <OwnerHeroContent data={posterData} />
             </HeroSection>
             <StatisticTable data={posterData} ownerId={ownerId} />
+            <UserLogin />
         </div>
     )
 }
