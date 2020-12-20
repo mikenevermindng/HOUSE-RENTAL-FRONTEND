@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PosterManageTable from './PosterManageTable'
 import { apiGetPoster } from '../../../Services/accommodation_poster_services'
+import RoomDetailDrawer from "../../RoomDetailDrawer/RoomDetailDrawer";
 
 function AdminPosterManageTab() {
 
@@ -15,9 +16,16 @@ function AdminPosterManageTab() {
         posterListFetchData()
     }, [])
 
+    const data = posterList.map(post => {
+        return {
+            ...post,
+            detail: <RoomDetailDrawer props={post}/>
+        }
+    })
+
     return (
         <div>
-            <PosterManageTable postersList={posterList} />
+            <PosterManageTable postersList={data} />
         </div>
     )
 }

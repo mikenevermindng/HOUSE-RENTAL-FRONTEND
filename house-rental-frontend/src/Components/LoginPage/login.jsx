@@ -1,12 +1,11 @@
-import React, { Component, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import "./style.css";
 import { apiUserLogin } from "../../Services/user_sevice";
+
 function Login() {
   const [userInfo, setUserInfo] = useState({});
 
   const onChangeHandler = (event) => {
-    console.log(userInfo);
     setUserInfo({ ...userInfo, [event.target.name]: event.target.value });
   };
 
@@ -17,19 +16,7 @@ function Login() {
   return (
     <div className="form-container sign-in-container">
       <form action="#">
-        <h1>Sign in</h1>
-        <div className="social-container">
-          <a href="#" className="social">
-            <i className="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" className="social">
-            <i className="fab fa-google-plus-g"></i>
-          </a>
-          <a href="#" className="social">
-            <i className="fab fa-linkedin-in"></i>
-          </a>
-        </div>
-        <span>or use your account</span>
+        <h1>Đăng nhập</h1>
         <input
           type="email"
           placeholder="Email"
@@ -38,12 +25,16 @@ function Login() {
         />
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Mật khẩu"
           name="password"
           onChange={onChangeHandler}
         />
-        <a href="#">Forgot your password?</a>
-        <button onClick={onSubmitLoginForm}>Sign In</button>
+        <button onClick={onSubmitLoginForm}>Đăng nhập</button>
+
+        <p className="text-mobile">
+          Bạn chưa có tài khoản? Vui lòng đăng ký.
+        </p>
+
       </form>
     </div>
   );

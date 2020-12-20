@@ -164,10 +164,10 @@ const columns = [
 
     },
     {
-        title: 'Action',
-        key: 'operation',
-        fixed: 'right',
-        render: () => <a>action</a>,
+        title: '',
+        dataIndex: 'detail',
+        key: 'detail',
+        fixed: 'right'
     },
 ];
 

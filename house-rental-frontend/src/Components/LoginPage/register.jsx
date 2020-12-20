@@ -6,9 +6,9 @@ function Register() {
   const [userInfo, setUserInfo] = useState({});
 
   const onChangeHandler = (event) => {
-    console.log(userInfo);
     setUserInfo({ ...userInfo, [event.target.name]: event.target.value });
   };
+
   const onSubmitLoginForm = () => {
     const response = apiUserRegister(userInfo);
   };
@@ -16,22 +16,10 @@ function Register() {
   return (
     <div className="form-container sign-up-container">
       <form action="#">
-        <h1>Create Account</h1>
-        <div className="social-container">
-          <a href="#" class="social">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#" class="social">
-            <i class="fab fa-google-plus-g"></i>
-          </a>
-          <a href="#" class="social">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-        </div>
-        <span>or use your email for registration</span>
+        <h1>Tạo tài khoản</h1>
         <input
           type="text"
-          placeholder="Name"
+          placeholder="Họ tên"
           name="name"
           onChange={onChangeHandler}
         />
@@ -42,12 +30,29 @@ function Register() {
           onChange={onChangeHandler}
         />
         <input
+          type="tel"
+          placeholder="Số điện thoại"
+          name="phone"
+          onChange={onChangeHandler}
+        />
+        <input
           type="password"
-          placeholder="Password"
+          placeholder="Mật khẩu"
           name="password"
           onChange={onChangeHandler}
         />
-        <button onClick={onSubmitLoginForm}>Sign Up</button>
+        <input
+            type="password"
+            placeholder="Nhập lại mật khẩu"
+            name="password"
+            onChange={onChangeHandler}
+        />
+        <button onClick={onSubmitLoginForm}>Đăng ký</button>
+
+        <p className="text-mobile">
+          Bạn đã có tài khoản? Vui lòng đăng nhập.
+        </p>
+
       </form>
     </div>
   );

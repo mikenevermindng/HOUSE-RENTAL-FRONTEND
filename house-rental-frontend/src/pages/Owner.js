@@ -3,7 +3,8 @@ import Navbar from "../Components/Navbar/Navbar";
 import StatisticTable from "../Components/StatisticTable/StatisticTable";
 import HeroSection from "../Components/HeroSection/HeroSection";
 import OwnerHeroContent from "../Components/HeroSection/OwnerHeroContent/OwnerHeroContent";
-import PosterCreator from "../Components/PosterCreator/PosterCreator";
+import PosterCreator from "../Components/PosterCreator/PosterCreator"
+import UserLogin from "../Components/LoginPage/index";
 import RoomDetailDrawer from "../Components/RoomDetailDrawer/RoomDetailDrawer";
 
 export default function Owner() {
@@ -186,6 +187,7 @@ export default function Owner() {
                 <OwnerHeroContent data={data}/>
             </HeroSection>
             <StatisticTable data={tableData}/>
+            <UserLogin />
         </div>
     )
 }
