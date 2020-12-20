@@ -151,7 +151,7 @@ input {
   height: 100%;
   overflow: hidden;
   transition: transform 0.6s ease-in-out;
-  z-index: 100;
+  z-index: 10;
 }
 
 .sign-in-box.right-panel-active .overlay-container {
@@ -248,4 +248,8 @@ footer i {
 footer a {
   color: #3c97bf;
   text-decoration: none;
+}
+
+button.react-responsive-modal-closeButton {
+  z-index: 20;
 }
