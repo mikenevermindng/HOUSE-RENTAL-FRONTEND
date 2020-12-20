@@ -47,6 +47,12 @@ function Register() {
           name="password"
           onChange={onChangeHandler}
         />
+        <input
+          type="text"
+          placeholder="Phone Number"
+          name="phoneNumber"
+          onChange={onChangeHandler}
+        />
         <button onClick={onSubmitLoginForm}>Sign Up</button>
       </form>
     </div>

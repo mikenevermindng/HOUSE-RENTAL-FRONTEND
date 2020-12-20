@@ -4,6 +4,7 @@ import SearchPanel from "./Components/SearchPanel/SearchPanel";
 import MobileSearchPanel from "./Components/MobileSearchPanel/MobileSearchPanel";
 import LoginPage from "./Components/LoginPage";
 import LoginForOwner from "./Components/LoginForOwner/index";
+
 function App() {
   let slides = [
     {
@@ -22,6 +23,7 @@ function App() {
   return (
     <div className="App">
       <LoginForOwner></LoginForOwner>
+      <LoginPage></LoginPage>
     </div>
   );
 }
