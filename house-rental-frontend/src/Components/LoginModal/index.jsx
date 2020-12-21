@@ -1,9 +1,7 @@
 import React, {useState} from "react";
-import Login from "./login";
-import Register from "./register";
 import "./style.css";
 
-function LoginPage() {
+function LoginPage({children}) {
     const [isSwitch, setIsSwitch] = useState(false);
 
     const onSignInButtonClick = (event) => {
@@ -22,8 +20,7 @@ function LoginPage() {
                 className={`sign-in-box ${isSwitch ? "right-panel-active" : ""}`}
                 id="sign-in-box"
             >
-                <Login/>
-                <Register/>
+                {children}
                 <div className="overlay-container">
                     <div className="overlay">
                         <div className="overlay-panel overlay-left">
