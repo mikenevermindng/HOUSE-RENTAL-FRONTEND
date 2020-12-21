@@ -96,3 +96,7 @@
 	align-items: center;
 	justify-content: space-between;
 }
+
+.card-wrapper .liked {
+	color: #e74c3c;
+}

@@ -27,6 +27,7 @@ function Login() {
       const login = await apiUserLogin(values)
       if (login) {
         localStorage.setItem('token', login.token)
+        localStorage.setItem('userId', login.user._id)
         dispatch(signIn(login.user))
         setTimeout(() => {
           dispatch(closeLoginPopup())

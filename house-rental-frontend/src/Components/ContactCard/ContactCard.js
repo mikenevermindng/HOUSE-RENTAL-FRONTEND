@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ContactCard.css';
 import 'antd/dist/antd.css';
 import { InputNumber, message } from 'antd';
@@ -9,17 +9,35 @@ import { apiUserLikeAction, apiUserUnlikeAction } from '../../Services/rating_se
 import { apiGenerateRentalRequest } from '../../Services/rental_request_services'
 import { useDispatch } from 'react-redux'
 import { openLoginPopup } from '../../Store/ActionCreator/showLoginPopupActionCreator'
+import { apiGetOwnerAccount } from '../../Services/owner_services'
 
 function ContactCard(props) {
     const info = props.roomInfo;
     console.log(info)
-    const { rating, userId, ownerId, posterId } = info
+    const { rating, ownerId, posterId } = info
+
+    const userId = localStorage.getItem('userId')
 
     const dispatch = useDispatch()
 
     const [isLikedByUser, setLikedByUser] = useState(rating.likedUser.findIndex(like => like.userId === userId) !== -1)
 
     const [numberOfPeople, setNumberOfPeople] = useState(1)
+
+    const [ownerInfo, setOwnerInfo] = useState({})
+
+    useEffect(() => {
+        const fetchDataAsync = async () => {
+            const res = await apiGetOwnerAccount(ownerId)
+            console.log(res)
+            if (res) {
+                setOwnerInfo(res.owner)
+            } else {
+                message.error("Tải dữ liệu thất bại")
+            }
+        }
+        fetchDataAsync()
+    }, [])
 
     const generateRentalRequest = async () => {
         try {
@@ -54,10 +72,10 @@ function ContactCard(props) {
                 <div>
                     <p>Liên hệ chủ nhà trọ:</p>
                     <p>- Hotline:
-                        <a href={"tel:" + info.contactNumber}> {info.contactNumber}</a>
+                        <a href={"tel:" + ownerInfo.phoneNumber}> {ownerInfo.phoneNumber}</a>
                     </p>
                     <p>- Email:
-                        <span> {info.email}</span>
+                        <span> {ownerInfo.email}</span>
                     </p>
                 </div>
                 <button id="submit-btn" onClick={generateRentalRequest}>
