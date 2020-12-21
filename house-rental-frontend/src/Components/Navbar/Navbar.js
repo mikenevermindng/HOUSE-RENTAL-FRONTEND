@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import { MenuOutlined } from '@ant-design/icons';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import HeartIcon from '../../Asset/Icon/heart_white.svg';
+import { useDispatch, useSelector } from 'react-redux'
+import { openLoginPopup } from '../../Store/ActionCreator/showLoginPopupActionCreator'
 
 function Navbar() {
+	const dispatch = useDispatch()
+	const openLoginPopupHander = () => {
+		return dispatch(openLoginPopup())
+	}
+
+	const auth = useSelector(state => state.auth)
+
+	const [isLoggin, setIsLoggIn] = useState(false)
+
+	useEffect(() => {
+		const isLogged = localStorage.getItem('token') ? true : false
+		setIsLoggIn(isLogged)
+	}, [])
+
 	return (
 		<nav className="navbar">
 			<input type="checkbox" id="checkbox-burger" />
@@ -25,7 +41,7 @@ function Navbar() {
 							</div>
 						</Link>
 					</li>
-					<span className="nav-login-button">Đăng nhập</span>
+					{!auth.loggedIn && !localStorage.getItem('token') && <span className="nav-login-button" onClick={openLoginPopupHander}>Đăng nhập</span>}
 				</ul>
 			</Router>
 		</nav>

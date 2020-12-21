@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Popover, Button, Rate, Input, message } from 'antd';
 import { apiPostComment } from '../../Services/comment_services'
+import { useDispatch } from 'react-redux'
+import { openLoginPopup } from '../../Store/ActionCreator/showLoginPopupActionCreator'
 
 const TextArea = Input;
 
 function UserRating(props) {
 
+    const dispatch = useDispatch()
 
     const { ratingId, userId, username, posterId } = props
 
@@ -33,11 +36,15 @@ function UserRating(props) {
             }
             if (star === 0) return message.error("Bạn chưa đánh giá Bất động sản")
             const res = await apiPostComment(rateData)
-            console.log(res)
-            message.success("Đăng tải bình luận thành công, hãy chờ admin phê duyệt để được hiện thị")
+            if (res) {
+                message.success("Đăng tải bình luận thành công, hãy chờ admin phê duyệt để được hiện thị")
+            }
+            else {
+                dispatch(openLoginPopup())
+                message.error("Phiên làm việc của bạn đã hết hạn, vui lòng đăng nhập lại")
+            }
         } catch (error) {
-            console.log(error)
-            message.success("Đăng tải bình luận thất bại")
+            message.error("Đăng tải bình luận thất bại")
         }
     }
 

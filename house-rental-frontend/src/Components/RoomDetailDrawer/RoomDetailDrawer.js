@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
-import { Drawer, Tabs, Tooltip, Popconfirm } from 'antd';
+import { Drawer, Tabs, Tooltip, Popconfirm, Button, message } from 'antd';
 import MainInfoInput from "./MainInfoInput";
 import FacilityInput from "./FacilityInput";
 import DescriptionInput from "./DescriptionInput";
 import RatingDrawer from "./RatingDrawer";
-import EditIcon from "../../Asset/Icon/edit_file.svg";
-import DeleteIcon from "../../Asset/Icon/trash_can.svg"
 import './RoomDetailDrawer.css';
 import ViewsIcon from "../../Asset/Icon/views.svg";
 import FavsIcon from "../../Asset/Icon/likes.svg";
 import RatesIcon from "../../Asset/Icon/rates.svg";
+import { apiGetPoster, apiDeletePoster } from '../../Services/accommodation_poster_services'
 
 const { TabPane } = Tabs;
 
 function RoomDetailDrawer(props) {
 
-    const { ownerId } = props
+    const { ownerId, setPosterList, ratingId } = props
     const posterId = props.props._id
 
     const [visible, setVisible] = useState(false);
@@ -37,19 +36,31 @@ function RoomDetailDrawer(props) {
         setRateVisible(false);
     }
 
+    const confirmHandler = async (posterId) => {
+        const deleted = await apiDeletePoster(posterId)
+        if (deleted) {
+            const posters = await apiGetPoster({})
+            setPosterList(posters.posts)
+            message.success("Xóa bài viết thành công")
+        } else {
+            message.error("Xóa bài viết thất bại")
+        }
+    }
+
     return (
         <>
             <div className="table-icons">
                 <Tooltip title="Chỉnh sửa bài đăng">
-                    <img id="edit-icon" src={EditIcon} alt="edit" onClick={showDrawer} />
+                    <Button type="outline" onClick={showDrawer}>Xem</Button>
                 </Tooltip>
                 <Popconfirm
                     title="Bạn có chắc muốn xoá bài đăng này?"
                     okText="Đồng ý"
                     cancelText="Huỷ bỏ"
+                    onConfirm={() => confirmHandler(posterId)}
                 >
                     <Tooltip title="Xoá bài đăng">
-                        <img id="delete-icon" src={DeleteIcon} alt="delete" />
+                        <Button type="outline" danger>Xóa</Button>
                     </Tooltip>
                 </Popconfirm>
             </div>
@@ -91,7 +102,7 @@ function RoomDetailDrawer(props) {
                                 visible={RateVisible}
                                 width="25%"
                             >
-                                <RatingDrawer data={props} />
+                                <RatingDrawer posterId={posterId} ratingId={ratingId} />
                             </Drawer>
                         </TabPane>
                         <TabPane tab="Tiện ích" key="2">

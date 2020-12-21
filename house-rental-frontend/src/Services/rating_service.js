@@ -2,7 +2,11 @@ import http from './http';
 
 const apiUserLikeAction = async (ratingId, userId) => {
 	try {
-		const response = await http.patch('rating/like/' + ratingId, { userId: userId });
+		const response = await http.patch('rating/like/' + ratingId, { userId: userId }, {
+			headers: {
+				authorization: localStorage.getItem('token')
+			}
+		});
 		console.log(response);
 		return response.data;
 	} catch (error) {
@@ -13,7 +17,11 @@ const apiUserLikeAction = async (ratingId, userId) => {
 
 const apiUserUnlikeAction = async (ratingId, userId) => {
 	try {
-		const response = await http.patch('rating/unlike/' + ratingId, { userId: userId });
+		const response = await http.patch('rating/unlike/' + ratingId, { userId: userId }, {
+			headers: {
+				authorization: localStorage.getItem('token')
+			}
+		});
 		console.log(response);
 		return response.data;
 	} catch (error) {
@@ -24,7 +32,11 @@ const apiUserUnlikeAction = async (ratingId, userId) => {
 
 const apiUserVisitAction = async (ratingId, userId) => {
 	try {
-		const response = await http.patch('rating/visit/' + ratingId);
+		const response = await http.patch('rating/visit/' + ratingId, {
+			headers: {
+				authorization: localStorage.getItem('token')
+			}
+		});
 		console.log(response);
 		return response.data;
 	} catch (error) {
@@ -35,7 +47,11 @@ const apiUserVisitAction = async (ratingId, userId) => {
 
 const apiUserRatingAction = async (ratingId, data) => {
 	try {
-		const response = await http.patch('rating/' + ratingId, data);
+		const response = await http.patch('rating/' + ratingId, data, {
+			headers: {
+				authorization: localStorage.getItem('token')
+			}
+		});
 		console.log(response);
 		return response.data;
 	} catch (error) {
