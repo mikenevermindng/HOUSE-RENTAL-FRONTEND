@@ -1,12 +1,32 @@
-import React from 'react';
-import { Table, Tooltip, Tag } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Table, Tooltip, Tag, message } from 'antd';
 import './StatisticTable.css';
 import RoomDetailDrawer from "../RoomDetailDrawer/RoomDetailDrawer";
+import { useDispatch } from 'react-redux'
+import { openLoginPopup } from '../../Store/ActionCreator/showLoginPopupActionCreator'
+import { aptGetPosterByOwnerId } from '../../Services/accommodation_poster_services'
 
 function StatisticTable(props) {
-    const { data, ownerId } = props
+    const { ownerId } = props
 
-    //Table Structure
+    const dispatch = useDispatch()
+    const [posterData, setPosterData] = useState([])
+
+
+    useEffect(() => {
+        const fetchDataAsync = async () => {
+            const res = await aptGetPosterByOwnerId(ownerId)
+            console.log(res)
+            if (res) {
+                setPosterData(res.posts)
+            } else {
+                message.error("Vui lòng đăng nhập")
+                dispatch(openLoginPopup())
+            }
+        }
+        fetchDataAsync()
+    }, [])
+
     const columns = [
         {
             title: 'Tên phòng',
@@ -85,13 +105,13 @@ function StatisticTable(props) {
         {
             title: 'Action',
             key: 'detail',
-            render: (text, record, index) => <RoomDetailDrawer props={record} ownerId={ownerId} />
+            render: (text, record, index) => <RoomDetailDrawer props={record} ownerId={ownerId} setPosterData={setPosterData} />
         }
     ];
 
     return (
         <div className="table-container">
-            <Table columns={columns} dataSource={data} rowKey="_id" />
+            <Table columns={columns} dataSource={posterData} rowKey="_id" />
         </div>
     )
 }

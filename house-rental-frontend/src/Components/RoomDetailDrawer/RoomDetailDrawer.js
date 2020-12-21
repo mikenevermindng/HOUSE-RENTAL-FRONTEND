@@ -14,7 +14,7 @@ const { TabPane } = Tabs;
 
 function RoomDetailDrawer(props) {
 
-    const { ownerId, setPosterList, ratingId } = props
+    const { ownerId, setPosterList, ratingId, setPosterData } = props
     const posterId = props.props._id
 
     const [visible, setVisible] = useState(false);
@@ -40,7 +40,7 @@ function RoomDetailDrawer(props) {
         const deleted = await apiDeletePoster(posterId)
         if (deleted) {
             const posters = await apiGetPoster({})
-            setPosterList(posters.posts)
+            setPosterData(posters.posts)
             message.success("Xóa bài viết thành công")
         } else {
             message.error("Xóa bài viết thất bại")
