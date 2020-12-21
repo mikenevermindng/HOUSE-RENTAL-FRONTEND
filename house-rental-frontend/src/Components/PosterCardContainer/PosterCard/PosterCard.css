@@ -1,10 +1,16 @@
 .card-wrapper {
-	width: 340px;
+	width: 100%;
 	background-color: #f0f0f3;
 	font-family: 'Comfortaa', sans-serif;
 	box-shadow: -10px -10px 30px #FFFFFF, 10px 10px 30px rgba(174, 174, 192, 0.4);
 	border-radius: 16px;
 	overflow: hidden;
+	cursor: pointer;
+	transition: all 0.4s ease-out;
+}
+
+.card-wrapper:hover {
+	transform: translateY(-10px);
 }
 
 .card-content-wrapper {
