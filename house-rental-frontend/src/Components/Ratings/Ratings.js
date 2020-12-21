@@ -31,7 +31,6 @@ function Ratings(props) {
     useEffect(() => {
         const fetchData = async () => {
             const data = await apiGetCommentByPosterId(posterId)
-            console.log(data.comments.map(comment => comment.userId))
             setComments(data.comments)
         }
 

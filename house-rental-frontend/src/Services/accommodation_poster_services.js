@@ -11,7 +11,7 @@ const apiImageUploader = async (data) => {
 		const response = await http.post('accommodationPost/imageUploader', formData, {
 			headers: {
 				'Content-Type': 'multipart/form-data',
-				authorization: localStorage.getItem('token')
+				authorization: localStorage.getItem('ownerToken')
 			}
 		});
 		return response.data;
@@ -25,7 +25,7 @@ const apiPosterCreator = async (data) => {
 	try {
 		const response = await http.post('accommodationPost/', data, {
 			headers: {
-				authorization: localStorage.getItem('token')
+				authorization: localStorage.getItem('ownerToken')
 			}
 		});
 		console.log(response);
@@ -51,9 +51,9 @@ const apiGetPoster = async (filterOption) => {
 
 const aptGetPosterByOwnerId = async (ownerId) => {
 	try {
-		const response = await http.get('accommodationPost/getWithFilterOptions/' + ownerId, {
+		const response = await http.get('accommodationPost/getWithFilterOptions/', {
 			headers: {
-				authorization: localStorage.getItem('token')
+				authorization: localStorage.getItem('ownerToken')
 			}
 		});
 		return response.data;
@@ -81,7 +81,7 @@ const apiUpdatePoster = async (posterId, data) => {
 	try {
 		const response = await http.put('accommodationPost/' + posterId, data, {
 			headers: {
-				authorization: localStorage.getItem('token')
+				authorization: localStorage.getItem('ownerToken')
 			}
 		});
 		console.log(response);
@@ -107,6 +107,37 @@ const apiDeletePoster = async (posterId) => {
 	}
 };
 
+const apiApprovedPoster = async (posterId) => {
+	try {
+		const response = await http.patch('accommodationPost/' + posterId, {}, {
+			headers: {
+				authorization: localStorage.getItem('token')
+			}
+		});
+		console.log(response);
+		return response.data;
+	} catch (error) {
+		console.log(error);
+		return null;
+	}
+}
+
+const apiUpdatePosterStatus = async (posterId, status) => {
+	try {
+		const response = await http.patch('accommodationPost/updateStatus/' + posterId, { status }, {
+			headers: {
+				authorization: localStorage.getItem('ownerToken')
+			}
+		});
+		console.log(response);
+		return response.data;
+	} catch (error) {
+		console.log(error);
+		return null;
+	}
+}
+
+
 export {
 	apiImageUploader,
 	apiPosterCreator,
@@ -114,5 +145,7 @@ export {
 	apiGetPosterById,
 	apiUpdatePoster,
 	apiDeletePoster,
-	aptGetPosterByOwnerId
+	aptGetPosterByOwnerId,
+	apiApprovedPoster,
+	apiUpdatePosterStatus
 };

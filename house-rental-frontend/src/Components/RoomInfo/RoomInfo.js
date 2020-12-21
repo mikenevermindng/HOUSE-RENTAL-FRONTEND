@@ -12,6 +12,7 @@ const { Paragraph } = Typography;
 
 function RoomInfo(props) {
     const roomInfo = props.information;
+    console.log(roomInfo.rating)
 
     return (
         <div className="room-info">

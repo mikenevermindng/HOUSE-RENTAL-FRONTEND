@@ -53,7 +53,6 @@ function MainInfoInput(props) {
         },
         onSubmit: async (values) => {
             const data = {
-                senderId: ownerId,
                 posterChangeInfomation: {
                     ...values
                 },

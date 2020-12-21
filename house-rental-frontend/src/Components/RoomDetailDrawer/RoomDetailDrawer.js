@@ -8,14 +8,16 @@ import './RoomDetailDrawer.css';
 import ViewsIcon from "../../Asset/Icon/views.svg";
 import FavsIcon from "../../Asset/Icon/likes.svg";
 import RatesIcon from "../../Asset/Icon/rates.svg";
-import { apiGetPoster, apiDeletePoster } from '../../Services/accommodation_poster_services'
+import { apiGetPoster, apiDeletePoster, apiApprovedPoster } from '../../Services/accommodation_poster_services'
 
 const { TabPane } = Tabs;
 
 function RoomDetailDrawer(props) {
 
-    const { ownerId, setPosterList, ratingId } = props
+    const { ownerId, setPosterList } = props
+    const ratingId = props.props.rating._id
     const posterId = props.props._id
+    const isApproved = props.props.isApproved
 
     const [visible, setVisible] = useState(false);
     const [RateVisible, setRateVisible] = useState(false);
@@ -36,11 +38,37 @@ function RoomDetailDrawer(props) {
         setRateVisible(false);
     }
 
-    const confirmHandler = async (posterId) => {
+    const approvePosterHandler = async (posterId) => {
+        const updated = await apiApprovedPoster(posterId, {
+            posterChangeInfomation: {
+                isApproved: true
+            },
+            materialFacilitiesChangeInfomation: {}
+        })
+        if (updated) {
+            if (ownerId) {
+                const posters = await apiGetPoster({ ownerId: ownerId })
+                setPosterList(posters.posts)
+            } else {
+                const posters = await apiGetPoster({ ownerId: ownerId })
+                setPosterList(posters.posts)
+            }
+            message.success("Chấp thuận bài viết thành công")
+        } else {
+            message.error("Chấp thuận bài viết thất bại")
+        }
+    }
+
+    const deletePosterHandler = async (posterId) => {
         const deleted = await apiDeletePoster(posterId)
         if (deleted) {
-            const posters = await apiGetPoster({})
-            setPosterList(posters.posts)
+            if (ownerId) {
+                const posters = await apiGetPoster({ ownerId: ownerId })
+                setPosterList(posters.posts)
+            } else {
+                const posters = await apiGetPoster({ ownerId: ownerId })
+                setPosterList(posters.posts)
+            }
             message.success("Xóa bài viết thành công")
         } else {
             message.error("Xóa bài viết thất bại")
@@ -53,16 +81,27 @@ function RoomDetailDrawer(props) {
                 <Tooltip title="Chỉnh sửa bài đăng">
                     <Button type="outline" onClick={showDrawer}>Xem</Button>
                 </Tooltip>
+                {!isApproved && <Popconfirm
+                    title="Bạn có chắc muốn chấp thuận bài đăng này?"
+                    okText="Đồng ý"
+                    cancelText="Huỷ bỏ"
+                    onConfirm={() => approvePosterHandler(posterId)}
+                >
+                    <Tooltip title="Chấp thuận bài viết">
+                        <Button type="outline">Chấp thuận</Button>
+                    </Tooltip>
+                </Popconfirm>}
                 <Popconfirm
                     title="Bạn có chắc muốn xoá bài đăng này?"
                     okText="Đồng ý"
                     cancelText="Huỷ bỏ"
-                    onConfirm={() => confirmHandler(posterId)}
+                    onConfirm={() => deletePosterHandler(posterId)}
                 >
                     <Tooltip title="Xoá bài đăng">
                         <Button type="outline" danger>Xóa</Button>
                     </Tooltip>
                 </Popconfirm>
+
             </div>
             <Drawer
                 title="Chỉnh sửa thông tin nơi ở của bạn"

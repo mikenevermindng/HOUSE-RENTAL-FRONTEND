@@ -6,11 +6,15 @@ import ImageFromInput from './ImageFromInput';
 import { apiImageUploader, apiPosterCreator } from '../../Services/accommodation_poster_services';
 import classNames from 'classnames';
 import './PosterCreator.css';
+import { useDispatch } from 'react-redux'
+import { closePosterCreator } from '../../Store/ActionCreator/showPosterCreatorActionCreator'
 
 const { Step } = Steps;
 
 function PosterCreator() {
 	const [current, setCurrent] = React.useState(0);
+
+	const dispatch = useDispatch()
 
 	const next = () => {
 		setCurrent(current + 1);
@@ -29,21 +33,24 @@ function PosterCreator() {
 
 	const submitHandler = async (posterMoreInfo) => {
 		try {
-			console.log(posterInfo)
 			if (posterInfo.images.length < 3) {
 				return message.error("Bạn phải đăng tải tối thiểu 3 ảnh")
 			}
 			const imageUploadResponse = await apiImageUploader(posterInfo.images)
-			console.log('imgae', imageUploadResponse)
 			const data = {
 				senderId: "5fa67e4a3023fd285005c10e",
-				senderName: "Micheal",
 				materialFacilitiesInfo: facilities,
 				accommodationInfo: { ...posterInfo, ...posterMoreInfo, images: imageUploadResponse.files.map(image => image.path) },
 			}
 			const response = await apiPosterCreator(data)
-			console.log(response)
+			if (response) {
+				message.success("Đăng tải bài viết thành công, hãy chờ Admin phê duyệt")
+				dispatch(closePosterCreator())
+			} else {
+				message.error("Đăng tải bài viết thất bại")
+			}
 		} catch (error) {
+			message.error("Đã có lỗi xảy ra")
 			console.log(error)
 		}
 	}

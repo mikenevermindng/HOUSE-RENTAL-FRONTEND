@@ -6,7 +6,7 @@ import {
     apiGetRentalRequestByOwnderId
 } from '../../Services/rental_request_services'
 import { useDispatch } from 'react-redux'
-import { openLoginPopup } from '../../Store/ActionCreator/showLoginPopupActionCreator'
+import { posterCreatorPopup } from '../../Store/ActionCreator/showPosterCreatorActionCreator'
 
 
 
@@ -20,12 +20,11 @@ function OwnerRentalRequestTable(props) {
 
     useEffect(() => {
         const fetchDataAsync = async () => {
-            const rentalRequest = await apiGetRentalRequestByOwnderId(ownerId)
+            const rentalRequest = await apiGetRentalRequestByOwnderId()
             if (rentalRequest) {
                 setRentalRequest(rentalRequest.requests)
             } else {
                 message.error("Vui lòng đăng nhập")
-                dispatch(openLoginPopup())
             }
         }
         fetchDataAsync()
@@ -39,7 +38,6 @@ function OwnerRentalRequestTable(props) {
             setRentalRequest(rentalRequest.requests)
         } else {
             message.error("Xóa thất bại")
-            dispatch(openLoginPopup())
         }
     }
 
