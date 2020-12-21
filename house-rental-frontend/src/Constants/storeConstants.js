@@ -17,8 +17,14 @@ const popupConstants = {
 	CLOSE: 'CLOSE'
 }
 
+const posterCreatorPopup = {
+	OPEN: 'OPEN_POSTER_CREATOR_POPUP',
+	CLOSE: 'CLOSE_POSTER_CREATOR_POPUP'
+}
+
 module.exports = {
 	posterReducerConstants,
 	authConstants,
-	popupConstants
+	popupConstants,
+	posterCreatorPopup
 };

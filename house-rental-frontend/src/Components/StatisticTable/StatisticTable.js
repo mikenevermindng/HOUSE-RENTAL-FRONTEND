@@ -4,28 +4,39 @@ import './StatisticTable.css';
 import RoomDetailDrawer from "../RoomDetailDrawer/RoomDetailDrawer";
 import { useDispatch } from 'react-redux'
 import { openLoginPopup } from '../../Store/ActionCreator/showLoginPopupActionCreator'
-import { aptGetPosterByOwnerId } from '../../Services/accommodation_poster_services'
+import { aptGetPosterByOwnerId, apiUpdatePosterStatus } from '../../Services/accommodation_poster_services'
 
 function StatisticTable(props) {
     const { ownerId } = props
 
-    const dispatch = useDispatch()
     const [posterData, setPosterData] = useState([])
-
 
     useEffect(() => {
         const fetchDataAsync = async () => {
             const res = await aptGetPosterByOwnerId(ownerId)
-            console.log(res)
             if (res) {
                 setPosterData(res.posts)
             } else {
                 message.error("Vui lòng đăng nhập")
-                dispatch(openLoginPopup())
             }
         }
         fetchDataAsync()
     }, [])
+
+    const updateStatusHandler = async (posterId, status) => {
+        const updateStatus = status === 'available' ? 'rented' : 'available'
+        const res = await apiUpdatePosterStatus(posterId, updateStatus)
+        if (res) {
+            if (res) {
+                const response = await aptGetPosterByOwnerId(ownerId)
+                setPosterData(response.posts)
+            } else {
+                message.error("Vui lòng đăng nhập")
+            }
+        } else {
+            message.error("Cập nhật thất bại")
+        }
+    }
 
     const columns = [
         {
@@ -98,14 +109,14 @@ function StatisticTable(props) {
             key: 'status',
             dataIndex: 'status',
             responsive: ['md'],
-            render: status => (
-                <Tag color="#65F659">{status}</Tag>
+            render: (text, record, index) => (
+                <Tag color="#65F659" onClick={() => updateStatusHandler(record._id, text)}> {text}</Tag >
             )
         },
         {
             title: 'Action',
             key: 'detail',
-            render: (text, record, index) => <RoomDetailDrawer props={record} ownerId={ownerId} setPosterData={setPosterData} />
+            render: (text, record, index) => <RoomDetailDrawer props={record} ownerId={ownerId} setPosterList={setPosterData} />
         }
     ];
 

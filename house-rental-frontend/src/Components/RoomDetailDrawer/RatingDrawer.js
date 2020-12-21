@@ -25,7 +25,6 @@ function RatingDrawer(props) {
 
     const deleteCommentHandler = async (commentId) => {
         const res = await apiDeleteComment(commentId)
-        console.log('res', res)
         if (res) {
             message.success("Chấp thuận bình luận thành công")
             const res = await apiGetCommentByRatingId(ratingId)

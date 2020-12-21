@@ -22,7 +22,7 @@ const apiOwnerRegister = async (data) => {
 
 const apiDeleteOwnerAccount = async (ownerId) => {
     try {
-        const res = await http.post('owner/' + ownerId, {
+        const res = await http.delete('owner/' + ownerId, {
             headers: {
                 authorization: localStorage.getItem('token')
             }
