@@ -14,7 +14,6 @@ const { RangePicker } = DatePicker;
 function PosterFromInput(props) {
 	const typeOfAccommodations = ['Phòng trọ', 'Chung cư mini', 'Nhà nguyên căn', 'Chung cư nguyên căn'];
 
-
 	const [cities, setCities] = useState([])
 	const [districts, setDistrics] = useState([])
 	const [subDistricts, setSubdistricts] = useState([])
