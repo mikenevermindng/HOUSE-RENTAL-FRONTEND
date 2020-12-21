@@ -1,0 +1,92 @@
+.card-wrapper {
+	width: 340px;
+	background-color: #f0f0f3;
+	font-family: 'Comfortaa', sans-serif;
+	box-shadow: -10px -10px 30px #FFFFFF, 10px 10px 30px rgba(174, 174, 192, 0.4);
+	border-radius: 16px;
+	overflow: hidden;
+}
+
+.card-content-wrapper {
+	padding: 18px 20px;
+	color: #333;
+}
+
+.card-meta .card-title,
+.card-meta .card-description {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.card-meta .card-title {
+	font-size: 20px;
+	font-weight: bold;
+	width: 100%;
+	height: 50px;
+}
+
+.card-meta .card-description {
+	color: rgba(51, 51, 51, 0.82);
+	font-size: 16px;
+	height: 36px;
+}
+
+.item-media-price {
+	z-index: 1;
+	font-size: 24px;
+}
+
+.item-price sub {
+	bottom: 0;
+}
+
+.item-price sup {
+	top: -5px;
+}
+
+.item-media-price .item-price {
+	color: #333;
+	font-weight: bold;
+}
+
+.card-icon-container {
+	display: flex;
+	width: 100%;
+	height: 30px;
+	align-items: center;
+	justify-content: space-between;
+	margin: 20px 0;
+}
+
+.card-icon {
+	cursor: pointer;
+	border-radius: 10px;
+	background-color: transparent;
+	border: 1px solid #333;
+	padding: 5px 10px;
+	transition: all 0.2s ease-out;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.card-icon:hover {
+	background-color: #cbcbcb;
+}
+
+.card-icon svg {
+	height: 20px;
+	width: 20px
+}
+
+.ant-card-body {
+	padding: 0 !important;
+}
+
+.card-action {
+	font-size: 22px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
