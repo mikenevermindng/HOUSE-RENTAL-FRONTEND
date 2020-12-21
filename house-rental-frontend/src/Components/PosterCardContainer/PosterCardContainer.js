@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 import PosterCard from "./PosterCard/PosterCard";
+import './PosterCardContainer.css';
 
 function PosterCardContainer() {
     const data = [
@@ -551,7 +552,7 @@ function PosterCardContainer() {
 
     return (
         <div className="poster-card-container">
-            <Row>
+            <Row gutter={[{ xs: 0, sm: 0, md: 40, lg: 60 }, 60]}>
                 {data.map((roomCard) => {
                     return (
                         <Col xs={24} sm={24} md={12} lg={8}>

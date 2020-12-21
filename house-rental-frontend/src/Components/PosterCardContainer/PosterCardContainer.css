@@ -1,0 +1,15 @@
+.poster-card-container {
+    margin: 140px;
+}
+
+@media screen and (max-width: 1280px) {
+    .poster-card-container {
+        margin: 140px 60px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .poster-card-container {
+        margin: 140px 30px;
+    }
+}

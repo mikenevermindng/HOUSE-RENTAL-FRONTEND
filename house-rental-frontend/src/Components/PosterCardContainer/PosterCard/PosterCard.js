@@ -6,8 +6,6 @@ import classNames from 'classnames';
 import './PosterCard.css';
 
 function PosterCard(props) {
-    console.log(props);
-
     let slides = [
         {
             background: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1053&q=80',
