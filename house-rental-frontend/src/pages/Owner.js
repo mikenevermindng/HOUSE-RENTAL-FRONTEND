@@ -191,10 +191,10 @@ export default function Owner() {
                 <OwnerHeroContent data={data}/>
             </HeroSection>
             <StatisticTable data={tableData}/>
-            <LoginModal>
-                <OwnerSignIn/>
-                <OwnerSignUp/>
-            </LoginModal>
+            {/*<LoginModal>*/}
+            {/*    <OwnerSignIn/>*/}
+            {/*    <OwnerSignUp/>*/}
+            {/*</LoginModal>*/}
         </div>
     )
 }
