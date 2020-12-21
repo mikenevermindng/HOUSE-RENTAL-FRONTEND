@@ -49,6 +49,20 @@ const apiGetPoster = async (filterOption) => {
 	}
 };
 
+const apiUserGetPosters = async () => {
+	try {
+		const response = await http.get('accommodationPost/userGetPoster', {
+			headers: {
+				authorization: localStorage.getItem('token')
+			}
+		});
+		return response.data;
+	} catch (error) {
+		console.log(error);
+		return [];
+	}
+};
+
 const aptGetPosterByOwnerId = async (ownerId) => {
 	try {
 		const response = await http.get('accommodationPost/getWithFilterOptions/', {
@@ -147,5 +161,6 @@ export {
 	apiDeletePoster,
 	aptGetPosterByOwnerId,
 	apiApprovedPoster,
-	apiUpdatePosterStatus
+	apiUpdatePosterStatus,
+	apiUserGetPosters
 };
