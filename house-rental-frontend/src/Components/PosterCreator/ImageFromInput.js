@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Upload, Modal, message, Input, Row, Col } from 'antd';
-import { CloseSquareFilled, PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
 

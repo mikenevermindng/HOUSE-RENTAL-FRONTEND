@@ -18,10 +18,8 @@ function PosterFromInput(props) {
 	const [cities, setCities] = useState([])
 	const [districts, setDistrics] = useState([])
 	const [subDistricts, setSubdistricts] = useState([])
-	const [recommendedCity, setRecommendedCity] = useState([])
 	const [recommendedDistricts, setRecommendedDistricts] = useState([])
 	const [recommendedSubDistricts, setRecommendedSubDistricts] = useState([])
-	const [pickedDate, setPickedDate] = useState([])
 
 	const {
 		setPosterInfo,
@@ -41,7 +39,7 @@ function PosterFromInput(props) {
 		pricePerMonth: Yup.number("Xin vui lòng chỉ nhập chữ số").required("Bắt buộc"),
 		pricePerQuarter: Yup.number("Xin vui lòng chỉ nhập chữ số"),
 		pricePerYear: Yup.number("Xin vui lòng chỉ nhập chữ số"),
-		availableDate: Yup.array().of(Yup.string()).required()
+		availableDate: Yup.array().min(2, "Xin vui lòng nhập ngày đăng bài").of(Yup.string()).required()
 	});
 
 	const datePickerHandler = (date, dateString) => {
@@ -143,10 +141,6 @@ function PosterFromInput(props) {
 						optionFilterProp="children"
 						onBlur={handleBlur("typeOfAccommodation")}
 						onChange={handleChange("typeOfAccommodation")}
-						filterOption={(input, option) =>
-							option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-						filterSort={(optionA, optionB) =>
-							optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())}
 					>
 						{typeOfAccommodations.map((type, index) => {
 							return (
@@ -345,6 +339,7 @@ function PosterFromInput(props) {
 						onChange={datePickerHandler}
 						disabledDate={disabledDate}
 					/>
+					{errors.availableDate && touched.availableDate && <span>{errors.availableDate}</span>}
 					{values.availableDate.length > 0 && values.availableDate[0] !== '' && <span>{moment(values.availableDate[1]).diff(moment(values.availableDate[0]), 'days')}</span>}
 				</Col>
 			</Row>

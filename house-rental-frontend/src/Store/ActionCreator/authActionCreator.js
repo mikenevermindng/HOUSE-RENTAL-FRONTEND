@@ -19,7 +19,7 @@ const getUserInfo = () => {
 	};
 };
 
-module.exports = {
+export {
 	signIn,
 	signOut,
 	getUserInfo

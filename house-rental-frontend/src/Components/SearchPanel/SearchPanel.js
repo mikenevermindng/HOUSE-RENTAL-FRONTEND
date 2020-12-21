@@ -1,6 +1,5 @@
 import React from 'react';
 import './SearchPanel.css';
-import { Carousel, Radio } from 'antd';
 
 import mapLocationIcon from '../../Asset/Icon/map-locationpin.png';
 import badroomIcon from '../../Asset/Icon/search-bed.png';

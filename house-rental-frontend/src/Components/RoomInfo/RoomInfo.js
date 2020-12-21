@@ -51,7 +51,7 @@ function RoomInfo(props) {
 
                     <RoomLocation roomInfo={roomInfo} />
 
-                    <Ratings rating={roomInfo.rating} userId={roomInfo.userId} username={roomInfo.username} />
+                    <Ratings rating={roomInfo.rating} userId={roomInfo.userId} username={roomInfo.username} posterId={roomInfo.posterId} />
 
                 </div>
 

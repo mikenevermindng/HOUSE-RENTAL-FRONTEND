@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Row, Col, Input, Select, InputNumber } from 'antd';
+import React from 'react';
+import { Row, Col, Input, Select } from 'antd';
 import { PlusOutlined, CloseSquareFilled } from '@ant-design/icons';
 import { FieldArray, Form, Formik } from 'formik'
 import * as Yup from 'yup'
@@ -268,10 +268,10 @@ function FacilityFromInput(props) {
 								>
 									<Option value="true" name="wardrobe">
 										Có
-						</Option>
+									</Option>
 									<Option value="false" name="wardrobe">
 										Không
-						</Option>
+									</Option>
 								</Select>
 								{errors.wardrobe && touched.wardrobe && <span>{errors.wardrobe}</span>}
 							</Col>
@@ -281,7 +281,14 @@ function FacilityFromInput(props) {
 								<div className="input-label">Giá điện (đồng)</div>
 							</Col>
 							<Col span={18}>
-								<Input type="number" placeholder="Giá điện" min="1" name="electricityPrice" onBlur={handleBlur('electricityPrice')} onChange={handleChange('electricityPrice')} />
+								<Input
+									type="number"
+									placeholder="Giá điện"
+									min="1"
+									name="electricityPrice"
+									onBlur={handleBlur('electricityPrice')}
+									onChange={handleChange('electricityPrice')}
+								/>
 							</Col>
 							{errors.electricWaterHeater && touched.electricWaterHeater && <span>{errors.electricWaterHeater}</span>}
 						</Row>

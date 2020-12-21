@@ -22,7 +22,11 @@ const apiUserRegister = async (data) => {
 
 const apiDeleteUser = async (ownerId) => {
   try {
-    const res = await http.delete("user/" + ownerId);
+    const res = await http.delete("user/" + ownerId, {
+      headers: {
+        authorization: localStorage.getItem('token')
+      }
+    });
     return res.data;
   } catch (error) {
     console.log("error", error);
@@ -42,7 +46,11 @@ const apiUserpdateAccount = async (userId) => {
 
 const apiGetAllUser = async () => {
   try {
-    const res = await http.get("/");
+    const res = await http.get("/", {
+      headers: {
+        authorization: localStorage.getItem('token')
+      }
+    });
     return res.data;
   } catch (error) {
     console.log("error", error);
@@ -52,7 +60,11 @@ const apiGetAllUser = async () => {
 
 const getUserById = async (userId) => {
   try {
-    const res = await http.get("/" + userId);
+    const res = await http.get("/" + userId, {
+      headers: {
+        authorization: localStorage.getItem('token')
+      }
+    });
     return res.data;
   } catch (error) {
     console.log("error", error);

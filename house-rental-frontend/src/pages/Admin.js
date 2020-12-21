@@ -1,7 +1,10 @@
 import React from 'react'
-import { Tabs, Radio, Space } from 'antd';
+import { Tabs } from 'antd';
 import AdminPosterManageTab from '../Components/AdminPageComponent/AdminPosterManagement/AdminPosterManageTab';
 import AdminOwnderAccountManageTab from '../Components/AdminPageComponent/AdminOwnerAccountManagement/AdminOwnderAccountManageTab';
+import PosterManageTable from '../Components/AdminPageComponent/AdminPosterManagement/PosterManageTable';
+import AdminStatisticTab from '../Components/AdminPageComponent/AdminOwnerAccountManagement/AdminStatisticTabs'
+
 const { TabPane } = Tabs;
 
 function Admin() {
@@ -15,7 +18,7 @@ function Admin() {
                     <AdminOwnderAccountManageTab />
                 </TabPane>
                 <TabPane tab="Phân tích và thống kê" key="3">
-                    Content of Tab 3
+                    <AdminStatisticTab />
                 </TabPane>
             </Tabs>
         </div>

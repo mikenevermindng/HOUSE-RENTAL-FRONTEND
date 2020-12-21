@@ -22,7 +22,11 @@ const apiOwnerRegister = async (data) => {
 
 const apiDeleteOwnerAccount = async (ownerId) => {
     try {
-        const res = await http.post('owner/' + ownerId)
+        const res = await http.post('owner/' + ownerId, {
+            headers: {
+                authorization: localStorage.getItem('token')
+            }
+        })
         return res.data
     } catch (error) {
         console.log(error)
@@ -42,7 +46,11 @@ const apiUpdateOwnerAccount = async (ownerId, data) => {
 
 const apiGetAllOwnerAccount = async () => {
     try {
-        const res = await http.get('owner/')
+        const res = await http.get('owner/', {
+            headers: {
+                authorization: localStorage.getItem('token')
+            }
+        })
         return res.data
     } catch (error) {
         return []
@@ -51,7 +59,11 @@ const apiGetAllOwnerAccount = async () => {
 
 const apiGetOwnerAccount = async (ownerId) => {
     try {
-        const res = await http.get('owner/' + ownerId)
+        const res = await http.get('owner/' + ownerId, {
+            headers: {
+                authorization: localStorage.getItem('token')
+            }
+        })
         return res.data
     } catch (error) {
         return null

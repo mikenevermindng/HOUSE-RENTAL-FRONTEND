@@ -12,7 +12,13 @@ const authConstants = {
 	GET_USER_INFO: 'GET_USER_INFO'
 };
 
+const popupConstants = {
+	OPEN: 'OPEN',
+	CLOSE: 'CLOSE'
+}
+
 module.exports = {
 	posterReducerConstants,
-	authConstants
+	authConstants,
+	popupConstants
 };

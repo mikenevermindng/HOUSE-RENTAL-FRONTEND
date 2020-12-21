@@ -7,22 +7,28 @@ import RentingIcon from '../../Asset/Icon/rent.svg';
 import HeartIcon from '../../Asset/Icon/heart_filled.svg'
 import { apiUserLikeAction, apiUserUnlikeAction } from '../../Services/rating_service'
 import { apiGenerateRentalRequest } from '../../Services/rental_request_services'
+import { useDispatch } from 'react-redux'
+import { openLoginPopup } from '../../Store/ActionCreator/showLoginPopupActionCreator'
 
 function ContactCard(props) {
     const info = props.roomInfo;
-    const { rating, userId, ownerId, posterId } = props.roomInfo
+    console.log(info)
+    const { rating, userId, ownerId, posterId } = info
 
-    const [isLikedByUser, setLikedByUser] = useState(rating.likedUser.indexOf(userId) !== -1)
+    const dispatch = useDispatch()
+
+    const [isLikedByUser, setLikedByUser] = useState(rating.likedUser.findIndex(like => like.userId === userId) !== -1)
 
     const [numberOfPeople, setNumberOfPeople] = useState(1)
 
     const generateRentalRequest = async () => {
         try {
-            const res = await apiGenerateRentalRequest(userId, ownerId, posterId, numberOfPeople)
+            const res = await apiGenerateRentalRequest(ownerId, posterId, numberOfPeople)
             message.info(res.message)
         } catch (error) {
             console.log(error)
-            message.error("Đã có lỗi xảy ra")
+            message.error("Phiên làm việc của bạn đã hết hạn")
+            dispatch(openLoginPopup())
         }
 
     }
