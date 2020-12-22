@@ -1,8 +1,10 @@
 import React from 'react';
 import './HomeContent.css';
 import Slider from 'react-slick';
+import { Link } from 'react-router-dom'
+import queryString from 'querystring'
 
-function HomeContent({children}) {
+function HomeContent({ children }) {
     const types = [
         {
             name: 'Phòng trọ',
@@ -73,19 +75,21 @@ function HomeContent({children}) {
 
                 <Slider {...settings}>
                     {types.map((type) => {
-                            return (
+                        return (
+                            <Link to={"/rooms?" + queryString.stringify({ typeOfAccommodation: type.name.toLowerCase() })} target="_blank">
                                 <div className="types-item-wrapper">
-                                    <div className="types-item" style = {{
+                                    <div className="types-item" style={{
                                         backgroundImage: "url(" + type.image + ")",
-                                    }}/>
+                                    }} />
                                     <h1>{type.name}</h1>
                                 </div>
-                            )
-                        }
+                            </Link>
+                        )
+                    }
                     )}
                 </Slider>
             </div>
-        </div>
+        </div >
     )
 }
 
