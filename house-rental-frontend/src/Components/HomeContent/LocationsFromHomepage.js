@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
+import queryString from 'querystring'
 
 export default function LocationsFromHomepage() {
     const locations = [
@@ -7,7 +9,7 @@ export default function LocationsFromHomepage() {
             image: "https://bom.to/Fa1q4gqU"
         },
         {
-            name: "TP.Hồ Chí Minh",
+            name: "Thành phố Hồ Chí Minh",
             image: "https://bom.to/0zuU921p"
         },
         {
@@ -15,7 +17,7 @@ export default function LocationsFromHomepage() {
             image: "https://bom.to/mD0vSQEv"
         },
         {
-            name: "Nha Trang",
+            name: "Khánh Hòa",
             image: "https://bom.to/NWd6YXpI"
         },
         {
@@ -27,7 +29,7 @@ export default function LocationsFromHomepage() {
             image: "https://bom.to/Z6eVhc58"
         },
         {
-            name: "Huế",
+            name: "Thừa Thiên Huế",
             image: "https://bom.to/yUxMio67"
         }
     ]
@@ -39,16 +41,18 @@ export default function LocationsFromHomepage() {
             <div className="location-box-container">
                 {locations.map((location) => {
                     return (
-                        <div className="location-box"
-                             style={{
-                                 backgroundImage: "linear-gradient(rgba(51, 51, 51, 0.55), rgba(51, 51, 51, 0.55)), url(" + location.image + ")"
-                             }}
-                        >
-                            <h1>{location.name}</h1>
-                        </div>
+                        <Link to={"/rooms?" + queryString.stringify({ city: location.name })} target="_blank">
+                            <div className="location-box"
+                                style={{
+                                    backgroundImage: "linear-gradient(rgba(51, 51, 51, 0.55), rgba(51, 51, 51, 0.55)), url(" + location.image + ")"
+                                }}
+                            >
+                                <h1>{location.name}</h1>
+                            </div>
+                        </Link>
                     )
                 })}
             </div>
-        </div>
+        </div >
     )
 }

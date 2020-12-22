@@ -15,13 +15,14 @@ function Admin() {
 
     return (
         <div>
-            {/*<AdminLogin>*/}
-            {/*    <AdminForm/>*/}
-            {/*</AdminLogin>*/}
-            <Navbar/>
+            {!localStorage.getItem('adminToken') && <AdminLogin>
+                <AdminForm />
+            </AdminLogin>}
+            <Navbar />
             <HeroSection heroImage={heroImage}>
                 <h1 className="hero-headline">Xin chào, Admin!</h1>
             </HeroSection>
+
             <Tabs tabPosition="top">
                 <TabPane tab="Quản lý bài đăng" key="1">
                     <AdminPosterManageTab />

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 import HeartIcon from '../../Asset/Icon/heart_white.svg';
 import { useDispatch, useSelector } from 'react-redux'
 import { openLoginPopup } from '../../Store/ActionCreator/showLoginPopupActionCreator'
+import { useHistory } from 'react-router-dom'
 
 function Navbar() {
 	const dispatch = useDispatch()
@@ -15,6 +16,8 @@ function Navbar() {
 	const auth = useSelector(state => state.auth)
 
 	const [isLoggin, setIsLoggIn] = useState(false)
+
+	const history = useHistory()
 
 	useEffect(() => {
 		const isLogged = localStorage.getItem('token') ? true : false
@@ -30,10 +33,10 @@ function Navbar() {
 			<label className="logo">Logo</label>
 			<Router>
 				<ul>
-					<li className="nav-link">
+					<li className="nav-link" onClick={() => history.push('/')}>
 						<Link>Tìm thuê</Link>
 					</li>
-					<li className="nav-link">
+					<li className="nav-link" onClick={() => history.push('/favorites')} >
 						<Link>
 							<div className="favorite-link">
 								<span>Yêu thích</span>

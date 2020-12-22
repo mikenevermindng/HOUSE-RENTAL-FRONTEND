@@ -7,6 +7,7 @@ import { BackTop, message } from "antd";
 import UpArrow from '../Asset/Icon/collapse_arrow.svg';
 import queryString from 'querystring'
 import { apiUserGetPosters } from '../Services/accommodation_poster_services'
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const backTopStyle = {
     borderRadius: "50%",
@@ -28,20 +29,25 @@ export default function Rooms() {
 
     const [posterList, setPosterList] = useState([])
 
+    const [page, setPage] = useState(0)
+
+    const perPage = 12
+
     useEffect(() => {
         const fetchDataAsync = async () => {
+            console.log(page)
             const filterOption = queryString.parse(window.location.href.split('?')[1])
             console.log(filterOption)
-            const res = await apiUserGetPosters(filterOption)
+            const res = await apiUserGetPosters(filterOption, page, perPage)
             if (res) {
                 console.log(res)
-                setPosterList(res.posts)
+                setPosterList([...posterList, ...res.posts])
             } else {
                 message.error("Tải bài đăng không thành công")
             }
         }
         fetchDataAsync()
-    }, [window.location.href])
+    }, [window.location.href, page])
 
     return (
         <div>
@@ -49,7 +55,30 @@ export default function Rooms() {
             <HeroSection heroImage={roomsHeroImage}>
                 <HeroSearchSection headline={headline} />
             </HeroSection>
-            <PosterCardContainer posterList={posterList} />
+            <InfiniteScroll
+                dataLength={posterList.length} //This is important field to render the next data
+                next={() => setPage(page + 1)}
+                hasMore={true}
+                loader={<h4>Loading...</h4>}
+                endMessage={
+                    <p style={{ textAlign: 'center' }}>
+                        <b>Yay! You have seen it all</b>
+                    </p>
+                }
+                // below props only if you need pull down functionality
+                refreshFunction={() => console.log('refresh')}
+                pullDownToRefresh
+                pullDownToRefreshThreshold={50}
+                pullDownToRefreshContent={
+                    <h3 style={{ textAlign: 'center' }}>&#8595; Pull down to refresh</h3>
+                }
+                releaseToRefreshContent={
+                    <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
+                }
+            >
+                <PosterCardContainer posterList={posterList} />
+            </InfiniteScroll>
+
             <BackTop>
                 <div style={backTopStyle}>
                     <img src={UpArrow} alt="back-top" style={{ width: "40px", height: "40px" }} />
