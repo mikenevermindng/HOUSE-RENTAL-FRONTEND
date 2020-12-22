@@ -7,6 +7,7 @@ import Admin from './pages/Admin';
 import Rooms from './pages/Rooms';
 import Chat from './pages/Chating';
 import Home from './pages/Home';
+import Favorites from "./pages/Favorites";
 import UserLoginPopup from './Components/LoginModal/index'
 import UserLoginForm from './Components/LoginModal/UserForm/login'
 import UserRegisterForm from './Components/LoginModal/UserForm/register'
@@ -24,6 +25,7 @@ function App() {
 				<Route exact path='/admin/' component={Admin} />
 				<Route exact path='/rooms/' component={Rooms} />
 				<Route exact path='/room-details/:accomodId' component={RoomDetails} />
+				<Route exact path='/favorites' component={Favorites} />
 				<Route exact path='/chat' component={Chat} />
 			</Switch>
 			{isShowLoginPopup && <UserLoginPopup>
