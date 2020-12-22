@@ -21,6 +21,16 @@
 	background-color: #f0f0f3;
 	height: 90%;
 	min-height: 500px;
+	position: relative;
+}
+
+#close-button {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	width: 26px;
+	height: 26px;
+	cursor: pointer;
 }
 
 .ant-steps-item-container {
@@ -122,7 +132,8 @@
 	margin-top: 10px !important;
 }
 
-.poster-creator .steps-action .ant-btn {
+.poster-creator .backButton,
+.poster-creator .submitButton {
 	margin-top: 15px;
 	width: 140px;
 	height: 50px;
@@ -133,16 +144,27 @@
 	font-size: 18px;
 	color: #333;
 	transition: all 0.2s ease-out;
+	cursor: pointer;
+	margin-right: 20px;
 }
 
-.poster-creator .steps-action .ant-btn:hover,
-.poster-creator .steps-action .ant-btn-primary {
+.poster-creator .submitButton,
+.poster-creator .backButton:hover {
 	background-color: #333;
 	color: white;
 }
 
-.poster-creator .steps-action .ant-btn-primary:hover {
+.poster-creator .submitButton:hover {
 	background-color: rgba(51, 51, 51, 0.85);
+}
+
+.error-msg {
+	color: #fc7e7e;
+}
+
+#rental-upload-price {
+	font-size: 18px;
+	margin-left: 20px;
 }
 
 .poster-creator .ant-row .remove-action span svg {
@@ -188,6 +210,11 @@
 
 	.steps-content {
 		height: 60%;
+	}
+
+	#rental-upload-price {
+		display: block;
+		margin: 10px 0 0 0;
 	}
 }
 
@@ -244,6 +271,10 @@
 		margin-top: 15px;
 		width: 135px;
 		height: 46px;
+		font-size: 16px;
+	}
+
+	#rental-upload-price {
 		font-size: 16px;
 	}
 }

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import ChatboxHeader from './ChatboxHeader';
 import ChatCard from './ChatCard';
 import Messages from './Massages/Messages';
 import './Chatbox.css';
@@ -84,7 +83,7 @@ function Chatbox() {
 			<div className="chatScreen">
 				<div className="listChatbox row">
 					<div className="chatBoxCardList col-md-3">
-						<ChatboxHeader name="Micheal" />
+						{/*<ChatboxHeader name="Micheal" />*/}
 						<div className="search-feild">
 							<input type="text" placeholder="search" />
 						</div>

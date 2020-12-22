@@ -86,7 +86,7 @@ function FacilityFromInput(props) {
 										Dùng chung
 									</Option>
 								</Select>
-								{errors.bathroom && touched.bathroom && <span>{errors.bathroom}</span>}
+								{errors.bathroom && touched.bathroom && <span className="error-msg">{errors.bathroom}</span>}
 							</Col>
 						</Row>
 						<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -109,7 +109,7 @@ function FacilityFromInput(props) {
 										Không
 									</Option>
 								</Select>
-								{errors.electricWaterHeater && touched.electricWaterHeater && <span>{errors.electricWaterHeater}</span>}
+								{errors.electricWaterHeater && touched.electricWaterHeater && <span className="error-msg">{errors.electricWaterHeater}</span>}
 							</Col>
 						</Row>
 						<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -135,7 +135,7 @@ function FacilityFromInput(props) {
 										Không
 									</Option>
 								</Select>
-								{errors.kitchen && touched.kitchen && <span>{errors.kitchen}</span>}
+								{errors.kitchen && touched.kitchen && <span className="error-msg">{errors.kitchen}</span>}
 							</Col>
 						</Row>
 						<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -158,7 +158,7 @@ function FacilityFromInput(props) {
 										Không
 									</Option>
 								</Select>
-								{errors.kitchen && touched.kitchen && <span>{errors.kitchen}</span>}
+								{errors.kitchen && touched.kitchen && <span className="error-msg">{errors.kitchen}</span>}
 							</Col>
 						</Row>
 						<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -181,7 +181,7 @@ function FacilityFromInput(props) {
 										Không
 									</Option>
 								</Select>
-								{errors.balcony && touched.balcony && <span>{errors.balcony}</span>}
+								{errors.balcony && touched.balcony && <span className="error-msg">{errors.balcony}</span>}
 							</Col>
 						</Row>
 						<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -204,7 +204,7 @@ function FacilityFromInput(props) {
 										Không
 									</Option>
 								</Select>
-								{errors.fridge && touched.fridge && <span>{errors.fridge}</span>}
+								{errors.fridge && touched.fridge && <span className="error-msg">{errors.fridge}</span>}
 							</Col>
 						</Row>
 						<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -227,7 +227,7 @@ function FacilityFromInput(props) {
 										Không
 									</Option>
 								</Select>
-								{errors.washingMachine && touched.washingMachine && <span>{errors.washingMachine}</span>}
+								{errors.washingMachine && touched.washingMachine && <span className="error-msg">{errors.washingMachine}</span>}
 							</Col>
 						</Row>
 						<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -250,7 +250,7 @@ function FacilityFromInput(props) {
 										Không
 									</Option>
 								</Select>
-								{errors.bed && touched.bed && <span>{errors.bed}</span>}
+								{errors.bed && touched.bed && <span className="error-msg">{errors.bed}</span>}
 							</Col>
 						</Row>
 						<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -273,7 +273,7 @@ function FacilityFromInput(props) {
 										Không
 									</Option>
 								</Select>
-								{errors.wardrobe && touched.wardrobe && <span>{errors.wardrobe}</span>}
+								{errors.wardrobe && touched.wardrobe && <span className="error-msg">{errors.wardrobe}</span>}
 							</Col>
 						</Row>
 						<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -289,8 +289,8 @@ function FacilityFromInput(props) {
 									onBlur={handleBlur('electricityPrice')}
 									onChange={handleChange('electricityPrice')}
 								/>
+								{errors.electricWaterHeater && touched.electricWaterHeater && <span className="error-msg">{errors.electricWaterHeater}</span>}
 							</Col>
-							{errors.electricWaterHeater && touched.electricWaterHeater && <span>{errors.electricWaterHeater}</span>}
 						</Row>
 						<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 							<Col span={6}>
@@ -298,7 +298,7 @@ function FacilityFromInput(props) {
 							</Col>
 							<Col span={18}>
 								<Input placeholder="Giá nước" min="1" name="domesticWaterPrice" onBlur={handleBlur("domesticWaterPrice")} onChange={handleChange("domesticWaterPrice")} />
-								{errors.domesticWaterPrice && touched.domesticWaterPrice && <span>{errors.domesticWaterPrice}</span>}
+								{errors.domesticWaterPrice && touched.domesticWaterPrice && <span className="error-msg">{errors.domesticWaterPrice}</span>}
 							</Col>
 						</Row>
 						<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -362,8 +362,8 @@ function FacilityFromInput(props) {
 								}
 							}
 						/>
-						<button onClick={backToPrevStep}>back</button>
-						<button type="submit">submit</button>
+						<button className="backButton" onClick={backToPrevStep}>Trở lại</button>
+						<button className="submitButton" type="submit">Tiếp theo</button>
 					</Form>
 				)
 			}}

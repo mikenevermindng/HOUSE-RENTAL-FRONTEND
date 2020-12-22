@@ -123,7 +123,7 @@ function PosterFromInput(props) {
 						value={title}
 						onBlur={handleBlur("title")}
 						onChange={handleChange("title")} />
-					{errors.title && touched.title && <span>{errors.title}</span>}
+					{errors.title && touched.title && <span className="error-msg">{errors.title}</span>}
 				</Col>
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -149,7 +149,7 @@ function PosterFromInput(props) {
 							);
 						})}
 					</Select>
-					{errors.typeOfAccommodation && touched.typeOfAccommodation && <span>{errors.typeOfAccommodation}</span>}
+					{errors.typeOfAccommodation && touched.typeOfAccommodation && <span className="error-msg">{errors.typeOfAccommodation}</span>}
 				</Col>
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -179,7 +179,7 @@ function PosterFromInput(props) {
 							);
 						})}
 					</Select>
-					{errors.city && touched.city && <span>{errors.city}</span>}
+					{errors.city && touched.city && <span className="error-msg">{errors.city}</span>}
 				</Col>
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -210,7 +210,7 @@ function PosterFromInput(props) {
 							);
 						})}
 					</Select>
-					{errors.district && touched.district && <span>{errors.district}</span>}
+					{errors.district && touched.district && <span className="error-msg">{errors.district}</span>}
 				</Col>
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -241,7 +241,7 @@ function PosterFromInput(props) {
 							);
 						})}
 					</Select>
-					{errors.subDistrict && touched.subDistrict && <span>{errors.subDistrict}</span>}
+					{errors.subDistrict && touched.subDistrict && <span className="error-msg">{errors.subDistrict}</span>}
 				</Col>
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -255,7 +255,7 @@ function PosterFromInput(props) {
 						onChange={handleChange('address')}
 						onBlur={handleBlur('address')}
 						name="address" />
-					{errors.address && touched.address && <span>{errors.address}</span>}
+					{errors.address && touched.address && <span className="error-msg">{errors.address}</span>}
 				</Col>
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -271,8 +271,8 @@ function PosterFromInput(props) {
 						value={area}
 						onChange={handleChange('area')}
 						onBlur={handleBlur('area')} />
+					{errors.area && touched.area && <span className="error-msg">{errors.area}</span>}
 				</Col>
-				{errors.area && touched.area && <span>{errors.area}</span>}
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 				<Col span={6}>
@@ -287,8 +287,8 @@ function PosterFromInput(props) {
 						value={numberOfRoom}
 						onChange={handleChange}
 						onBlur={handleBlur} />
+					{errors.numberOfRoom && touched.numberOfRoom && <span className="error-msg">{errors.numberOfRoom}</span>}
 				</Col>
-				{errors.numberOfRoom && touched.numberOfRoom && <span>{errors.numberOfRoom}</span>}
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 				<Col span={6}>
@@ -304,7 +304,7 @@ function PosterFromInput(props) {
 						onBlur={handleBlur('pricePerMonth')}
 						onChange={handleChange('pricePerMonth')}
 					/>
-					{errors.pricePerMonth && touched.pricePerMonth && <span>{errors.pricePerMonth}</span>}
+					{errors.pricePerMonth && touched.pricePerMonth && <span className="error-msg">{errors.pricePerMonth}</span>}
 				</Col>
 				<Col span={6}>
 					<Input
@@ -315,7 +315,7 @@ function PosterFromInput(props) {
 						value={pricePerQuarter}
 						onBlur={handleBlur('pricePerQuarter')}
 						onChange={handleChange('pricePerQuarter')} />
-					{errors.pricePerQuarter && touched.pricePerQuarter && <span>{errors.pricePerQuarter}</span>}
+					{errors.pricePerQuarter && touched.pricePerQuarter && <span className="error-msg">{errors.pricePerQuarter}</span>}
 				</Col>
 				<Col span={6}>
 					<Input placeholder="Năm"
@@ -325,7 +325,7 @@ function PosterFromInput(props) {
 						value={pricePerYear}
 						onBlur={handleBlur('pricePerYear')}
 						onChange={handleChange('pricePerYear')} />
-					{errors.pricePerYear && touched.pricePerYear && <span>{errors.pricePerYear}</span>}
+					{errors.pricePerYear && touched.pricePerYear && <span className="error-msg">{errors.pricePerYear}</span>}
 				</Col>
 			</Row>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -338,11 +338,14 @@ function PosterFromInput(props) {
 						onChange={datePickerHandler}
 						disabledDate={disabledDate}
 					/>
-					{errors.availableDate && touched.availableDate && <span>{errors.availableDate}</span>}
-					{values.availableDate.length > 0 && values.availableDate[0] !== '' && <span>{moment(values.availableDate[1]).diff(moment(values.availableDate[0]), 'days')}</span>}
+					{errors.availableDate && touched.availableDate && <span className="error-msg">{errors.availableDate}</span>}
+					{values.availableDate.length > 0 && values.availableDate[0] !== '' &&
+					<span id="rental-upload-price">
+						Giá đăng bài: {moment(values.availableDate[1]).diff(moment(values.availableDate[0]), 'days')*5000} đồng
+					</span>}
 				</Col>
 			</Row>
-			<button type="submit">submit</button>
+			<button className="submitButton" type="submit">Tiếp theo</button>
 		</form>
 	);
 }

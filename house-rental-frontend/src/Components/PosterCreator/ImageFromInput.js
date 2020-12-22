@@ -146,7 +146,7 @@ function ImageFromInput(props) {
 					onChange={handleChange('description')}
 					onBlur={handleBlur('description')}
 				/>
-				{errors.description && touched.description && <span>{errors.description}</span>}
+				{errors.description && touched.description && <span className="error-msg">{errors.description}</span>}
 			</div>
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 				<Col span={24}>
@@ -157,8 +157,8 @@ function ImageFromInput(props) {
 			<Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
 				<img alt="example" style={{ width: '100%' }} src={previewImage} />
 			</Modal>
-			<button onClick={backToPrevStep}>Back</button>
-			<button type="submit">submit</button>
+			<button className="backButton" onClick={backToPrevStep}>Trở lại</button>
+			<button className="submitButton" type="submit">Hoàn thành</button>
 		</form>
 	);
 }
