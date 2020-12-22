@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from "../Components/Navbar/Navbar";
 import PosterCardContainer from "../Components/PosterCardContainer/PosterCardContainer";
 import HeroSection from "../Components/HeroSection/HeroSection";
 import HeroSearchSection from "../Components/HeroSearchSection/HeroSearchSection";
-import {BackTop} from "antd";
+import { BackTop, message } from "antd";
 import UpArrow from '../Asset/Icon/collapse_arrow.svg';
+import queryString from 'querystring'
+import { apiUserGetPosters } from '../Services/accommodation_poster_services'
 
 const backTopStyle = {
     borderRadius: "50%",
@@ -24,16 +26,33 @@ export default function Rooms() {
         subtitle: ""
     };
 
+    const [posterList, setPosterList] = useState([])
+
+    useEffect(() => {
+        const fetchDataAsync = async () => {
+            const filterOption = queryString.parse(window.location.href.split('?')[1])
+            console.log(filterOption)
+            const res = await apiUserGetPosters(filterOption)
+            if (res) {
+                console.log(res)
+                setPosterList(res.posts)
+            } else {
+                message.error("Tải bài đăng không thành công")
+            }
+        }
+        fetchDataAsync()
+    }, [window.location.href])
+
     return (
         <div>
-            <Navbar/>
+            <Navbar />
             <HeroSection heroImage={roomsHeroImage}>
-                <HeroSearchSection headline={headline}/>
+                <HeroSearchSection headline={headline} />
             </HeroSection>
-            <PosterCardContainer/>
+            <PosterCardContainer posterList={posterList} />
             <BackTop>
                 <div style={backTopStyle}>
-                    <img src={UpArrow} alt="back-top" style={{width: "40px", height: "40px"}}/>
+                    <img src={UpArrow} alt="back-top" style={{ width: "40px", height: "40px" }} />
                 </div>
             </BackTop>
         </div>

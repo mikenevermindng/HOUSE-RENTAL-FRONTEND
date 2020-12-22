@@ -5,23 +5,9 @@ import './PosterCardContainer.css';
 import { apiUserGetPosters } from '../../Services/accommodation_poster_services'
 import queryString from 'querystring'
 
-function PosterCardContainer({ location }) {
+function PosterCardContainer(props) {
 
-    const [posterList, setPosterList] = useState([])
-
-    useEffect(() => {
-        const fetchDataAsync = async () => {
-            const filterOption = queryString.parse(window.location.href.split('?')[1])
-            const res = await apiUserGetPosters(filterOption)
-            if (res) {
-                console.log(res)
-                setPosterList(res.posts)
-            } else {
-                message.error("Tải bài đăng không thành công")
-            }
-        }
-        fetchDataAsync()
-    }, [window.location.href])
+    const { posterList } = props
 
     return (
         <div className="poster-card-container">

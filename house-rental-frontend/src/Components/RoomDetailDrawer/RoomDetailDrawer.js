@@ -84,22 +84,18 @@ function RoomDetailDrawer(props) {
     return (
         <>
             <div className="table-icons">
-                <Tooltip title="Chỉnh sửa bài đăng">
-                    <div className="table-icons" onClick={showDrawer}>
-                        <img src={EditIcon} alt="edit-icon"/>
-                    </div>
-                </Tooltip>
+                <div className="table-icons" onClick={showDrawer}>
+                    <img src={EditIcon} alt="edit-icon" />
+                </div>
                 {!isApproved && href !== 'owner' && <Popconfirm
                     title="Bạn có chắc muốn chấp thuận bài đăng này?"
                     okText="Đồng ý"
                     cancelText="Huỷ bỏ"
                     onConfirm={() => approvePosterHandler(posterId)}
                 >
-                    <Tooltip title="Chấp thuận bài viết">
-                        <div className="table-icons">
-                            <img src={AcceptIcon} alt="accept-icon"/>
-                        </div>
-                    </Tooltip>
+                    <div className="table-icons">
+                        <img src={AcceptIcon} alt="accept-icon" />
+                    </div>
                 </Popconfirm>}
                 <Popconfirm
                     title="Bạn có chắc muốn xoá bài đăng này?"
@@ -107,11 +103,9 @@ function RoomDetailDrawer(props) {
                     cancelText="Huỷ bỏ"
                     onConfirm={() => deletePosterHandler(posterId)}
                 >
-                    <Tooltip title="Xoá bài đăng">
-                        <div className="table-icons">
-                            <img src={DeleteIcon} alt="delete-icon"/>
-                        </div>
-                    </Tooltip>
+                    <div className="table-icons">
+                        <img src={DeleteIcon} alt="delete-icon" />
+                    </div>
                 </Popconfirm>
 
             </div>

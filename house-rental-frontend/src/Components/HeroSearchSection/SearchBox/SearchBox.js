@@ -19,6 +19,10 @@ function SearchBox({ locations }) {
     const [recommendedDistricts, setRecommendedDistricts] = useState([])
     const [recommendedSubDistricts, setRecommendedSubDistricts] = useState([])
 
+    const [city, setCity] = useState(null)
+    const [district, setDistrict] = useState(null)
+    const [subDistrict, setSubdistrict] = useState(null)
+
     const [selections, setSelections] = useState({})
 
     const moneyString = (price) => {
@@ -80,20 +84,30 @@ function SearchBox({ locations }) {
     }, []);
 
     useEffect(() => {
-        if (selections.city) {
+        if (city) {
             const districtMap = _.groupBy(districts, 'cityId');
-            const trackingCity = cities.find(c => c.city === selections.city)
+            const trackingCity = cities.find(c => c.city === city)
+            setDistrict(null)
             setRecommendedDistricts(districtMap[trackingCity.cityId])
         }
-    }, [selections])
+    }, [city])
 
     useEffect(() => {
-        if (selections.district) {
+        if (district) {
             const subDistrictMap = _.groupBy(subDistricts, 'districtId');
-            const trackingDistrict = districts.find(d => d.district === selections.district)
+            const trackingDistrict = districts.find(d => d.district === district)
+            setSubdistrict(null)
             setRecommendedSubDistricts(subDistrictMap[trackingDistrict.districtId])
         }
-    }, [selections])
+    }, [district])
+
+    const locationFilterOption = () => {
+        const obj = {}
+        if (city) obj.city = city
+        if (district) obj.district = district
+        if (subDistrict) obj.subDistrict = subDistrict
+        return obj
+    }
 
     return (
         <div className="search-box">
@@ -103,8 +117,8 @@ function SearchBox({ locations }) {
                     <Select
                         style={{ width: '100%' }}
                         name="city"
-                        value={selections.city ? selections.city : null}
-                        onSelect={(option) => setSelections({ ...selections, city: option })}
+                        value={city ? city : null}
+                        onSelect={(option) => setCity(option)}
                         showSearch
                         placeholder="Thành phố"
                         optionFilterProp="children"
@@ -127,11 +141,11 @@ function SearchBox({ locations }) {
                     <p>Quận/Huyện</p>
                     <Select
                         style={{ width: '100%' }}
-                        value={selections.district ? selections.district : null}
+                        value={district ? district : null}
                         name="district"
-                        onSelect={(option) => setSelections({ ...selections, district: option })}
+                        onSelect={(option) => setDistrict(option)}
                         showSearch
-                        disabled={!selections.city}
+                        disabled={!city}
                         placeholder="Quận/Huyện"
                         optionFilterProp="children"
                         filterOption={(input, option) =>
@@ -154,10 +168,10 @@ function SearchBox({ locations }) {
                     <Select
                         style={{ width: '100%' }}
                         showSearch
-                        disabled={!selections.district}
-                        value={selections.subDistrict ? selections.subDistrict : null}
+                        disabled={!district}
+                        value={subDistrict ? subDistrict : null}
                         name="subDistrict"
-                        onSelect={(option) => setSelections({ ...selections, subDistrict: option })}
+                        onSelect={(option) => setSubdistrict(option)}
                         placeholder="Phường/Xã"
                         optionFilterProp="children"
                         filterOption={(input, option) =>
@@ -221,7 +235,7 @@ function SearchBox({ locations }) {
                 </div>
             </div>
             <div className="search-button">
-                <Link to={"/rooms?" + queryString.stringify(selections)} ><button id="search-button">Tìm kiếm</button></Link>
+                <Link to={"/rooms?" + queryString.stringify({ ...selections, ...locationFilterOption() })} ><button id="search-button">Tìm kiếm</button></Link>
             </div>
         </div>
     )
