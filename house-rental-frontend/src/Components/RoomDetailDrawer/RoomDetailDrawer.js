@@ -8,6 +8,9 @@ import './RoomDetailDrawer.css';
 import ViewsIcon from "../../Asset/Icon/views.svg";
 import FavsIcon from "../../Asset/Icon/likes.svg";
 import RatesIcon from "../../Asset/Icon/rates.svg";
+import DeleteIcon from "../../Asset/Icon/trash_can.svg";
+import EditIcon from "../../Asset/Icon/edit_file.svg";
+import AcceptIcon from "../../Asset/Icon/tick_box.svg";
 import { apiGetPoster, apiDeletePoster, apiApprovedPoster } from '../../Services/accommodation_poster_services'
 
 const { TabPane } = Tabs;
@@ -82,7 +85,9 @@ function RoomDetailDrawer(props) {
         <>
             <div className="table-icons">
                 <Tooltip title="Chỉnh sửa bài đăng">
-                    <Button type="outline" onClick={showDrawer}>Xem</Button>
+                    <div className="table-icons" onClick={showDrawer}>
+                        <img src={EditIcon} alt="edit-icon"/>
+                    </div>
                 </Tooltip>
                 {!isApproved && href !== 'owner' && <Popconfirm
                     title="Bạn có chắc muốn chấp thuận bài đăng này?"
@@ -91,7 +96,9 @@ function RoomDetailDrawer(props) {
                     onConfirm={() => approvePosterHandler(posterId)}
                 >
                     <Tooltip title="Chấp thuận bài viết">
-                        <Button type="outline">Chấp thuận</Button>
+                        <div className="table-icons">
+                            <img src={AcceptIcon} alt="accept-icon"/>
+                        </div>
                     </Tooltip>
                 </Popconfirm>}
                 <Popconfirm
@@ -101,7 +108,9 @@ function RoomDetailDrawer(props) {
                     onConfirm={() => deletePosterHandler(posterId)}
                 >
                     <Tooltip title="Xoá bài đăng">
-                        <Button type="outline" danger>Xóa</Button>
+                        <div className="table-icons">
+                            <img src={DeleteIcon} alt="delete-icon"/>
+                        </div>
                     </Tooltip>
                 </Popconfirm>
 

@@ -158,7 +158,7 @@ function PosterManageTable(props) {
 
         },
         {
-            title: 'Action',
+            title: '',
             key: 'operation',
             fixed: 'right',
             render: (text, record, index) => <RoomDetailDrawer props={record} setPosterList={setPosterList} ratingId={record.rating._id} />,

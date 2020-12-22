@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Tooltip, Button, Popconfirm } from 'antd';
 import { apiDeleteOwnerAccount, apiUpdateOwnerAccount, apiGetAllOwnerAccount } from '../../../Services/owner_services'
+import DeleteIcon from '../../../Asset/Icon/trash_can.svg';
+import AcceptIcon from '../../../Asset/Icon/tick_box.svg';
 
 function OwnerAccountTable(props) {
 
@@ -92,7 +94,7 @@ function OwnerAccountTable(props) {
             width: 150
         },
         {
-            title: 'Action',
+            title: '',
             key: 'operation',
             fixed: 'right',
             width: 100,
@@ -109,7 +111,9 @@ function OwnerAccountTable(props) {
                         }}
                     >
                         <Tooltip title="Xoá bài đăng">
-                            <Button type="outline" danger>Xóa</Button>
+                            <div className="tables-icon">
+                                <img src={DeleteIcon} alt="delete-icon"/>
+                            </div>
                         </Tooltip>
                     </Popconfirm>
 
@@ -126,7 +130,9 @@ function OwnerAccountTable(props) {
                             }}
                         >
                             <Tooltip title="Chấp thuận tài khoản">
-                                <Button type="outline">Chấp thuận</Button>
+                                <div className="tables-icon">
+                                    <img src={AcceptIcon} alt="accept-icon"/>
+                                </div>
                             </Tooltip>
                         </Popconfirm>
                     )}
