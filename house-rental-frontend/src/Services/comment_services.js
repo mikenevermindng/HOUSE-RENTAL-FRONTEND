@@ -4,7 +4,7 @@ const apiGetCommentById = async (commentId) => {
 	try {
 		const response = await http.get('comment/' + commentId, {
 			headers: {
-				authorization: localStorage.getItem('token')
+				authorization: localStorage.getItem('adminToken')
 			}
 		});
 		console.log(response);
@@ -61,7 +61,7 @@ const apiApprovedComment = async (commentId) => {
 	try {
 		const response = await http.patch('comment/' + commentId, {}, {
 			headers: {
-				authorization: localStorage.getItem('token')
+				authorization: localStorage.getItem('adminToken')
 			}
 		});
 		console.log(response);
@@ -76,7 +76,7 @@ const apiDeleteComment = async (commentId) => {
 	try {
 		const response = await http.delete('comment/' + commentId, {
 			headers: {
-				authorization: localStorage.getItem('token')
+				authorization: localStorage.getItem('adminToken')
 			}
 		});
 		return response.data

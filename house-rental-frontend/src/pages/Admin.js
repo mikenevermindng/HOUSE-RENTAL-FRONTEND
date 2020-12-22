@@ -11,9 +11,9 @@ const { TabPane } = Tabs;
 function Admin() {
     return (
         <div>
-            <AdminLogin>
-                <AdminForm/>
-            </AdminLogin>
+            {!localStorage.getItem('adminToken') && <AdminLogin>
+                <AdminForm />
+            </AdminLogin>}
             <Tabs tabPosition="top">
                 <TabPane tab="Quản lý bài đăng" key="1">
                     <AdminPosterManageTab />

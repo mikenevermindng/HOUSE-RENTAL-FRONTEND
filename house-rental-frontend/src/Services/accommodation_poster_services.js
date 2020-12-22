@@ -39,7 +39,7 @@ const apiGetPoster = async (filterOption) => {
 	try {
 		const response = await http.get('accommodationPost/', { filterOption }, {
 			headers: {
-				authorization: localStorage.getItem('token')
+				authorization: localStorage.getItem('adminToken')
 			}
 		});
 		return response.data;
@@ -62,6 +62,20 @@ const apiUserGetPosters = async (filterOption) => {
 		return [];
 	}
 };
+
+const apiGetFavoritesPosterForUser = async () => {
+	try {
+		const response = await http.get('/accommodationPost/getFavoritesPoster', {
+			headers: {
+				authorization: localStorage.getItem('token')
+			}
+		})
+		return response.data
+	} catch (error) {
+		console.log(error)
+		return []
+	}
+}
 
 const aptGetPosterByOwnerId = async (ownerId) => {
 	try {
@@ -110,7 +124,7 @@ const apiDeletePoster = async (posterId) => {
 	try {
 		const response = await http.delete('accommodationPost/' + posterId, {
 			headers: {
-				authorization: localStorage.getItem('token')
+				authorization: localStorage.getItem('adminToken')
 			}
 		});
 		console.log(response);
@@ -125,7 +139,7 @@ const apiApprovedPoster = async (posterId) => {
 	try {
 		const response = await http.patch('accommodationPost/' + posterId, {}, {
 			headers: {
-				authorization: localStorage.getItem('token')
+				authorization: localStorage.getItem('adminToken')
 			}
 		});
 		console.log(response);
@@ -162,5 +176,6 @@ export {
 	aptGetPosterByOwnerId,
 	apiApprovedPoster,
 	apiUpdatePosterStatus,
-	apiUserGetPosters
+	apiUserGetPosters,
+	apiGetFavoritesPosterForUser
 };

@@ -1,8 +1,8 @@
 import http from './http';
 
-const apiUserLikeAction = async (ratingId, userId) => {
+const apiUserLikeAction = async (ratingId) => {
 	try {
-		const response = await http.patch('rating/like/' + ratingId, { userId: userId }, {
+		const response = await http.patch('rating/like/' + ratingId, { userId: localStorage.getItem('userId') }, {
 			headers: {
 				authorization: localStorage.getItem('token')
 			}

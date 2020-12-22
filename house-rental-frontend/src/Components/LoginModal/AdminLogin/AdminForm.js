@@ -1,38 +1,33 @@
 import React from "react";
 import "../style.css";
-import { apiUserLogin } from "../../../Services/user_sevice";
+import { apiAdminLogin } from "../../../Services/admin_services";
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { useDispatch } from 'react-redux'
-import { signIn } from '../../../Store/ActionCreator/authActionCreator'
-import { closeLoginPopup } from '../../../Store/ActionCreator/showLoginPopupActionCreator'
 import { message } from 'antd'
+import { useHistory } from 'react-router-dom'
 
 const validationSchema = Yup.object().shape({
-    email: Yup.string().email("Không nhận dạng được email").required("Vui lòng nhập địa chỉ email"),
-    password: Yup.string().min(8, "Mật khẩu phải nhiều hơn 8 kí tự").required("Vui lòng nhập địa chỉ email")
+    account: Yup.string().required("Vui lòng nhập tài khoản"),
+    password: Yup.string().required("Vui lòng nhập mật khẩu")
 })
 
 function Login() {
 
-    const dispatch = useDispatch()
+    const history = useHistory()
 
     const formik = useFormik({
         initialValues: {
-            email: '',
+            account: '',
             password: ''
         },
         validationSchema: validationSchema,
         onSubmit: async (values) => {
-            const login = await apiUserLogin(values)
+            const login = await apiAdminLogin(values)
+            console.log(login)
             if (login) {
-                localStorage.setItem('token', login.token)
-                localStorage.setItem('userId', login.user._id)
-                dispatch(signIn(login.user))
-                setTimeout(() => {
-                    dispatch(closeLoginPopup())
-                }, 1000)
+                localStorage.setItem('adminToken', login.token)
                 message.success("Đăng nhập thành công")
+                history.go(0)
             } else {
                 message.error("Tài khoản hoặc mật khẩu không đúng")
             }
@@ -41,18 +36,19 @@ function Login() {
 
     const { touched, errors, handleSubmit, handleChange } = formik;
 
+    console.log(errors)
+
     return (
         <div className="form-container sign-in-container">
             <h1>Đăng nhập</h1>
             <div className="form-wrapper">
                 <form onSubmit={handleSubmit}>
                     <input
-                        type="email"
-                        placeholder="Email"
-                        name="email"
-                        onChange={handleChange('email')}
+                        placeholder="Tài khoản"
+                        name="account"
+                        onChange={handleChange('account')}
                     />
-                    {errors.email && touched.email && <span className="error">{errors.email}</span>}
+                    {errors.account && touched.account && <span className="error">{errors.account}</span>}
                     <input
                         type="password"
                         placeholder="Mật khẩu"
