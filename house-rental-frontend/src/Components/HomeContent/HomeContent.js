@@ -68,8 +68,8 @@ function HomeContent({children}) {
 
             <div id="bottom-content">
 
-                <h1 className="foreground-title">Dịch vụ nhà ở chúng tôi cung cấp bao gồm</h1>
-                <h1 className="background-title">Dịch vụ nhà ở chúng tôi cung cấp bao gồm</h1>
+                <h1 className="foreground-title">Dịch vụ nhà ở chúng tôi cung cấp</h1>
+                <h1 className="background-title">Dịch vụ nhà ở chúng tôi cung cấp</h1>
 
                 <Slider {...settings}>
                     {types.map((type) => {
