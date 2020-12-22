@@ -5,12 +5,12 @@ import Message from './Message';
 
 import './messages.css';
 
-const Messages = ({ messages, userId }) => {
+const Messages = ({ messages, userId, name }) => {
 	return (
 		<div className="messages">
 			{messages.map((message, i) => (
 				<div key={i}>
-					<Message message={message} userId={userId} />
+					<Message message={message} userId={userId} name={name} />
 				</div>
 			))}
 		</div>

@@ -12,7 +12,7 @@ function Input({ message, setMessage, sendMessage }) {
 				onChange={({ target: { value } }) => setMessage(value)}
 				onKeyPress={(event) => (event.key === 'Enter' ? sendMessage(event) : null)}
 			/>
-			<button className="sendButton" onClick={(e) => console.log(e)}>
+			<button className="sendButton" onClick={(event) => sendMessage(event)}>
 				Send
 			</button>
 		</div>

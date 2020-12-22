@@ -21,13 +21,13 @@ function Message({ message, userId }) {
 			<Avatar name={senderName} size="40" round={true} />
 		</div>
 	) : (
-		<div className="messageContainer justifyStart">
-			<Avatar name={senderName} size="40" round={true} />
-			<div className="messageBox backgroundLight">
-				<span className="messageText colorDark">{ReactEmoji.emojify(content)}</span>
+			<div className="messageContainer justifyStart">
+				<Avatar name={senderName} size="40" round={true} />
+				<div className="messageBox backgroundLight">
+					<span className="messageText colorDark">{ReactEmoji.emojify(content)}</span>
+				</div>
 			</div>
-		</div>
-	);
+		);
 }
 
 export default Message;
