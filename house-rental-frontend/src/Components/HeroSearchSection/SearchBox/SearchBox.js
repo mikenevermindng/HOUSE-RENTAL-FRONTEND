@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './SearchBox.css';
 import { Select } from 'antd';
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { getAreaData } from '../../../Services/location_services'
 import _ from 'lodash'
 import queryString from 'querystring'
@@ -22,8 +22,11 @@ function SearchBox({ locations }) {
     const [city, setCity] = useState(null)
     const [district, setDistrict] = useState(null)
     const [subDistrict, setSubdistrict] = useState(null)
+    const [typeOfAccommodation, setTypeOfAccommodation] = useState(null)
 
     const [selections, setSelections] = useState({})
+
+    const history = useHistory()
 
     const moneyString = (price) => {
         const priceList = price.split(' ')
@@ -87,18 +90,18 @@ function SearchBox({ locations }) {
         if (city) {
             const districtMap = _.groupBy(districts, 'cityId');
             const trackingCity = cities.find(c => c.city === city)
-            setDistrict(null)
             setRecommendedDistricts(districtMap[trackingCity.cityId])
         }
+        setDistrict(null)
     }, [city])
 
     useEffect(() => {
         if (district) {
             const subDistrictMap = _.groupBy(subDistricts, 'districtId');
             const trackingDistrict = districts.find(d => d.district === district)
-            setSubdistrict(null)
             setRecommendedSubDistricts(subDistrictMap[trackingDistrict.districtId])
         }
+        setSubdistrict(null)
     }, [district])
 
     const locationFilterOption = () => {
@@ -106,6 +109,7 @@ function SearchBox({ locations }) {
         if (city) obj.city = city
         if (district) obj.district = district
         if (subDistrict) obj.subDistrict = subDistrict
+        if (typeOfAccommodation) obj.typeOfAccommodation = typeOfAccommodation
         return obj
     }
 
@@ -117,7 +121,9 @@ function SearchBox({ locations }) {
                     <Select
                         style={{ width: '100%' }}
                         name="city"
-                        value={city ? city : null}
+                        allowClear
+                        onClear={() => setCity(null)}
+                        value={city}
                         onSelect={(option) => setCity(option)}
                         showSearch
                         placeholder="Thành phố"
@@ -141,8 +147,10 @@ function SearchBox({ locations }) {
                     <p>Quận/Huyện</p>
                     <Select
                         style={{ width: '100%' }}
-                        value={district ? district : null}
+                        value={district}
                         name="district"
+                        allowClear
+                        onClear={() => setDistrict(null)}
                         onSelect={(option) => setDistrict(option)}
                         showSearch
                         disabled={!city}
@@ -169,8 +177,10 @@ function SearchBox({ locations }) {
                         style={{ width: '100%' }}
                         showSearch
                         disabled={!district}
-                        value={subDistrict ? subDistrict : null}
+                        value={subDistrict}
                         name="subDistrict"
+                        allowClear
+                        onClear={() => setSubdistrict(null)}
                         onSelect={(option) => setSubdistrict(option)}
                         placeholder="Phường/Xã"
                         optionFilterProp="children"
@@ -192,7 +202,10 @@ function SearchBox({ locations }) {
                 <div className="info-input">
                     <p>Kiểu nhà</p>
                     <Select
-                        onSelect={(option) => setSelections({ ...selections, typeOfAccommodation: option })}
+                        onSelect={(option) => setTypeOfAccommodation(option)}
+                        allowClear
+                        onClear={() => setTypeOfAccommodation(null)}
+                        value={typeOfAccommodation}
                     >
                         {typeOfAccommodations.map((type, index) => {
                             return (
@@ -235,7 +248,7 @@ function SearchBox({ locations }) {
                 </div>
             </div>
             <div className="search-button">
-                <Link to={"/rooms?" + queryString.stringify({ ...selections, ...locationFilterOption() })} ><button id="search-button">Tìm kiếm</button></Link>
+                <span onClick={() => history.push("/rooms?" + queryString.stringify({ ...selections, ...locationFilterOption() }))} ><button id="search-button">Tìm kiếm</button></span>
             </div>
         </div>
     )
