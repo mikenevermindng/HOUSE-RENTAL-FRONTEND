@@ -19,7 +19,10 @@ const backTopStyle = {
 
 export default function Rooms() {
     const roomsHeroImage = "https://bom.to/p0mKnhLr";
-    const headline = "Tìm kiếm địa điểm hoàn hảo cho bạn!";
+    const headline = {
+        title: "Tìm kiếm địa điểm hoàn hảo cho bạn!",
+        subtitle: ""
+    };
 
     return (
         <div>

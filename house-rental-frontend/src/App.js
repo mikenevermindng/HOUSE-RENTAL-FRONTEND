@@ -5,19 +5,21 @@ import Owner from './pages/Owner';
 import { Route, Switch } from 'react-router-dom';
 import Admin from './pages/Admin';
 import Rooms from './pages/Rooms';
-import Chat from './pages/Chating'
+import Chat from './pages/Chating';
+import Home from './pages/Home';
 import UserLoginPopup from './Components/LoginModal/index'
 import UserLoginForm from './Components/LoginModal/UserForm/login'
 import UserRegisterForm from './Components/LoginModal/UserForm/register'
-import { useSelector } from 'react-redux'
-
+import { useSelector } from 'react-redux';
 
 function App() {
 
 	const isShowLoginPopup = useSelector(state => state.isShowLoginPopup)
+
 	return (
 		<div className="App">
 			<Switch>
+				<Route exact path='/' component={Home} />
 				<Route exact path='/owner/' component={Owner} />
 				<Route exact path='/admin/' component={Admin} />
 				<Route exact path='/rooms/' component={Rooms} />
