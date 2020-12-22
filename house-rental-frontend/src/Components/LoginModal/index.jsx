@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import "./style.css";
+import CloseIcon from "../../Asset/Icon/close.svg";
+import {closePosterCreator} from "../../Store/ActionCreator/showPosterCreatorActionCreator";
 
 function LoginPage({children}) {
     const [isSwitch, setIsSwitch] = useState(false);
@@ -20,6 +22,7 @@ function LoginPage({children}) {
                 className={`sign-in-box ${isSwitch ? "right-panel-active" : ""}`}
                 id="sign-in-box"
             >
+                <img id="close-button" alt="close" src={CloseIcon}/>
                 {children}
                 <div className="overlay-container">
                     <div className="overlay">

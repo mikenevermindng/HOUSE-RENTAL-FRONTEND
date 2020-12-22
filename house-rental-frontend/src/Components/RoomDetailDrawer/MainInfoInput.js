@@ -314,10 +314,13 @@ function MainInfoInput(props) {
                         defaultValue={[moment(availableDate[0]), moment(availableDate[1])]}
                     />
                     {errors.availableDate && touched.availableDate && <span>{errors.availableDate}</span>}
-                    {values.availableDate.length > 0 && values.availableDate[0] !== '' && <span>{moment(values.availableDate[1]).diff(moment(values.availableDate[0]), 'days')}</span>}
+                    {values.availableDate.length > 0 && values.availableDate[0] !== '' &&
+                    <span id="rental-upload-price">
+						Giá đăng bài: {moment(values.availableDate[1]).diff(moment(values.availableDate[0]), 'days')*5000} đồng
+					</span>}
                 </div>
             </div>
-            <button type="submit">Submit</button>
+            <button className="submitButton" type="submit">Lưu</button>
         </form>
     )
 }
