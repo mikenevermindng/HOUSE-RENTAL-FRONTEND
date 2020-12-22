@@ -58,7 +58,7 @@ function Description(props) {
                     onBlur={handleBlur('description')} />
             </div>
             <p>{errors.description && touched.description && <span>{errors.description}</span>}</p>
-            <button type="submit">submit</button>
+            <button className="submitButton" type="submit">Lưu</button>
         </form>
     )
 }

@@ -5,15 +5,23 @@ import AdminOwnderAccountManageTab from '../Components/AdminPageComponent/AdminO
 import AdminStatisticTab from '../Components/AdminPageComponent/AdminOwnerAccountManagement/AdminStatisticTabs';
 import AdminLogin from '../Components/LoginModal/AdminLogin/AdminLogin';
 import AdminForm from '../Components/LoginModal/AdminLogin/AdminForm';
+import HeroSection from "../Components/HeroSection/HeroSection";
+import Navbar from "../Components/Navbar/Navbar";
 
 const { TabPane } = Tabs;
 
 function Admin() {
+    const heroImage = "https://bom.to/8z2EoSXh";
+
     return (
         <div>
-            <AdminLogin>
-                <AdminForm/>
-            </AdminLogin>
+            {/*<AdminLogin>*/}
+            {/*    <AdminForm/>*/}
+            {/*</AdminLogin>*/}
+            <Navbar/>
+            <HeroSection heroImage={heroImage}>
+                <h1 className="hero-headline">Xin chào, Admin!</h1>
+            </HeroSection>
             <Tabs tabPosition="top">
                 <TabPane tab="Quản lý bài đăng" key="1">
                     <AdminPosterManageTab />

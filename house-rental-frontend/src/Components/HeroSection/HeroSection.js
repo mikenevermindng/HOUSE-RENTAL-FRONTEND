@@ -3,7 +3,7 @@ import './HeroSection.css';
 
 function HeroSection({children, heroImage}) {
     const heroStyle = {
-        backgroundImage: "linear-gradient(#333, rgba(51, 51, 51, 0.4)) ,url(" + heroImage + ")",
+        backgroundImage: "linear-gradient(#333, rgba(51, 51, 51, 0.1)) ,url(" + heroImage + ")",
     }
 
     return (

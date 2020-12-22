@@ -340,7 +340,7 @@ function FacilityInput(props) {
                                 }
                             }
                         />
-                        <button type="submit">Submit</button>
+                        <button className="submitButton" type="submit">Lưu</button>
                     </Form>
                 )
             }}
