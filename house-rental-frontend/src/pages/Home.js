@@ -1,11 +1,12 @@
 import React from 'react';
 import Navbar from '../Components/Navbar/Navbar';
-import HeroSection from "../Components/HeroSection/HeroSection";
+import HomeHeroSection from "../Components/HeroSection/HomeHeroSection/HomeHeroSection";
 import HeroSearchSection from "../Components/HeroSearchSection/HeroSearchSection";
 import HomeContent from "../Components/HomeContent/HomeContent";
 import LocationsFromHomepage from "../Components/HomeContent/LocationsFromHomepage";
 import UpArrow from "../Asset/Icon/collapse_arrow.svg";
 import {BackTop} from "antd";
+import HeroVideo from "../Asset/Vid/Villa Sunnano.mp4";
 
 function Home() {
     const headline = {
@@ -29,9 +30,9 @@ function Home() {
     return (
         <div>
             <Navbar/>
-            <HeroSection heroImage={heroImage}>
+            <HomeHeroSection heroVideo={HeroVideo}>
                 <HeroSearchSection headline={headline}/>
-            </HeroSection>
+            </HomeHeroSection>
             <HomeContent>
                 <LocationsFromHomepage/>
             </HomeContent>
