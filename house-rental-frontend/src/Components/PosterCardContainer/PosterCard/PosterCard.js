@@ -27,13 +27,11 @@ function PosterCard(props) {
     const { rate } = rating
 
     const imagesList = images.map(img => {
-        console.log(img)
         return {
             background: "http://localhost:3001/" + img.replace('\\', '/')
         }
     })
 
-    console.log(imagesList)
 
     const userId = localStorage.getItem('userId')
 

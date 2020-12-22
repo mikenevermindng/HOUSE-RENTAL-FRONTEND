@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import './PosterCreator.css';
 import { useDispatch } from 'react-redux'
 import { closePosterCreator } from '../../Store/ActionCreator/showPosterCreatorActionCreator'
+import OutsideClickHandler from 'react-outside-click-handler';
 
 const { Step } = Steps;
 
@@ -96,41 +97,45 @@ function PosterCreator() {
 
 	return (
 		<div className="poster-creator-container">
+
 			<div className="poster-creator">
-				<Steps current={current}>
-					{steps.map((item) => <Step key={item.title} title={item.title} />)}
-				</Steps>
-				<div className="steps-content">
-					{steps.map((step) => {
-						return (
-							<div key={step.title} className={classNames({ 'display-none': step.activeOrder !== current })}>
-								{step.component}
-							</div>
-						);
-					})}
-					<div className="steps-action">
-						{current < steps.length - 1 && (
-							<Button type="primary" onClick={() => next()} style={{ float: 'right', marginLeft: '10px' }}>
-								Tiếp theo
+				<OutsideClickHandler onOutsideClick={() => {
+					dispatch(closePosterCreator());
+				}}>
+					<Steps current={current}>
+						{steps.map((item) => <Step key={item.title} title={item.title} />)}
+					</Steps>
+					<div className="steps-content">
+						{steps.map((step) => {
+							return (
+								<div key={step.title} className={classNames({ 'display-none': step.activeOrder !== current })}>
+									{step.component}
+								</div>
+							);
+						})}
+						<div className="steps-action">
+							{current < steps.length - 1 && (
+								<Button type="primary" onClick={() => next()} style={{ float: 'right', marginLeft: '10px' }}>
+									Tiếp theo
 							</Button>
-						)}
-						{current === steps.length - 1 && (
-							<Button type="primary" style={{ float: 'right', marginLeft: '10px' }}>
-								Hoàn thành
+							)}
+							{current === steps.length - 1 && (
+								<Button type="primary" style={{ float: 'right', marginLeft: '10px' }}>
+									Hoàn thành
 							</Button>
-						)}
-						{current > 0 && (
-							<Button
-								style={{ margin: '0 8px', float: 'right', marginLeft: '10px' }}
-								onClick={() => prev()}
-							>
-								Trở lại
+							)}
+							{current > 0 && (
+								<Button
+									style={{ margin: '0 8px', float: 'right', marginLeft: '10px' }}
+									onClick={() => prev()}
+								>
+									Trở lại
 							</Button>
-						)}
+							)}
+						</div>
 					</div>
-				</div>
+				</OutsideClickHandler>
 			</div>
-			);
 		</div>
 	)
 }

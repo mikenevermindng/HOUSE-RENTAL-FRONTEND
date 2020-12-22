@@ -49,9 +49,9 @@ const apiGetPoster = async (filterOption) => {
 	}
 };
 
-const apiUserGetPosters = async () => {
+const apiUserGetPosters = async (filterOption) => {
 	try {
-		const response = await http.get('accommodationPost/userGetPoster', {
+		const response = await http.post('accommodationPost/userGetPoster', filterOption, {
 			headers: {
 				authorization: localStorage.getItem('token')
 			}

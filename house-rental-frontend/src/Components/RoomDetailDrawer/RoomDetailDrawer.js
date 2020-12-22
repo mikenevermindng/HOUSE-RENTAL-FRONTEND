@@ -75,13 +75,16 @@ function RoomDetailDrawer(props) {
         }
     }
 
+    const href = window.location.pathname.slice(1)
+
+
     return (
         <>
             <div className="table-icons">
                 <Tooltip title="Chỉnh sửa bài đăng">
                     <Button type="outline" onClick={showDrawer}>Xem</Button>
                 </Tooltip>
-                {!isApproved && <Popconfirm
+                {!isApproved && href !== 'owner' && <Popconfirm
                     title="Bạn có chắc muốn chấp thuận bài đăng này?"
                     okText="Đồng ý"
                     cancelText="Huỷ bỏ"
