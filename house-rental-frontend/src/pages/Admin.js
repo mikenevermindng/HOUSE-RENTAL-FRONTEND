@@ -5,6 +5,7 @@ import AdminOwnderAccountManageTab from '../Components/AdminPageComponent/AdminO
 import AdminStatisticTab from '../Components/AdminPageComponent/AdminOwnerAccountManagement/AdminStatisticTabs';
 import AdminLogin from '../Components/LoginModal/AdminLogin/AdminLogin';
 import AdminForm from '../Components/LoginModal/AdminLogin/AdminForm';
+import AdminHeroContent from "../Components/HeroSection/AdminHeroContent/AdminHeroContent";
 import HeroSection from "../Components/HeroSection/HeroSection";
 import Navbar from "../Components/Navbar/Navbar";
 import AdminCommentManageTable from '../Components/AdminPageComponent/AdminCommentManageTab/AdminCommentManageTable';
@@ -35,10 +36,7 @@ function Admin() {
             </AdminLogin>}
             <Navbar />
             <HeroSection heroImage={heroImage}>
-                <h1 className="hero-headline">Xin chào, Admin!</h1>
-                <div className="hero-buttons">
-                    <button onClick={showPosterCreatorPopup}>Đăng bài</button>
-                </div>
+                <AdminHeroContent/>
             </HeroSection>
             <NotificationBubble type="admin" />
             <Link to={"/chat/admin"} target="_blank">
