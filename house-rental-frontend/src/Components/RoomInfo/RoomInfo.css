@@ -1,99 +1,100 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap');
 
 .room-info {
-    padding: 96px 140px;
-    font-size: 20px;
-    font-family: 'Comfortaa', sans-serif;
+	padding: 96px 140px;
+	font-size: 20px;
+	font-family: 'Comfortaa', sans-serif;
 }
 
 .info-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 65px;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 65px;
 }
 
 .left-info {
-    width: 60%;
+	width: 60%;
 }
 
 .right-info {
-    width: 36%;
-    position: relative !important;
+	width: 36%;
+	position: relative !important;
 }
 
 #room-name {
-    font-weight: bold;
-    font-size: 40px;
-    line-height: 45px;
+	font-weight: bold;
+	font-size: 40px;
+	line-height: 45px;
 }
 
 .brief-info-text {
-    margin: 0 20px;
+	margin: 0 20px;
 }
 
 .brief-info {
-    display: flex;
-    align-items: center;
-    margin-bottom: 18px;
+	display: flex;
+	align-items: center;
+	margin-bottom: 18px;
 }
 
 #room-description {
-    margin-top: 53px;
+	margin-top: 53px;
+	text-align: justify;
 }
 
 .ant-typography-expand {
-    text-decoration: underline !important;
-    color: #333 !important;
-    font-weight: bold;
-    transition: all 0.2s ease-out;
+	text-decoration: underline !important;
+	color: #333 !important;
+	font-weight: bold;
+	transition: all 0.2s ease-out;
 }
 
 .ant-typography-expand:hover {
-    color: rgba(51, 51, 51, 0.85) !important;
+	color: rgba(51, 51, 51, 0.85) !important;
 }
 
 @media screen and (max-width: 1280px) {
-    .room-info {
-        padding: 50px 60px 0;
-    }
+	.room-info {
+		padding: 50px 60px 0;
+	}
 }
 
 @media screen and (max-width: 1024px) {
-    .room-info {
-        padding: 45px 30px 0;
-        font-size: 16px;
-    }
+	.room-info {
+		padding: 45px 30px 0;
+		font-size: 16px;
+	}
 }
 
 @media screen and (max-width: 768px) {
-    .info-container {
-        flex-direction: column-reverse;
-        margin-top: 50px;
-    }
+	.info-container {
+		flex-direction: column-reverse;
+		margin-top: 50px;
+	}
 
-    .left-info,
-    .right-info {
-        width: 100%;
-    }
+	.left-info,
+	.right-info {
+		width: 100%;
+	}
 
-    #room-name {
-        font-size: 30px;
-        line-height: 40px;
-    }
+	#room-name {
+		font-size: 30px;
+		line-height: 40px;
+	}
 
-    .brief-info {
-        margin-bottom: 15px;
-    }
+	.brief-info {
+		margin-bottom: 15px;
+	}
 
-    .info-icon {
-        width: 20px;
-    }
+	.info-icon {
+		width: 20px;
+	}
 
-    .brief-info-text {
-        margin: 0 10px
-    }
+	.brief-info-text {
+		margin: 0 10px;
+	}
 
-    #room-description {
-        margin-top: 45px;
-    }
+	#room-description {
+		margin-top: 45px;
+	}
 }

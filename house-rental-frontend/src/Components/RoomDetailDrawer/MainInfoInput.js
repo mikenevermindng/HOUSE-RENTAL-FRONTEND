@@ -5,7 +5,7 @@ import * as Yup from 'yup'
 import { getAreaData } from '../../Services/location_services'
 import _ from 'lodash'
 import moment from 'moment'
-import { apiUpdatePoster } from '../../Services/accommodation_poster_services';
+import { apiUpdatePoster, apiUpdateAvailableDate } from '../../Services/accommodation_poster_services';
 
 
 const { Option } = Select;
@@ -28,7 +28,7 @@ const validateSchema = Yup.object().shape({
 
 function MainInfoInput(props) {
     const mainInfo = props.data.props;
-    const { ownerId } = props;
+    const { ownerId, _id } = props.data.props;
 
     const [cities, setCities] = useState([])
     const [districts, setDistricts] = useState([])
@@ -60,7 +60,7 @@ function MainInfoInput(props) {
             }
             const res = await apiUpdatePoster(mainInfo._id, data)
             if (res) return message.success("Cập nhật thành công")
-            else return message.error("Cập nhật thất bại")
+            else return message.error("Cập nhật thất bại, bài đăng đã được chấp thuận bởi Admin")
         },
         validationSchema: validateSchema,
     })
@@ -116,6 +116,22 @@ function MainInfoInput(props) {
             setRecommendedSubDistricts(subDistrictMap[trackingDistrict.districtId])
         }
     }, [district])
+
+    const updateAvailableDateHandler = async (event) => {
+        event.preventDefault()
+        console.log(values.availableDate)
+        if (!values.availableDate
+            || values.availableDate.length !== 2
+            || values.availableDate[0].length === 0
+            || values.availableDate[1].length === 0
+        ) return message.error("Yêu cầu nhập ngày đăng bài")
+        const res = await apiUpdateAvailableDate(_id, values.availableDate)
+        if (res) {
+            message.success("cập nhật thành công")
+        } else {
+            message.error("cập nhật thất bại")
+        }
+    }
 
     return (
         <form onSubmit={handleSubmit}>
@@ -314,10 +330,15 @@ function MainInfoInput(props) {
                         defaultValue={[moment(availableDate[0]), moment(availableDate[1])]}
                     />
                     {errors.availableDate && touched.availableDate && <span>{errors.availableDate}</span>}
-                    {values.availableDate.length > 0 && values.availableDate[0] !== '' &&
-                    <span id="rental-upload-price">
-						Giá đăng bài: {moment(values.availableDate[1]).diff(moment(values.availableDate[0]), 'days')*5000} đồng
-					</span>}
+                    {window.location.pathname === '/owner' &&
+                        <button className="update-posting-date-button" onClick={(e) => updateAvailableDateHandler(e)}>Gia hạn lại</button>
+                    }
+                    <div>
+                        {values.availableDate.length > 0 && values.availableDate[0] !== '' &&
+                            <span id="rental-upload-price">
+                                Giá đăng bài: {moment(values.availableDate[1]).diff(moment(values.availableDate[0]), 'days') * 5000} đồng
+                            </span>}
+                    </div>
                 </div>
             </div>
             <button className="submitButton" type="submit">Lưu</button>

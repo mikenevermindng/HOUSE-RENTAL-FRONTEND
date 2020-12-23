@@ -25,7 +25,7 @@ function Login() {
             const login = await apiOwnerLogin(values)
             if (login) {
                 console.log(login.token)
-                localStorage.setItem('ownerToken', login.token)
+                sessionStorage.setItem('ownerToken', login.token)
                 history.go(0)
                 message.success("Đăng nhập thành công")
             } else {

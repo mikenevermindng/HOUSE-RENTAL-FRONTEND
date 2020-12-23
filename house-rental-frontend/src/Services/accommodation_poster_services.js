@@ -1,5 +1,4 @@
 import http from './http';
-import axios from 'axios'
 
 const apiImageUploader = async (data) => {
 	try {
@@ -11,7 +10,7 @@ const apiImageUploader = async (data) => {
 		const response = await http.post('accommodationPost/imageUploader', formData, {
 			headers: {
 				'Content-Type': 'multipart/form-data',
-				authorization: localStorage.getItem('ownerToken')
+				authorization: sessionStorage.getItem('ownerToken')
 			}
 		});
 		return response.data;
@@ -25,7 +24,7 @@ const apiPosterCreator = async (data) => {
 	try {
 		const response = await http.post('accommodationPost/', data, {
 			headers: {
-				authorization: localStorage.getItem('ownerToken')
+				authorization: sessionStorage.getItem('ownerToken')
 			}
 		});
 		console.log(response);
@@ -39,7 +38,7 @@ const apiGetPoster = async (filterOption) => {
 	try {
 		const response = await http.get('accommodationPost/', { filterOption }, {
 			headers: {
-				authorization: localStorage.getItem('adminToken')
+				authorization: sessionStorage.getItem('adminToken')
 			}
 		});
 		return response.data;
@@ -81,7 +80,7 @@ const aptGetPosterByOwnerId = async (ownerId) => {
 	try {
 		const response = await http.get('accommodationPost/getWithFilterOptions/', {
 			headers: {
-				authorization: localStorage.getItem('ownerToken')
+				authorization: sessionStorage.getItem('ownerToken')
 			}
 		});
 		return response.data;
@@ -95,7 +94,7 @@ const apiGetPosterById = async (posterId) => {
 	try {
 		const response = await http.get('accommodationPost/' + posterId, {
 			headers: {
-				authorization: localStorage.getItem('token')
+				authorization: sessionStorage.getItem('token')
 			}
 		});
 		return response.data;
@@ -109,7 +108,7 @@ const apiUpdatePoster = async (posterId, data) => {
 	try {
 		const response = await http.put('accommodationPost/' + posterId, data, {
 			headers: {
-				authorization: localStorage.getItem('ownerToken')
+				authorization: sessionStorage.getItem('ownerToken')
 			}
 		});
 		console.log(response);
@@ -120,11 +119,26 @@ const apiUpdatePoster = async (posterId, data) => {
 	}
 };
 
+const apiUpdateAvailableDate = async (posterId, availableDate) => {
+	try {
+		const response = await http.put('accommodationPost/updateAvailableDate/' + posterId, availableDate, {
+			headers: {
+				authorization: sessionStorage.getItem('ownerToken')
+			}
+		});
+		console.log(response);
+		return response.data;
+	} catch (error) {
+		console.log(error);
+		return null;
+	}
+}
+
 const apiDeletePoster = async (posterId) => {
 	try {
 		const response = await http.delete('accommodationPost/' + posterId, {
 			headers: {
-				authorization: localStorage.getItem('adminToken')
+				authorization: sessionStorage.getItem('adminToken')
 			}
 		});
 		console.log(response);
@@ -139,7 +153,7 @@ const apiApprovedPoster = async (posterId) => {
 	try {
 		const response = await http.patch('accommodationPost/' + posterId, {}, {
 			headers: {
-				authorization: localStorage.getItem('adminToken')
+				authorization: sessionStorage.getItem('adminToken')
 			}
 		});
 		console.log(response);
@@ -154,7 +168,7 @@ const apiUpdatePosterStatus = async (posterId, status) => {
 	try {
 		const response = await http.patch('accommodationPost/updateStatus/' + posterId, { status }, {
 			headers: {
-				authorization: localStorage.getItem('ownerToken')
+				authorization: sessionStorage.getItem('ownerToken')
 			}
 		});
 		console.log(response);
@@ -177,5 +191,6 @@ export {
 	apiApprovedPoster,
 	apiUpdatePosterStatus,
 	apiUserGetPosters,
-	apiGetFavoritesPosterForUser
+	apiGetFavoritesPosterForUser,
+	apiUpdateAvailableDate
 };

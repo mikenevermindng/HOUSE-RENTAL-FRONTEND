@@ -68,7 +68,7 @@ function ContactCard(props) {
                     {isLikedByUser ? <img src={HeartIcon} alt="heart" id="heart" /> : null}
                 </div>
                 <p id="price"><span>{info.price}đ</span>/tháng</p>
-                <InputNumber defaultValue={1} min="1" onChange={e => setNumberOfPeople(e.target.value)} /> người
+                <InputNumber defaultValue={1} min="1" onChange={value => setNumberOfPeople(value)} /> người
                 <div>
                     <p>Liên hệ chủ nhà trọ:</p>
                     <p>- Hotline:

@@ -7,13 +7,13 @@ function Input({ message, setMessage, sendMessage }) {
 			<input
 				className="input"
 				type="text"
-				placeholder="Type a message..."
+				placeholder="Nhập tin nhắn của bạn ở đây..."
 				value={message}
 				onChange={({ target: { value } }) => setMessage(value)}
 				onKeyPress={(event) => (event.key === 'Enter' ? sendMessage(event) : null)}
 			/>
 			<button className="sendButton" onClick={(event) => sendMessage(event)}>
-				Send
+				Gửi
 			</button>
 		</div>
 	);

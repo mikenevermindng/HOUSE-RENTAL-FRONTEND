@@ -26,7 +26,7 @@ function App() {
 				<Route exact path='/rooms/' component={Rooms} />
 				<Route exact path='/room-details/:accomodId' component={RoomDetails} />
 				<Route exact path='/favorites' component={Favorites} />
-				<Route exact path='/chat' component={Chat} />
+				<Route exact path='/chat/:type' component={Chat} />
 			</Switch>
 			{isShowLoginPopup && <UserLoginPopup>
 				<UserLoginForm />

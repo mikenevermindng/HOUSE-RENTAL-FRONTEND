@@ -48,7 +48,7 @@ const apiGetAllUser = async () => {
   try {
     const res = await http.get("/", {
       headers: {
-        authorization: localStorage.getItem('token')
+        authorization: sessionStorage.getItem('adminToken')
       }
     });
     return res.data;

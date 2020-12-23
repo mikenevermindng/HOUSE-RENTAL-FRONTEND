@@ -38,7 +38,7 @@ const apiGetRentalRequestByOwnderId = async (ownerId) => {
     try {
         const response = await http.get('rental-request/ownerRequest', {
             headers: {
-                authorization: localStorage.getItem('ownerToken')
+                authorization: sessionStorage.getItem('ownerToken')
             }
         })
         console.log(response.data)
