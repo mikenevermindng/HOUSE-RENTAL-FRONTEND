@@ -40,6 +40,7 @@ function PosterManageTable(props) {
             title: 'Kiểu bất động sản',
             dataIndex: 'typeOfAccommodation',
             key: 'typeOfAccommodation',
+            responsive: ['lg'],
             filters: [
                 {
                     text: 'Phòng trọ',
@@ -64,6 +65,7 @@ function PosterManageTable(props) {
         {
             title: 'Địa chỉ',
             key: 'address',
+            responsive: ['lg'],
             width: 150,
             ellipsis: {
                 showTitle: false,
@@ -81,29 +83,34 @@ function PosterManageTable(props) {
         {
             title: 'Giá theo tháng',
             dataIndex: 'pricePerMonth',
+            responsive: ['md'],
             key: '3',
             sorter: (a, b) => a.pricePerMonth - b.pricePerMonth,
         },
         {
             title: 'Đánh giá',
+            responsive: ['md'],
             dataIndex: ['rating', 'rate'],
             key: '4',
             sorter: (a, b) => a.rating.rate - b.rating.rate,
         },
         {
             title: 'Lượt thích',
+            responsive: ['md'],
             dataIndex: ['rating', 'likedUser', 'length'],
             key: '5',
             sorter: (a, b) => a.rating.likedUser.length - b.rating.likedUser.length,
         },
         {
             title: 'Lượt xem',
+            responsive: ['md'],
             dataIndex: ['rating', 'visits', 'length'],
             key: '6',
             sorter: (a, b) => a.rating.visits.length - b.rating.visits.length,
         },
         {
             title: 'Thời gian đăng yêu cầu',
+            responsive: ['md'],
             children: [
                 {
                     title: 'Ngày bắt đầu',
