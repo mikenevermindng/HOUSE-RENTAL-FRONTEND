@@ -220,28 +220,15 @@ function AdminStatisticTabs() {
                 <h1>Theo tuần</h1>
                 <div className="data-row">
                     <div className="statistic-box-wrapper">
-                        <p className="statistic-title">Đánh giá</p>
+                        <p className="statistic-title">Lượt thích</p>
                         <div className="statistic-box">
-                            {ratePerWeek.map(value => {
+                            {bestPosterOfWeek.map(value => {
                                 return (
                                     <div className="data-row">
                                         <Tooltip title={value.title}>
                                             <div className="room-title">{value.title}</div>
                                         </Tooltip>
-                                        <Statistic title="" value={value.rate}/>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </div>
-
-                    <div className="statistic-box-wrapper">
-                        <p className="statistic-title">Lượt thích</p>
-                        <div className="statistic-box">
-                            {ratePerWeek.map(value => {
-                                return (
-                                    <div className="data-row">
-                                        <Statistic title="" value={value.rate}/>
+                                        <Statistic title="" value={value.statisticNumber} />
                                     </div>
                                 )
                             })}
@@ -251,10 +238,13 @@ function AdminStatisticTabs() {
                     <div className="statistic-box-wrapper">
                         <p className="statistic-title">Lượt xem</p>
                         <div className="statistic-box">
-                            {ratePerWeek.map(value => {
+                            {trendingOfWeek.map(value => {
                                 return (
                                     <div className="data-row">
-                                        <Statistic title="" value={value.rate}/>
+                                        <Tooltip title={value.title}>
+                                            <div className="room-title">{value.title}</div>
+                                        </Tooltip>
+                                        <Statistic title="" value={value.statisticNumber} />
                                     </div>
                                 )
                             })}
@@ -266,26 +256,17 @@ function AdminStatisticTabs() {
             <div id="data-in-time">
                 <h1>Theo tháng</h1>
                 <div className="data-row">
-                    <div className="statistic-box-wrapper">
-                        <p className="statistic-title">Đánh giá</p>
-                        <div className="statistic-box">
-                            {ratePerMonth.map(value => {
-                                return (
-                                    <div className="data-row">
-                                        <Statistic title="" value={value.rate}/>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </div>
 
                     <div className="statistic-box-wrapper">
                         <p className="statistic-title">Lượt thích</p>
                         <div className="statistic-box">
-                            {ratePerMonth.map(value => {
+                            {bestPosterOfMonth.map(value => {
                                 return (
                                     <div className="data-row">
-                                        <Statistic title="" value={value.rate}/>
+                                        <Tooltip title={value.title}>
+                                            <div className="room-title">{value.title}</div>
+                                        </Tooltip>
+                                        <Statistic title="" value={value.statisticNumber} />
                                     </div>
                                 )
                             })}
@@ -295,10 +276,13 @@ function AdminStatisticTabs() {
                     <div className="statistic-box-wrapper">
                         <p className="statistic-title">Lượt xem</p>
                         <div className="statistic-box">
-                            {ratePerMonth.map(value => {
+                            {trendingOfMonth.map(value => {
                                 return (
                                     <div className="data-row">
-                                        <Statistic title="" value={value.rate}/>
+                                        <Tooltip title={value.title}>
+                                            <div className="room-title">{value.title}</div>
+                                        </Tooltip>
+                                        <Statistic title="" value={value.statisticNumber} />
                                     </div>
                                 )
                             })}
