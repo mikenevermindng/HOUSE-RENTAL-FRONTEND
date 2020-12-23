@@ -1,47 +1,47 @@
 #data-in-time {
-    margin: 30px 0 85px;
-    color: #333;
+	margin: 30px 0 85px;
+	color: #333;
 }
 
 #data-in-time h1 {
-    font-family: 'Comfortaa', sans-serif;
-    font-size: 30px;
-    font-weight: bold;
+	font-family: 'Comfortaa', sans-serif;
+	font-size: 30px;
+	font-weight: bold;
 }
 
 .data-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .data-row .statistic-box-wrapper {
-    width: 30%;
+	width: 40%;
 }
 
 .data-row .statistic-box-wrapper .statistic-title {
-    font-family: "Comfortaa", sans-serif;
-    font-size: 20px;
+	font-family: "Comfortaa", sans-serif;
+	font-size: 20px;
 }
 
 .data-row .statistic-box {
-    box-shadow: -10px -10px 30px #FFFFFF, 10px 10px 30px rgba(174, 174, 192, 0.4);
-    background-color: #F0F0F3;
-    border-radius: 16px;
-    padding: 20px 30px;
+	box-shadow: -10px -10px 30px #ffffff, 10px 10px 30px rgba(174, 174, 192, 0.4);
+	background-color: #f0f0f3;
+	border-radius: 16px;
+	padding: 20px 30px;
 }
 
 .data-row .statistic-box .data-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .data-row .statistic-box .data-row .room-title {
-    font-size: 20px;
-    font-family: "Comfortaa", sans-serif;
-    width: 70%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	font-size: 20px;
+	font-family: "Comfortaa", sans-serif;
+	width: 80%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
