@@ -6,6 +6,7 @@ import HeartIcon from '../../Asset/Icon/heart_white.svg';
 import { useDispatch, useSelector } from 'react-redux'
 import { openLoginPopup } from '../../Store/ActionCreator/showLoginPopupActionCreator'
 import { useHistory } from 'react-router-dom'
+import Logo from '../../Asset/Icon/logo.svg';
 
 function Navbar() {
 	const dispatch = useDispatch()
@@ -33,7 +34,9 @@ function Navbar() {
 			<label htmlFor="checkbox-burger" className="burger">
 				<MenuOutlined />
 			</label>
-			<label className="logo">Logo</label>
+			<label className="logo">
+				<img src={Logo} alt="logo"/>
+			</label>
 			<Router>
 				<ul>
 					<li className="nav-link" onClick={() => history.push('/')}>

@@ -1,5 +1,4 @@
 .table-container {
-    padding: 0 140px;
     font-family: 'Comfortaa', cursive;
 }
 
@@ -8,20 +7,12 @@
 }
 
 @media screen and (max-width: 1280px) {
-    .table-container {
-        padding: 60px 60px;
-    }
-
     .ant-table {
         font-size: 15px !important;
     }
 }
 
 @media screen and (max-width: 1024px) {
-    .table-container {
-        padding: 60px 30px;
-    }
-
     .ant-table {
         font-size: 14px !important;
     }

@@ -11,10 +11,11 @@
 	z-index: 3;
 }
 
-label.logo {
-	color: white;
-	font-size: 40px;
-	font-weight: bold;
+.navbar .logo {
+	height: auto;
+	position: relative;
+	top: -20px;
+	cursor: pointer;
 }
 
 .navbar ul {
@@ -85,10 +86,6 @@ label.logo {
 		padding: 25px 30px;
 	}
 
-	label.logo {
-		font-size: 30px;
-	}
-
 	.navbar ul li:hover {
 		border-bottom: 1px solid white;
 	}
@@ -116,6 +113,14 @@ label.logo {
 @media screen and (max-width: 768px) {
 	.burger {
 		display: block;
+	}
+
+	.navbar .logo {
+		top: -10px;
+	}
+
+	.navbar .logo img {
+		width: 160px;
 	}
 
 	.navbar ul {

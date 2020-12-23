@@ -26,14 +26,16 @@ export default function Owner() {
             <HeroSection heroImage={ownerHeroImage}>
                 <OwnerHeroContent />
             </HeroSection>
-            <Tabs defaultActiveKey="1">
-                <TabPane tab="Bài đăng" key="1">
-                    <StatisticTable />
-                </TabPane>
-                <TabPane tab="Yêu cầu thuê" key="2">
-                    <OwnerRentalRequestTable />
-                </TabPane>
-            </Tabs>
+            <div className="tab-container">
+                <Tabs defaultActiveKey="1">
+                    <TabPane tab="Bài đăng" key="1">
+                        <StatisticTable />
+                    </TabPane>
+                    <TabPane tab="Yêu cầu thuê" key="2">
+                        <OwnerRentalRequestTable />
+                    </TabPane>
+                </Tabs>
+            </div>
             {sessionStorage.getItem('ownerToken') === null && (
                 <OwnerLoginPopup>
                     <OwnerLoginForm />
