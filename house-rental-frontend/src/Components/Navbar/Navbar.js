@@ -15,14 +15,17 @@ function Navbar() {
 
 	const auth = useSelector(state => state.auth)
 
-	const [isLoggin, setIsLoggIn] = useState(false)
+	const [isUserPage, setIsUserPage] = useState(true)
+
 
 	const history = useHistory()
 
 	useEffect(() => {
-		const isLogged = localStorage.getItem('token') ? true : false
-		setIsLoggIn(isLogged)
+		const pathName = window.location.pathname
+		setIsUserPage(!(pathName === '/admin' || pathName === '/owner'))
 	}, [])
+
+
 
 	return (
 		<nav className="navbar">
@@ -44,7 +47,7 @@ function Navbar() {
 							</div>
 						</Link>
 					</li>
-					{!auth.loggedIn && !localStorage.getItem('token') && <span className="nav-login-button" onClick={openLoginPopupHander}>Đăng nhập</span>}
+					{!auth.loggedIn && isUserPage && !localStorage.getItem('token') && <span className="nav-login-button" onClick={openLoginPopupHander}>Đăng nhập</span>}
 				</ul>
 			</Router>
 		</nav>

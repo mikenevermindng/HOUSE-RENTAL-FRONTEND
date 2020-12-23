@@ -4,7 +4,7 @@ const apiGetCommentById = async (commentId) => {
 	try {
 		const response = await http.get('comment/' + commentId, {
 			headers: {
-				authorization: localStorage.getItem('adminToken')
+				authorization: sessionStorage.getItem('adminToken')
 			}
 		});
 		console.log(response);
@@ -14,6 +14,21 @@ const apiGetCommentById = async (commentId) => {
 		return null;
 	}
 };
+
+const apiGetAllCommet = async () => {
+	try {
+		const response = await http.get('comment/', {
+			headers: {
+				authorization: sessionStorage.getItem('adminToken')
+			}
+		});
+		console.log(response);
+		return response.data;
+	} catch (error) {
+		console.log(error);
+		return null;
+	}
+}
 
 const apiPostComment = async (data) => {
 	try {
@@ -61,7 +76,7 @@ const apiApprovedComment = async (commentId) => {
 	try {
 		const response = await http.patch('comment/' + commentId, {}, {
 			headers: {
-				authorization: localStorage.getItem('adminToken')
+				authorization: sessionStorage.getItem('adminToken')
 			}
 		});
 		console.log(response);
@@ -76,7 +91,7 @@ const apiDeleteComment = async (commentId) => {
 	try {
 		const response = await http.delete('comment/' + commentId, {
 			headers: {
-				authorization: localStorage.getItem('adminToken')
+				authorization: sessionStorage.getItem('adminToken')
 			}
 		});
 		return response.data
@@ -86,4 +101,4 @@ const apiDeleteComment = async (commentId) => {
 	}
 };
 
-export { apiGetCommentById, apiPostComment, apiApprovedComment, apiDeleteComment, apiGetCommentByPosterId, apiGetCommentByRatingId };
+export { apiGetCommentById, apiGetAllCommet, apiPostComment, apiApprovedComment, apiDeleteComment, apiGetCommentByPosterId, apiGetCommentByRatingId };

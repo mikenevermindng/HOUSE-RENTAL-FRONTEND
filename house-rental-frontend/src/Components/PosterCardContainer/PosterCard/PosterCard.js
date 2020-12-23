@@ -6,6 +6,8 @@ import classNames from 'classnames';
 import './PosterCard.css';
 import { apiUserLikeAction, apiUserUnlikeAction } from '../../../Services/rating_service'
 import { Link } from 'react-router-dom'
+import { openLoginPopup } from '../../../Store/ActionCreator/showLoginPopupActionCreator'
+import { useDispatch } from 'react-redux'
 
 function PosterCard(props) {
 
@@ -26,6 +28,8 @@ function PosterCard(props) {
 
     const { rate } = rating
 
+    const dispatch = useDispatch()
+
     const imagesList = images.map(img => {
         return {
             background: "http://localhost:3001/" + img.replace('\\', '/')
@@ -40,10 +44,19 @@ function PosterCard(props) {
     const userLikeClickHandler = async () => {
         if (!isLike) {
             const res = await apiUserLikeAction(rating._id, userId)
-            setIsLike(true)
+            if (res) {
+                setIsLike(true)
+            } else {
+                dispatch(openLoginPopup())
+            }
+
         } else {
             const res = await apiUserUnlikeAction(rating._id, userId)
-            setIsLike(false)
+            if (res) {
+                setIsLike(false)
+            } else {
+                dispatch(openLoginPopup())
+            }
         }
     }
 

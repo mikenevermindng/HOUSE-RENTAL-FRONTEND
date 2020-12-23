@@ -6,7 +6,7 @@ const createChatbox = async () => {
             method: "post",
             url: "http://localhost:3002/createChatbox",
             headers: {
-                authorization: localStorage.getItem('ownerToken')
+                authorization: sessionStorage.getItem('ownerToken')
             }
         })
         return res.data

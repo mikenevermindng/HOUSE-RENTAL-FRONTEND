@@ -34,7 +34,7 @@ export default function Owner() {
                     <OwnerRentalRequestTable />
                 </TabPane>
             </Tabs>
-            {localStorage.getItem('ownerToken') === null && (
+            {sessionStorage.getItem('ownerToken') === null && (
                 <OwnerLoginPopup>
                     <OwnerLoginForm />
                     <OwnerRegisterForm />

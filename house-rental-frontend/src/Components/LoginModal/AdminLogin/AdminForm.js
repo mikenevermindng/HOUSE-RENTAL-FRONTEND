@@ -25,7 +25,7 @@ function Login() {
             const login = await apiAdminLogin(values)
             console.log(login)
             if (login) {
-                localStorage.setItem('adminToken', login.token)
+                sessionStorage.setItem('adminToken', login.token)
                 message.success("Đăng nhập thành công")
                 history.go(0)
             } else {

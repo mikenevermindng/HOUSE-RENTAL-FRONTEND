@@ -1,10 +1,19 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./style.css";
 import CloseIcon from "../../Asset/Icon/close.svg";
-import {closePosterCreator} from "../../Store/ActionCreator/showPosterCreatorActionCreator";
+import { useDispatch } from 'react-redux'
+import { closeLoginPopup } from '../../Store/ActionCreator/showLoginPopupActionCreator'
 
-function LoginPage({children}) {
+function LoginPage({ children }) {
     const [isSwitch, setIsSwitch] = useState(false);
+
+    const pathName = window.location.pathname
+
+    console.log(window.location.pathname)
+
+    const isShowCloseButton = !(pathName === '/owner' || pathName === '/admin')
+
+    const dispatch = useDispatch()
 
     const onSignInButtonClick = (event) => {
         event.preventDefault();
@@ -22,7 +31,14 @@ function LoginPage({children}) {
                 className={`sign-in-box ${isSwitch ? "right-panel-active" : ""}`}
                 id="sign-in-box"
             >
-                <img id="close-button" alt="close" src={CloseIcon}/>
+                {isShowCloseButton && (
+                    <img
+                        id="close-button"
+                        alt="close"
+                        src={CloseIcon}
+                        onClick={() => dispatch(closeLoginPopup())}
+                    />
+                )}
                 {children}
                 <div className="overlay-container">
                     <div className="overlay">

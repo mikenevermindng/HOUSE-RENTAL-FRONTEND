@@ -9,7 +9,7 @@ function OwnerHeroContent(props) {
     const createChatBox = async () => {
         const response = await createChatbox()
         if (response) {
-            window.open('http://localhost:3000/chat', '_blank', 'noopener,noreferrer')
+            window.open('http://localhost:3000/chat/owner', '_blank', 'noopener,noreferrer')
         }
     }
 

@@ -13,11 +13,13 @@ function RatingDrawer(props) {
 
     const [commentList, setCommentList] = useState([])
 
+
     const dispatch = useDispatch()
 
     useEffect(() => {
         const fetchDataAsync = async () => {
             const res = await apiGetCommentByRatingId(ratingId)
+            console.log(res)
             setCommentList(res.comments)
         }
         fetchDataAsync()

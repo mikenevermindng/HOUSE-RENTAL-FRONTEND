@@ -111,8 +111,8 @@ function OwnerAccountTable(props) {
                         }}
                     >
                         <Tooltip title="Xoá bài đăng">
-                            <div className="tables-icons">
-                                <img src={DeleteIcon} alt="delete-icon"/>
+                            <div className="table-icons">
+                                <img src={DeleteIcon} alt="delete-icon" />
                             </div>
                         </Tooltip>
                     </Popconfirm>
@@ -130,8 +130,8 @@ function OwnerAccountTable(props) {
                             }}
                         >
                             <Tooltip title="Chấp thuận tài khoản">
-                                <div className="tables-icons">
-                                    <img src={AcceptIcon} alt="accept-icon"/>
+                                <div className="table-icons">
+                                    <img src={AcceptIcon} alt="accept-icon" />
                                 </div>
                             </Tooltip>
                         </Popconfirm>

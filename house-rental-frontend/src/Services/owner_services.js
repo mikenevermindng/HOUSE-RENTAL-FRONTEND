@@ -24,7 +24,7 @@ const apiDeleteOwnerAccount = async (ownerId) => {
     try {
         const res = await http.delete('owner/' + ownerId, {
             headers: {
-                authorization: localStorage.getItem('token')
+                authorization: sessionStorage.getItem('adminToken')
             }
         })
         return res.data
@@ -48,7 +48,7 @@ const apiGetAllOwnerAccount = async () => {
     try {
         const res = await http.get('owner/', {
             headers: {
-                authorization: localStorage.getItem('token')
+                authorization: sessionStorage.getItem('adminToken')
             }
         })
         return res.data
