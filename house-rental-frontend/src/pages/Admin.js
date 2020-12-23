@@ -9,6 +9,7 @@ import HeroSection from "../Components/HeroSection/HeroSection";
 import Navbar from "../Components/Navbar/Navbar";
 import AdminCommentManageTable from '../Components/AdminPageComponent/AdminCommentManageTab/AdminCommentManageTable';
 import { Link } from 'react-router-dom'
+import ChatIcon from '../Asset/Icon/chat_room.svg';
 
 const { TabPane } = Tabs;
 
@@ -16,7 +17,7 @@ function Admin() {
     const heroImage = "https://bom.to/8z2EoSXh";
 
     return (
-        <div>
+        <div style={{ position: "relative" }}>
             {!sessionStorage.getItem('adminToken') && <AdminLogin>
                 <AdminForm />
             </AdminLogin>}
@@ -24,7 +25,27 @@ function Admin() {
             <HeroSection heroImage={heroImage}>
                 <h1 className="hero-headline">Xin chào, Admin!</h1>
             </HeroSection>
-            <Link to={"/chat/admin"} target="_blank">Chat</Link>
+            <Link to={"/chat/admin"} target="_blank">
+                <div className="notification-box"
+                    style={{
+                        width: "80px",
+                        height: "80px",
+                        backgroundColor: "#F0F0F3",
+                        borderRadius: "50%",
+                        boxShadow: "-10px -10px 30px #ffffff, 10px 10px 30px rgba(174, 174, 192, 0.4)",
+                        zIndex: "97",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        position: "fixed",
+                        left: "25px",
+                        bottom: "25px",
+                        cursor: "pointer"
+                    }}
+                >
+                    <img src={ChatIcon} alt="chat-icon" style={{ width: "45px" }} />
+                </div>
+            </Link>
             <Tabs tabPosition="top">
                 <TabPane tab="Quản lý bài đăng" key="1">
                     <AdminPosterManageTab />

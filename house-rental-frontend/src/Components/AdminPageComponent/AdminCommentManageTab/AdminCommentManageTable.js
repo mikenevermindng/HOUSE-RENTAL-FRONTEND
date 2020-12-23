@@ -100,7 +100,7 @@ function AdminCommentManageTable() {
                         }}
                     >
                         <Tooltip title="Xoá bài đăng">
-                            <div className="tables-icons">
+                            <div className="table-icons">
                                 <img src={DeleteIcon} alt="delete-icon" />
                             </div>
                         </Tooltip>
@@ -119,7 +119,7 @@ function AdminCommentManageTable() {
                             }}
                         >
                             <Tooltip title="Chấp thuận tài khoản">
-                                <div className="tables-icons">
+                                <div className="table-icons">
                                     <img src={AcceptIcon} alt="accept-icon" />
                                 </div>
                             </Tooltip>
