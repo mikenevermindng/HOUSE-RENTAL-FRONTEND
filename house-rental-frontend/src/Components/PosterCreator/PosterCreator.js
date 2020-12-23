@@ -48,7 +48,7 @@ function PosterCreator(props) {
 			const response = await apiPosterCreator(data, type)
 			if (response) {
 				message.success("Đăng tải bài viết thành công, hãy chờ Admin phê duyệt")
-				// dispatch(closePosterCreator())
+				dispatch(closePosterCreator())
 			} else {
 				message.error("Đăng tải bài viết thất bại")
 			}
