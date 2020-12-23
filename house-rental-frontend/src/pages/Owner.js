@@ -11,6 +11,7 @@ import OwnerLoginForm from '../Components/LoginModal/OwnerForm/login'
 import OwnerRegisterForm from '../Components/LoginModal/OwnerForm/register'
 import { useSelector } from 'react-redux'
 import PosterCreator from '../Components/PosterCreator/PosterCreator';
+import NotificationBubble from "../Components/NotificationBubble/NotificationBubble";
 
 const { TabPane } = Tabs;
 
@@ -26,6 +27,7 @@ export default function Owner() {
             <HeroSection heroImage={ownerHeroImage}>
                 <OwnerHeroContent />
             </HeroSection>
+            <NotificationBubble type="owner" />
             <Tabs defaultActiveKey="1">
                 <TabPane tab="Bài đăng" key="1">
                     <StatisticTable />
@@ -40,7 +42,7 @@ export default function Owner() {
                     <OwnerRegisterForm />
                 </OwnerLoginPopup>
             )}
-            {isShowPosterCreatorReducer && <PosterCreator />}
+            {isShowPosterCreatorReducer && <PosterCreator type="owner" />}
         </div>
     )
 }

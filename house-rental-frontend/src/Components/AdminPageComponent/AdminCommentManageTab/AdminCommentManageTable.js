@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Tooltip, Button, Popconfirm } from 'antd';
+import { Table, Tooltip, Popconfirm } from 'antd';
 import DeleteIcon from '../../../Asset/Icon/trash_can.svg';
 import AcceptIcon from '../../../Asset/Icon/tick_box.svg';
 import { apiDeleteComment, apiApprovedComment, apiGetAllCommet } from '../../../Services/comment_services'
@@ -28,8 +28,8 @@ function AdminCommentManageTable() {
             ellipsis: true,
             render: (text, record, index) => {
                 return (
-                    <Tooltip title={record._id}>
-                        {record._id}
+                    <Tooltip title={record.postId}>
+                        {record.postId}
                     </Tooltip>
                 )
             }

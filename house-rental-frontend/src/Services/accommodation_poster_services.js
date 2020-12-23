@@ -20,11 +20,17 @@ const apiImageUploader = async (data) => {
 	}
 };
 
-const apiPosterCreator = async (data) => {
+const apiPosterCreator = async (data, type) => {
 	try {
+		let authorization = ''
+		if (type === 'owner') {
+			authorization = sessionStorage.getItem('ownerToken')
+		} else {
+			authorization = sessionStorage.getItem('adminToken')
+		}
 		const response = await http.post('accommodationPost/', data, {
 			headers: {
-				authorization: sessionStorage.getItem('ownerToken')
+				authorization: authorization
 			}
 		});
 		console.log(response);

@@ -27,16 +27,22 @@ function AdminStatisticTabs() {
             const res = await apiGetPoster()
             setPosterList(res.posts)
             const posters = res.posts
+
             const posterStatisticData = posterStatisticDataCoverter(posters)
             setPosterStatisticData(posterStatisticData)
+
             const theBestOfWeek = getSortedLikedAnalysticData(posterStatisticData, 'YYYY/MM/WW', 'likePerWeek')
             setBestPosterOfWeek(theBestOfWeek)
+
             const theBestOfMonth = getSortedLikedAnalysticData(posterStatisticData, 'YYYY/MM', 'likePerMonth')
             setBestPosterOfMonth(theBestOfMonth)
+
             const weekyTrending = getSortedLikedAnalysticData(posterStatisticData, 'YYYY/MM/WW', 'visitPerWeek')
             setTrendingOfWeek(weekyTrending)
+
             const monthlyTrending = getSortedLikedAnalysticData(posterStatisticData, 'YYYY/MM/WW', 'visitPerMonth')
             setTrendingOfMonth(monthlyTrending)
+
             const posterSortedByLikes = posters
                 .sort((a, b) => {
                     return b.rating.likedUser.length - a.rating.likedUser.length
@@ -62,7 +68,6 @@ function AdminStatisticTabs() {
                 })
             setTopVisitedPoster(posterSortedByVisits)
 
-            // console.log(posterSortedByVisits)
             // console.log('like week', theBestOfWeek)
             // console.log('like month', theBestOfMonth)
             // console.log('visit week', weekyTrending)
