@@ -12,8 +12,10 @@ import CloseIcon from '../../Asset/Icon/close.svg';
 
 const { Step } = Steps;
 
-function PosterCreator() {
+function PosterCreator(props) {
 	const [current, setCurrent] = React.useState(0);
+
+	const { type } = props
 
 	const dispatch = useDispatch()
 
@@ -43,7 +45,7 @@ function PosterCreator() {
 				materialFacilitiesInfo: facilities,
 				accommodationInfo: { ...posterInfo, ...posterMoreInfo, images: imageUploadResponse.files.map(image => image.path) },
 			}
-			const response = await apiPosterCreator(data)
+			const response = await apiPosterCreator(data, type)
 			if (response) {
 				message.success("Đăng tải bài viết thành công, hãy chờ Admin phê duyệt")
 				dispatch(closePosterCreator())

@@ -10,11 +10,12 @@ import Logo from '../../Asset/Icon/logo.svg';
 
 function Navbar() {
 	const dispatch = useDispatch()
+
+	const auth = useSelector(state => state.auth)
+
 	const openLoginPopupHander = () => {
 		return dispatch(openLoginPopup())
 	}
-
-	const auth = useSelector(state => state.auth)
 
 	const [isUserPage, setIsUserPage] = useState(true)
 
@@ -25,6 +26,22 @@ function Navbar() {
 		const pathName = window.location.pathname
 		setIsUserPage(!(pathName === '/admin' || pathName === '/owner'))
 	}, [])
+
+	const ownerLogout = () => {
+		sessionStorage.removeItem('ownerToken')
+		history.go(0)
+	}
+
+	const adminLogout = () => {
+		sessionStorage.removeItem('adminToken')
+		history.go(0)
+	}
+
+	const userLogout = () => {
+		localStorage.removeItem('token')
+		localStorage.removeItem('userId')
+		history.go(0)
+	}
 
 
 
@@ -50,7 +67,24 @@ function Navbar() {
 							</div>
 						</Link>
 					</li>
-					{!auth.loggedIn && isUserPage && !localStorage.getItem('token') && <span className="nav-login-button" onClick={openLoginPopupHander}>Đăng nhập</span>}
+					{!auth.loggedIn
+						&& isUserPage
+						&& !localStorage.getItem('token')
+						&& <span className="nav-login-button" onClick={openLoginPopupHander}>Đăng nhập</span>
+					}
+					{window.location.pathname === '/owner'
+						&& sessionStorage.getItem('ownerToken')
+						&& <span className="nav-login-button" onClick={ownerLogout}>Đăng xuất</span>
+					}
+					{window.location.pathname === '/admin'
+						&& sessionStorage.getItem('adminToken')
+						&& <span className="nav-login-button" onClick={adminLogout}>Đăng xuất</span>
+					}
+					{window.location.pathname !== '/admin'
+						&& window.location.pathname !== '/owner'
+						&& (localStorage.getItem('token') || auth.loggedIn)
+						&& <span className="nav-login-button" onClick={userLogout}>Đăng xuất</span>
+					}
 				</ul>
 			</Router>
 		</nav>

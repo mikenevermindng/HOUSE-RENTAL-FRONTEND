@@ -3,6 +3,7 @@ import './Ratings.css';
 import 'antd/dist/antd.css';
 import { Comment, Tooltip, List, Rate } from 'antd';
 import UserRating from "../UserRating/UserRating";
+import PosterReport from '../UserReport/UserReport'
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
 import { apiGetCommentByPosterId } from '../../Services/comment_services'
 
@@ -57,6 +58,7 @@ function Ratings(props) {
         <div className="ratings">
             <h1>Đánh giá</h1>
             <UserRating ratingId={rating._id} userId={userId} username={username} posterId={posterId} />
+            <PosterReport posterId={posterId} ratingId={rating._id} />
             <List
                 className="ratings-list"
                 itemLayout="horizontal"

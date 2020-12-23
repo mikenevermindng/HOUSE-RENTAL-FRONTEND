@@ -11,11 +11,22 @@ import AdminCommentManageTable from '../Components/AdminPageComponent/AdminComme
 import { Link } from 'react-router-dom'
 import ChatIcon from '../Asset/Icon/chat_room.svg';
 import NotificationBubble from "../Components/NotificationBubble/NotificationBubble";
-
+import AdminReportManageTable from '../Components/AdminPageComponent/AdminReportManageTab/AdminReportManageTable';
+import { useDispatch } from 'react-redux'
+import { openPosterCreator } from '../Store/ActionCreator/showPosterCreatorActionCreator'
+import { useSelector } from 'react-redux'
+import PosterCreator from '../Components/PosterCreator/PosterCreator'
 const { TabPane } = Tabs;
 
 function Admin() {
     const heroImage = "https://bom.to/8z2EoSXh";
+
+    const dispatch = useDispatch()
+    const isShowPosterCreatorReducer = useSelector(state => state.isShowPosterCreatorReducer)
+
+    const showPosterCreatorPopup = () => {
+        dispatch(openPosterCreator())
+    }
 
     return (
         <div style={{ position: "relative" }}>
@@ -25,11 +36,14 @@ function Admin() {
             <Navbar />
             <HeroSection heroImage={heroImage}>
                 <h1 className="hero-headline">Xin chào, Admin!</h1>
+                <div className="hero-buttons">
+                    <button onClick={showPosterCreatorPopup}>Đăng bài</button>
+                </div>
             </HeroSection>
-            <NotificationBubble/>
+            <NotificationBubble type="admin" />
             <Link to={"/chat/admin"} target="_blank">
                 <div className="fixed-bubble">
-                    <img src={ChatIcon} alt="chat-icon"/>
+                    <img src={ChatIcon} alt="chat-icon" />
                 </div>
             </Link>
             <div className="tab-container">
@@ -40,14 +54,18 @@ function Admin() {
                     <TabPane tab="Quản lí bình luận" key="2">
                         <AdminCommentManageTable />
                     </TabPane>
-                    <TabPane tab="Quản lý tài khoản chủ nhà trọ" key="3">
+                    <TabPane tab="Quản lí báo cáo" key="3">
+                        <AdminReportManageTable />
+                    </TabPane>
+                    <TabPane tab="Quản lý tài khoản chủ nhà trọ" key="4">
                         <AdminOwnderAccountManageTab />
                     </TabPane>
-                    <TabPane tab="Phân tích và thống kê" key="4">
+                    <TabPane tab="Phân tích và thống kê" key="5">
                         <AdminStatisticTab />
                     </TabPane>
                 </Tabs>
             </div>
+            {isShowPosterCreatorReducer && <PosterCreator type="admin" />}
         </div>
     )
 }

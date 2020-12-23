@@ -26,7 +26,7 @@
 	cursor: pointer;
 }
 
-.chatBoxCardList .list:hover,
+.chatBoxCardList .list div:hover,
 .chatBox .position-fixed-bottom-right .sendButton:hover {
 	background-color: rgb(75, 75, 75);
 }
