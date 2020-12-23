@@ -52,6 +52,10 @@ body {
 	padding: 0 140px 200px;
 }
 
+.tab-container .ant-tabs {
+	overflow: visible;
+}
+
 .fixed-bubble {
 	width: 80px;
 	height: 80px;
