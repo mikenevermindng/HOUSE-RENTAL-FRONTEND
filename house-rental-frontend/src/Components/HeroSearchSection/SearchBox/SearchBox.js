@@ -248,7 +248,10 @@ function SearchBox({ locations }) {
                 </div>
             </div>
             <div className="search-button">
-                <span onClick={() => history.push("/rooms?" + queryString.stringify({ ...selections, ...locationFilterOption() }))} ><button id="search-button">Tìm kiếm</button></span>
+                <span onClick={() => {
+                    history.push("/rooms?" + queryString.stringify({ ...selections, ...locationFilterOption() }))
+                    history.go(0)
+                }} ><button id="search-button">Tìm kiếm</button></span>
             </div>
         </div>
     )
