@@ -1,10 +1,11 @@
 import http from './http';
 
-const apiUserLikeAction = async (ratingId) => {
+const apiUserLikeAction = async (ratingId, token) => {
 	try {
+		console.log(token)
 		const response = await http.patch('rating/like/' + ratingId, { userId: localStorage.getItem('userId') }, {
 			headers: {
-				authorization: localStorage.getItem('token')
+				authorization: token
 			}
 		});
 		console.log(response);
@@ -15,11 +16,12 @@ const apiUserLikeAction = async (ratingId) => {
 	}
 };
 
-const apiUserUnlikeAction = async (ratingId, userId) => {
+const apiUserUnlikeAction = async (ratingId, token) => {
 	try {
-		const response = await http.patch('rating/unlike/' + ratingId, { userId: userId }, {
+		console.log(token)
+		const response = await http.patch('rating/unlike/' + ratingId, { userId: localStorage.getItem('userId') }, {
 			headers: {
-				authorization: localStorage.getItem('token')
+				authorization: token
 			}
 		});
 		console.log(response);

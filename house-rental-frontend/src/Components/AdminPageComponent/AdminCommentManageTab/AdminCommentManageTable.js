@@ -5,7 +5,7 @@ import AcceptIcon from '../../../Asset/Icon/tick_box.svg';
 import { apiDeleteComment, apiApprovedComment, apiGetAllCommet } from '../../../Services/comment_services'
 import moment from 'moment'
 import { Rate } from 'antd';
-
+import { Link } from 'react-router-dom'
 
 function AdminCommentManageTable() {
 
@@ -28,9 +28,13 @@ function AdminCommentManageTable() {
             ellipsis: true,
             render: (text, record, index) => {
                 return (
-                    <Tooltip title={record.postId}>
-                        {record.postId}
-                    </Tooltip>
+
+                    <Link to={"/room-details/" + record.postId} target="_blank">
+                        <Tooltip title={record.postId} >
+                            {record.postId}
+                        </Tooltip>
+                    </Link >
+
                 )
             }
         },

@@ -4,6 +4,7 @@ import DeleteIcon from '../../../Asset/Icon/trash_can.svg';
 import moment from 'moment'
 import { Rate } from 'antd';
 import { apiGetAllReports, apiDeleteReport } from '../../../Services/report_poster_service'
+import { Link } from 'react-router-dom'
 
 function AdminReportManageTable() {
 
@@ -25,10 +26,13 @@ function AdminReportManageTable() {
             width: 150,
             ellipsis: true,
             render: (text, record, index) => {
+                console.log(record.posterId._id)
                 return (
-                    <Tooltip title={record.posterId}>
-                        {record.posterId._id}
-                    </Tooltip>
+                    <Link to={"/room-details/" + record.posterId._id} target="_blank">
+                        <Tooltip title={record.posterId._id}>
+                            {record.posterId._id}
+                        </Tooltip>
+                    </Link>
                 )
             }
         },

@@ -3,16 +3,18 @@ import { notification } from 'antd';
 import NotiIcon from '../../Asset/Icon/alarm.svg';
 import './NotificationBubble.css';
 import { adminGetNotification, ownerGetNotification } from '../../Services/notification_services'
+import moment from 'moment-timezone'
 
 function NotificationBubble(props) {
 
     const { type } = props
 
-    const notiCard = (senderName, content, index) => {
+    const notiCard = (senderName, content, postedDate, index) => {
         return (
             <div className="notification" key={'notiCard-' + index}>
                 <p id="sender-name">{senderName}</p>
                 <p id="noti-content">{content}</p>
+                <p>{moment(postedDate).tz("Asia/Ho_Chi_Minh").format('HH:MM DD/MM/YYYY')}</p>
             </div>
         )
     }
@@ -21,7 +23,7 @@ function NotificationBubble(props) {
         return (
             <div className="noti-card">
                 {fakeData.map((data, index) => {
-                    return notiCard(data.senderName, data.content, index)
+                    return notiCard(data.senderName, data.content, data.postedDate, index)
                 })}
             </div>
         )

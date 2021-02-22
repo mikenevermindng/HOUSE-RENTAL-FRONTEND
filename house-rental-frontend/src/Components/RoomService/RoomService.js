@@ -14,8 +14,6 @@ import DrobeIcon from '../../Asset/Icon/wardrobe.svg';
 function RoomService(props) {
     const { services } = props.roomInfo;
 
-    console.log(services)
-
     return (
         <div className="room-services">
             <h1>Dịch vụ</h1>

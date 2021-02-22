@@ -29,11 +29,22 @@ function Favorites() {
     return (
         <div>
             <Navbar />
-            <h1
-                style={{
-                    marginTop: "140px"
-                }}
-            >Các bài đăng bạn đã lưu</h1>
+            <div style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
+            }}>
+                <h1
+                    style={{
+                        marginTop: "140px",
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                        fontFamily: "Pattaya, sans-serif",
+                        fonWeight: "lighter",
+                        fontSize: "40px"
+                    }}
+                >Các bài đăng bạn đã lưu</h1>
+            </div>
             <PosterCardContainer posterList={posterList} />
         </div>
     )

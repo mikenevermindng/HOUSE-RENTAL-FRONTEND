@@ -51,13 +51,15 @@ function Navbar() {
 			<label htmlFor="checkbox-burger" className="burger">
 				<MenuOutlined />
 			</label>
-			<label className="logo">
-				<img src={Logo} alt="logo"/>
-			</label>
+			<Link to="/">
+				<label className="logo">
+					<img src={Logo} alt="logo" />
+				</label>
+			</Link>
 			<Router>
 				<ul>
 					<li className="nav-link" onClick={() => history.push('/')}>
-						<Link>Tìm thuê</Link>
+						<Link to="/">Tìm thuê</Link>
 					</li>
 					<li className="nav-link" onClick={() => history.push('/favorites')} >
 						<Link>

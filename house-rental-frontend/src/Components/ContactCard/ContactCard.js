@@ -52,12 +52,25 @@ function ContactCard(props) {
     }
 
     const userLikeClickHandler = async () => {
+        const token = localStorage.getItem('token')
         if (!isLikedByUser) {
-            const res = await apiUserLikeAction(rating._id, userId)
-            setLikedByUser(true)
+            const res = await apiUserLikeAction(rating._id, token)
+            if (res) {
+                setLikedByUser(true)
+            }
+            else {
+                dispatch(openLoginPopup())
+                message.error("Bạn phải đăng nhập để dùng tính năng này")
+            }
         } else {
-            const res = await apiUserUnlikeAction(rating._id, userId)
-            setLikedByUser(false)
+            const res = await apiUserUnlikeAction(rating._id, token)
+            if (res) {
+                setLikedByUser(false)
+            } else {
+                dispatch(openLoginPopup())
+                message.error("Bạn phải đăng nhập để dùng tính năng này")
+            }
+
         }
     }
 
@@ -72,10 +85,12 @@ function ContactCard(props) {
                 <div>
                     <p>Liên hệ chủ nhà trọ:</p>
                     <p>- Hotline:
-                        <a href={"tel:" + ownerInfo.phoneNumber}> {ownerInfo.phoneNumber}</a>
+                        <a href={"tel:" + (ownerInfo ? ownerInfo.phoneNumber : "")}>
+                            {ownerInfo ? ownerInfo.phoneNumber : "Liên hệ Admin"}
+                        </a>
                     </p>
                     <p>- Email:
-                        <span> {ownerInfo.email}</span>
+                        <span> {ownerInfo ? ownerInfo.email : 'Liên hệ Admin'}</span>
                     </p>
                 </div>
                 <button id="submit-btn" onClick={generateRentalRequest}>
